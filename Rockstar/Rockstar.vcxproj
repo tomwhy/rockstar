@@ -145,9 +145,19 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Mysterious.cpp" />
+    <ClCompile Include="Parser.cpp" />
+    <ClCompile Include="Scope.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Xml Include="RockstarTokens.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ICodeBlock.h" />
+    <ClInclude Include="IVariable.h" />
+    <ClInclude Include="Mysterious.h" />
+    <ClInclude Include="Parser.h" />
+    <ClInclude Include="Scope.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

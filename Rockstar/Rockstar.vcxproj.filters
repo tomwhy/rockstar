@@ -13,15 +13,47 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\Variables">
+      <UniqueIdentifier>{0b52068b-9397-404a-82e4-64a7129acf43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Variables">
+      <UniqueIdentifier>{b05beea8-aae5-48d3-ac06-9c9f326bafa6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Parser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Scope.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Mysterious.cpp">
+      <Filter>Source Files\Variables</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="RockstarTokens.xml">
       <Filter>Resource Files</Filter>
     </Xml>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Parser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ICodeBlock.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Scope.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IVariable.h">
+      <Filter>Header Files\Variables</Filter>
+    </ClInclude>
+    <ClInclude Include="Mysterious.h">
+      <Filter>Header Files\Variables</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
