@@ -120,6 +120,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>GenericParser\debug\GenericParser.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -136,28 +137,22 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>GenericParser\release\GenericParser.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GenericTokenizer\GenericTokenizer.vcxproj">
-      <Project>{c79662c2-ab85-4c04-a305-9f1b0d7abe0c}</Project>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mysterious.cpp" />
-    <ClCompile Include="Parser.cpp" />
     <ClCompile Include="Scope.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <Xml Include="RockstarTokens.xml" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ICodeBlock.h" />
     <ClInclude Include="IVariable.h" />
     <ClInclude Include="Mysterious.h" />
-    <ClInclude Include="Parser.h" />
     <ClInclude Include="Scope.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="RockstarDefs.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

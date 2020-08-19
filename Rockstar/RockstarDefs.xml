@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+  <tokens>
+    <Keyword>
+      <contains>
+        <Let/>
+        <Be/>
+        <Into/>
+        <Put/>
+      </contains>
+    </Keyword>
+    <Variable>
+      <contains>
+        <regex times="*">[A-Z][A-Za-z]+</regex>
+        <regex>(:?[aA][nN]?|[Tt][Hh][Ee]|[Mm][Yy]|[Yy][Oo][Uu][Rr])\s+[a-z]+</regex>
+        <regex>[A-Za-z]+</regex>
+      </contains>
+      <invalid>
+        <Keyword/>
+      </invalid>
+    </Variable>
+    <Expression>
+      <contains>
+        <Literal/>
+      </contains>
+    </Expression>
+
+    <Literal>
+      <contains>
+        <Mysterious/>
+        <Null/>
+        <Boolean/>
+        <Number/>
+        <String/>
+      </contains>
+    </Literal>
+    <Mysterious>
+      <contains>
+        <regex icase="true">mysterious</regex>
+      </contains>
+    </Mysterious>
+    <Null>
+      <contains>
+        <regex icase="true">null</regex>
+        <regex icase="true">nothing</regex> 
+        <regex icase="true">nowhere</regex>
+        <regex icase="true">nobody</regex>
+        <regex icase="true">empty</regex>
+        <regex icase="true">gone</regex>
+      </contains>
+    </Null>
+    <Boolean>
+      <contains>
+        <True/>
+        <False/>
+      </contains>
+    </Boolean>
+    <Number>
+      <contains>
+        <regex>-?\d+(:?.\d+)?</regex>
+      </contains>
+    </Number>
+    <String>
+      <contains>
+        <regex>"(:?[^"]|\\.)*?"</regex>
+      </contains>
+    </String>
+    <True>
+      <contains>
+        <regex icase="true">right</regex>
+        <regex icase="true">yes</regex>
+        <regex icase="true">ok</regex>
+        <regex icase="true">true</regex>
+      </contains>
+    </True>
+    <False>
+      <contains>
+        <regex icase="true">wrong</regex>
+        <regex icase="true">no</regex>
+        <regex icase="true">lies</regex>
+        <regex icase="true">false</regex>
+      </contains>
+    </False>
+    <Let>
+      <contains>
+        <regex icase="true">let</regex>
+      </contains>
+    </Let>
+    <Be>
+      <contains>
+        <regex icase="true">be</regex>
+      </contains>
+    </Be>
+    <Put>
+      <contains>
+        <regex icase="true">put</regex>
+      </contains>
+    </Put>
+    <Into>
+      <contains>
+        <regex icase="true">into</regex>
+      </contains>
+    </Into>
+  </tokens>
+  <statements>
+    <Assign>
+      <sequence>
+        <Let/>
+        <Variable name="var"/>
+        <Be/>
+        <Expression name="value"/>
+      </sequence>
+      <sequence>
+        <Put/>
+        <Expression name="value"/>
+        <Into/>
+        <Variable name="var"/>
+      </sequence>
+    </Assign>
+  </statements>
+</root>
