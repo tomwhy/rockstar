@@ -1,7 +1,6 @@
 #pragma once
 #include "IVariable.h"
-
-class Mysterious : public IVariable
+class Null : public IVariable
 {
 public:
 	virtual std::string toString();

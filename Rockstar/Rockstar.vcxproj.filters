@@ -30,6 +30,18 @@
     <ClCompile Include="Mysterious.cpp">
       <Filter>Source Files\Variables</Filter>
     </ClCompile>
+    <ClCompile Include="Boolean.cpp">
+      <Filter>Source Files\Variables</Filter>
+    </ClCompile>
+    <ClCompile Include="Null.cpp">
+      <Filter>Source Files\Variables</Filter>
+    </ClCompile>
+    <ClCompile Include="Number.cpp">
+      <Filter>Source Files\Variables</Filter>
+    </ClCompile>
+    <ClCompile Include="String.cpp">
+      <Filter>Source Files\Variables</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ICodeBlock.h">
@@ -42,6 +54,18 @@
       <Filter>Header Files\Variables</Filter>
     </ClInclude>
     <ClInclude Include="Mysterious.h">
+      <Filter>Header Files\Variables</Filter>
+    </ClInclude>
+    <ClInclude Include="Boolean.h">
+      <Filter>Header Files\Variables</Filter>
+    </ClInclude>
+    <ClInclude Include="Null.h">
+      <Filter>Header Files\Variables</Filter>
+    </ClInclude>
+    <ClInclude Include="Number.h">
+      <Filter>Header Files\Variables</Filter>
+    </ClInclude>
+    <ClInclude Include="String.h">
       <Filter>Header Files\Variables</Filter>
     </ClInclude>
   </ItemGroup>
