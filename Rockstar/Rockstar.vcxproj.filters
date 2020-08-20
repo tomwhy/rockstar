@@ -19,6 +19,18 @@
     <Filter Include="Source Files\Variables">
       <UniqueIdentifier>{b05beea8-aae5-48d3-ac06-9c9f326bafa6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\CodeStatements">
+      <UniqueIdentifier>{00d3317d-a9ee-44bd-a74e-8eb03f51ad0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\CodeStatements">
+      <UniqueIdentifier>{9fb87b8b-3094-4c44-8ca5-da32dba7aa97}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Expressions">
+      <UniqueIdentifier>{428b926f-bd97-4420-b2cb-ad9a147373e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Expressions">
+      <UniqueIdentifier>{69b26f34-35d9-4246-a462-1fc5f17f9bfe}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -42,11 +54,17 @@
     <ClCompile Include="String.cpp">
       <Filter>Source Files\Variables</Filter>
     </ClCompile>
+    <ClCompile Include="InterpeterException.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Constant.cpp">
+      <Filter>Source Files\Expressions</Filter>
+    </ClCompile>
+    <ClCompile Include="AssignStatement.cpp">
+      <Filter>Source Files\CodeStatements</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ICodeBlock.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Scope.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -67,6 +85,24 @@
     </ClInclude>
     <ClInclude Include="String.h">
       <Filter>Header Files\Variables</Filter>
+    </ClInclude>
+    <ClInclude Include="ICodeBlock.h">
+      <Filter>Header Files\CodeStatements</Filter>
+    </ClInclude>
+    <ClInclude Include="IExpression.h">
+      <Filter>Header Files\Expressions</Filter>
+    </ClInclude>
+    <ClInclude Include="VariableTypes.h">
+      <Filter>Header Files\Variables</Filter>
+    </ClInclude>
+    <ClInclude Include="InterpeterException.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Constant.h">
+      <Filter>Header Files\Expressions</Filter>
+    </ClInclude>
+    <ClInclude Include="AssignStatement.h">
+      <Filter>Header Files\CodeStatements</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

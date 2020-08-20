@@ -141,7 +141,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AssignStatement.cpp" />
     <ClCompile Include="Boolean.cpp" />
+    <ClCompile Include="Constant.cpp" />
+    <ClCompile Include="InterpeterException.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mysterious.cpp" />
     <ClCompile Include="Null.cpp" />
@@ -150,14 +153,19 @@
     <ClCompile Include="String.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AssignStatement.h" />
     <ClInclude Include="Boolean.h" />
+    <ClInclude Include="Constant.h" />
     <ClInclude Include="ICodeBlock.h" />
+    <ClInclude Include="IExpression.h" />
+    <ClInclude Include="InterpeterException.h" />
     <ClInclude Include="IVariable.h" />
     <ClInclude Include="Mysterious.h" />
     <ClInclude Include="Null.h" />
     <ClInclude Include="Number.h" />
     <ClInclude Include="Scope.h" />
     <ClInclude Include="String.h" />
+    <ClInclude Include="VariableTypes.h" />
   </ItemGroup>
   <ItemGroup>
     <Xml Include="RockstarDefs.xml" />

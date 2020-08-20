@@ -8,7 +8,6 @@
 
 std::vector<Statement> parseFile(const std::string& filePath);
 bool fileExists(const std::string& filePath);
-int executeFile(const std::string& filePath);
 
 int main(int argc, char** argv)
 {

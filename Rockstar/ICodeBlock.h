@@ -4,5 +4,5 @@
 class ICodeBlock
 {
 public:
-	virtual void execute(const Scope& scope) = 0;
+	virtual void execute(Scope& scope) = 0;
 };
