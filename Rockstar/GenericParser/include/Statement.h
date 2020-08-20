@@ -14,6 +14,7 @@ public:
 
 	const std::string name() const;
 	const Token getToken(const std::string& tokenName) const;
+	const bool hasToken(const std::string& tokenName) const;
 
 private:
 	std::string _name;

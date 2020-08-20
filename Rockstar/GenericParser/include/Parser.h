@@ -14,6 +14,7 @@ public:
 private:
 	Statement parseLine(const std::vector<Token>& tokens);
 	std::map<Token, std::string> parseLine(const std::vector<Token>& tokens, const tinyxml2::XMLElement* sequence);
+	std::map<Token, std::string> parseOr(const std::vector<Token>& tokens, const tinyxml2::XMLElement* orElem);
 
 
 	tinyxml2::XMLDocument _definitionsDoc;

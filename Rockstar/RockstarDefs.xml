@@ -8,8 +8,15 @@
         <Be/>
         <Into/>
         <Put/>
+        <Say/>
       </contains>
     </Keyword>
+    <Expression>
+      <contains>
+        <Literal/>
+        <Variable/>
+      </contains>
+    </Expression>
     <Variable>
       <contains>
         <regex times="*">[A-Z][A-Za-z]+</regex>
@@ -20,11 +27,6 @@
         <Keyword/>
       </invalid>
     </Variable>
-    <Expression>
-      <contains>
-        <Literal/>
-      </contains>
-    </Expression>
 
     <Literal>
       <contains>
@@ -102,6 +104,14 @@
         <regex icase="true">into</regex>
       </contains>
     </Into>
+    <Say>
+      <contains>
+        <regex icase="true">say</regex>
+        <regex icase="true">shout</regex>
+        <regex icase="true">whisper</regex>
+        <regex icase="true">scream</regex>
+      </contains>
+    </Say>
   </tokens>
   <statements>
     <Assign>
@@ -109,7 +119,7 @@
         <Let/>
         <Variable name="var"/>
         <Be/>
-        <Expression name="value"/>
+        <Expression name="value"/>  
       </sequence>
       <sequence>
         <Put/>
@@ -118,5 +128,11 @@
         <Variable name="var"/>
       </sequence>
     </Assign>
+    <Print>
+      <sequence>
+        <Say/>
+        <Expression name="value"/>
+      </sequence>
+    </Print>
   </statements>
 </root>
