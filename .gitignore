@@ -3,3 +3,4 @@ Debug/
 /GenericTokenizer/Release
 !Rockstar/GenericParser/*
 *.rock
+*.cd
