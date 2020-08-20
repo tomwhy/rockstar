@@ -6,7 +6,7 @@ Constant::Constant(const Token& value) : _value(value)
 {
 
 }
-IVariable* Constant::evaluate(Scope* scope) const
+IVariable* Constant::evaluate(Scope& scope) const
 {
 	if (_value.isName("Mysterious"))
 		return new Mysterious();

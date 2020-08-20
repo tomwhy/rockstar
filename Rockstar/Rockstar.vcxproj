@@ -149,6 +149,7 @@
     <ClCompile Include="Mysterious.cpp" />
     <ClCompile Include="Null.cpp" />
     <ClCompile Include="Number.cpp" />
+    <ClCompile Include="RunTime.cpp" />
     <ClCompile Include="Scope.cpp" />
     <ClCompile Include="String.cpp" />
   </ItemGroup>
@@ -163,6 +164,7 @@
     <ClInclude Include="Mysterious.h" />
     <ClInclude Include="Null.h" />
     <ClInclude Include="Number.h" />
+    <ClInclude Include="RunTime.h" />
     <ClInclude Include="Scope.h" />
     <ClInclude Include="String.h" />
     <ClInclude Include="VariableTypes.h" />

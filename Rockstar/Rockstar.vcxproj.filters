@@ -63,6 +63,9 @@
     <ClCompile Include="AssignStatement.cpp">
       <Filter>Source Files\CodeStatements</Filter>
     </ClCompile>
+    <ClCompile Include="RunTime.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Scope.h">
@@ -103,6 +106,9 @@
     </ClInclude>
     <ClInclude Include="AssignStatement.h">
       <Filter>Header Files\CodeStatements</Filter>
+    </ClInclude>
+    <ClInclude Include="RunTime.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1,5 +1,6 @@
 #include "GenericParser/include/Parser.h"
 #include "GenericParser/include/ParsingExceptions.h"
+#include "RunTime.h"
 #include <fstream>
 #include <iostream>
 
