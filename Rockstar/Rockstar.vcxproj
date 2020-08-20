@@ -150,6 +150,7 @@
     <ClCompile Include="Null.cpp" />
     <ClCompile Include="Number.cpp" />
     <ClCompile Include="PrintStatement.cpp" />
+    <ClCompile Include="Pronoun.cpp" />
     <ClCompile Include="RunTime.cpp" />
     <ClCompile Include="Scope.cpp" />
     <ClCompile Include="String.cpp" />
@@ -168,6 +169,7 @@
     <ClInclude Include="Null.h" />
     <ClInclude Include="Number.h" />
     <ClInclude Include="PrintStatement.h" />
+    <ClInclude Include="Pronoun.h" />
     <ClInclude Include="RunTime.h" />
     <ClInclude Include="Scope.h" />
     <ClInclude Include="String.h" />

@@ -19,6 +19,7 @@
     </Expression>
     <Variable>
       <contains>
+        <Pronoun/>
         <regex times="*">[A-Z][A-Za-z]+</regex>
         <regex>(:?[aA][nN]?|[Tt][Hh][Ee]|[Mm][Yy]|[Yy][Oo][Uu][Rr])\s+[a-z]+</regex>
         <regex>[A-Za-z]+</regex>
@@ -112,6 +113,24 @@
         <regex icase="true">scream</regex>
       </contains>
     </Say>
+    <Pronoun>
+      <contains>
+        <regex icase="true">it</regex>
+        <regex icase="true">he</regex>
+        <regex icase="true">she</regex>
+        <regex icase="true">him</regex>
+        <regex icase="true">her</regex>
+        <regex icase="true">they</regex>
+        <regex icase="true">ze</regex>
+        <regex icase="true">hir</regex>
+        <regex icase="true">zie</regex>
+        <regex icase="true">zir</regex>
+        <regex icase="true">xe</regex>
+        <regex icase="true">xem</regex>
+        <regex icase="true">ve</regex>
+        <regex icase="true">ver</regex>
+      </contains>
+    </Pronoun>
   </tokens>
   <statements>
     <Assign>

@@ -1,17 +1,28 @@
 #include "Utils.h"
 #include "VariableName.h"
 #include "Constant.h"
+#include "Pronoun.h"
 #include "InterpeterException.h"
 #include <algorithm>
 
 std::shared_ptr<IExpression> Utils::createExpression(const Token& token)
 {
-	if (token.isName("Variable"))
+	if (token.isName("Pronoun"))
+	{
+		return std::make_shared<Pronoun>();
+	}
+	else if (token.isName("Variable"))
+	{
 		return std::make_shared<VariableName>(token.value());
+	}
 	else if (token.isName("Literal"))
+	{
 		return std::make_shared<Constant>(token);
+	}
 	else
+	{
 		throw InterpeterException("Invalid value: " + token.value());
+	}
 }
 std::string Utils::lower(const std::string& str)
 {

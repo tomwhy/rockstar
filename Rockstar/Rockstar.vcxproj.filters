@@ -75,6 +75,9 @@
     <ClCompile Include="PrintStatement.cpp">
       <Filter>Source Files\CodeStatements</Filter>
     </ClCompile>
+    <ClCompile Include="Pronoun.cpp">
+      <Filter>Source Files\Expressions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Scope.h">
@@ -127,6 +130,9 @@
     </ClInclude>
     <ClInclude Include="PrintStatement.h">
       <Filter>Header Files\CodeStatements</Filter>
+    </ClInclude>
+    <ClInclude Include="Pronoun.h">
+      <Filter>Header Files\Expressions</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
