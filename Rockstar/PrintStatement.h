@@ -2,14 +2,13 @@
 #include "ICodeBlock.h"
 #include "IExpression.h"
 
-class AssignStatement : public ICodeBlock
+class PrintStatement : public ICodeBlock
 {
 public:
-	AssignStatement(const std::string& name, std::shared_ptr<IExpression> value);
-	
+	PrintStatement(std::shared_ptr<IExpression> exp);
+	~PrintStatement();
 	virtual void execute(Scope& scope);
 private:
-	std::string _name;
 	std::shared_ptr<IExpression> _exp;
 };
 

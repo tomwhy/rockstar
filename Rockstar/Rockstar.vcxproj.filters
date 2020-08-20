@@ -69,6 +69,12 @@
     <ClCompile Include="VariableName.cpp">
       <Filter>Source Files\Expressions</Filter>
     </ClCompile>
+    <ClCompile Include="Utils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PrintStatement.cpp">
+      <Filter>Source Files\CodeStatements</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Scope.h">
@@ -115,6 +121,12 @@
     </ClInclude>
     <ClInclude Include="VariableName.h">
       <Filter>Header Files\Expressions</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PrintStatement.h">
+      <Filter>Header Files\CodeStatements</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

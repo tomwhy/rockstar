@@ -7,13 +7,12 @@ class RunTime
 {
 public:
 	RunTime(const std::vector<Statement>& statements);
-	~RunTime();
 
 	void run();
 private:
-	static ICodeBlock* parseStatment(const Statement& stmt);
+	static std::shared_ptr<ICodeBlock> parseStatment(const Statement& stmt);
 
-	std::vector<ICodeBlock*> _code;
+	std::vector<std::shared_ptr<ICodeBlock>> _code;
 	Scope _globalScope;
 };
 

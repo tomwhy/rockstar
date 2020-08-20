@@ -4,7 +4,7 @@ VariableName::VariableName(const std::string& name) : _name(name)
 {
 
 }
-const IVariable* VariableName::evaluate(Scope& scope) const
+std::shared_ptr<IVariable> VariableName::evaluate(Scope& scope) const
 {
 	return scope.getVariable(_name);
 }

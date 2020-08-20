@@ -6,5 +6,5 @@ class IExpression
 {
 public:
 	virtual ~IExpression() {};
-	virtual const IVariable* evaluate(Scope& scope) const = 0;
+	virtual std::shared_ptr<IVariable> evaluate(Scope& scope) const = 0;
 };

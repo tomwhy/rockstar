@@ -1,16 +1,16 @@
 #pragma once
 #include "IVariable.h"
+#include <memory>
 #include <map>
 
 class Scope
 {
 public:
 	Scope();
-	~Scope();
-	const IVariable* getVariable(const std::string& name) const;
-	void setVariable(const std::string& name, IVariable* value);
+	const std::shared_ptr<IVariable> getVariable(const std::string& name) const;
+	void setVariable(const std::string& name, const std::shared_ptr<IVariable> value);
 
 private:
-	std::map<std::string, const IVariable*> _variables;
+	std::map<std::string, std::shared_ptr<IVariable>> _variables;
 };
 
