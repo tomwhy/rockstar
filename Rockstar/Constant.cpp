@@ -17,7 +17,7 @@ std::shared_ptr<IVariable> Constant::evaluate(Scope& scope) const
 	else if (_value.isName("Number"))
 		return std::make_shared<Number>(std::stod(_value.value()));
 	else if (_value.isName("String"))
-		return std::make_shared<String>(_value.value().substr(1, _value.value().size() - 1));
+		return std::make_shared<String>(_value.value().substr(1, _value.value().size() - 2)); //remove the surrounding "
 	else
 		throw InterpeterException(_value.value() + " is not a constant");
 }

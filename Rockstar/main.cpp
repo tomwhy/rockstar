@@ -1,6 +1,7 @@
 #include "GenericParser/include/Parser.h"
 #include "GenericParser/include/ParsingExceptions.h"
 #include "RunTime.h"
+#include "InterpeterException.h"
 #include <fstream>
 #include <iostream>
 
@@ -45,6 +46,16 @@ int main(int argc, char** argv)
 		return 1;
 	}
 
+	try
+	{
+		RunTime runTime(lines);
+		runTime.run();
+	}
+	catch (const InterpeterException& e)
+	{
+		std::cerr << e.what() << std::endl;
+		return 1;
+	}
 
 	return 0;
 }
