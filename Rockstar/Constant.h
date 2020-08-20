@@ -6,7 +6,7 @@ class Constant : public IExpression
 {
 public:
 	Constant(const Token& value);
-	virtual IVariable* evaluate(Scope& scope) const;
+	virtual const IVariable* evaluate(Scope& scope) const;
 private:
 	Token _value;
 };

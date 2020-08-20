@@ -6,5 +6,5 @@ class IExpression
 {
 public:
 	virtual ~IExpression() {};
-	virtual IVariable* evaluate(Scope& scope) const = 0;
+	virtual const IVariable* evaluate(Scope& scope) const = 0;
 };

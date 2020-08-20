@@ -152,6 +152,7 @@
     <ClCompile Include="RunTime.cpp" />
     <ClCompile Include="Scope.cpp" />
     <ClCompile Include="String.cpp" />
+    <ClCompile Include="VariableName.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AssignStatement.h" />
@@ -167,6 +168,7 @@
     <ClInclude Include="RunTime.h" />
     <ClInclude Include="Scope.h" />
     <ClInclude Include="String.h" />
+    <ClInclude Include="VariableName.h" />
     <ClInclude Include="VariableTypes.h" />
   </ItemGroup>
   <ItemGroup>
