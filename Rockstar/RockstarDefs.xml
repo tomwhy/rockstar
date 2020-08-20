@@ -1,43 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <root>
-  <tokens>
+  <defines>
     <Keyword>
-      <contains>
-        <Let/>
-        <Be/>
-        <Into/>
-        <Put/>
-        <Say/>
-      </contains>
+      <Let />
+      <Be />
+      <Into />
+      <Put />
+      <Say />
+      <regex icase="ture">at</regex>
     </Keyword>
+
     <Expression>
-      <contains>
-        <Literal/>
-        <Variable/>
-      </contains>
+      <Literal />
+      <Variable />
     </Expression>
+
     <Variable>
+      <sequence>
+        <or>
+          <Pronoun />
+          <VariableName name="var"/>
+        </or>
+        <Index optional="true" name="idx"/>
+      </sequence>
+    </Variable>
+
+    <Literal>
+      <Mysterious />
+      <Null />
+      <Boolean />
+      <Number />
+      <String />
+    </Literal>
+  </defines>
+  <tokens>
+    <Index>
       <contains>
-        <Pronoun/>
+        <regex icase="true">at (\d+|"(:?[^"]|\\.)*?")</regex>
+      </contains>
+    </Index>
+
+    <VariableName>
+      <contains>
         <regex times="*">[A-Z][A-Za-z]+</regex>
         <regex>(:?[aA][nN]?|[Tt][Hh][Ee]|[Mm][Yy]|[Yy][Oo][Uu][Rr])\s+[a-z]+</regex>
         <regex>[A-Za-z]+</regex>
       </contains>
       <invalid>
-        <Keyword/>
+        <Keyword />
       </invalid>
-    </Variable>
+    </VariableName>
 
-    <Literal>
-      <contains>
-        <Mysterious/>
-        <Null/>
-        <Boolean/>
-        <Number/>
-        <String/>
-      </contains>
-    </Literal>
     <Mysterious>
       <contains>
         <regex icase="true">mysterious</regex>
@@ -46,7 +60,7 @@
     <Null>
       <contains>
         <regex icase="true">null</regex>
-        <regex icase="true">nothing</regex> 
+        <regex icase="true">nothing</regex>
         <regex icase="true">nowhere</regex>
         <regex icase="true">nobody</regex>
         <regex icase="true">empty</regex>
@@ -55,8 +69,8 @@
     </Null>
     <Boolean>
       <contains>
-        <True/>
-        <False/>
+        <True />
+        <False />
       </contains>
     </Boolean>
     <Number>
@@ -135,22 +149,22 @@
   <statements>
     <Assign>
       <sequence>
-        <Let/>
-        <Variable name="var"/>
-        <Be/>
-        <Expression name="value"/>  
+        <Let />
+        <Variable name="var" />
+        <Be />
+        <Expression name="value" />
       </sequence>
       <sequence>
-        <Put/>
-        <Expression name="value"/>
-        <Into/>
-        <Variable name="var"/>
+        <Put />
+        <Expression name="value" />
+        <Into />
+        <Variable name="var" />
       </sequence>
     </Assign>
     <Print>
       <sequence>
-        <Say/>
-        <Expression name="value"/>
+        <Say />
+        <Expression name="value" />
       </sequence>
     </Print>
   </statements>

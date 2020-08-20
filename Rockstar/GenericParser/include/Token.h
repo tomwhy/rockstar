@@ -1,15 +1,19 @@
 #pragma once
 #include <string>
 #include <vector>
+#include <map>
 
 class Token
 {
 public:
 	Token(const std::string& name, const std::string& value);
+	Token(const std::string& name, const std::map<size_t, std::string>& groups);
 	Token();
 
 	std::string value() const;
-	
+	std::string group(int group) const;
+	std::map<size_t, std::string> groups() const;
+
 	void addName(const std::string& name);
 	void addName(const std::vector<std::string>& names);
 	bool isName(const std::string& name) const;
@@ -18,5 +22,5 @@ public:
 
 private:
 	std::vector<std::string> _names;
-	std::string _value;
+	std::map<size_t, std::string> _groups;
 };
