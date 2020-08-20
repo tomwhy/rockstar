@@ -12,7 +12,7 @@ public:
 	
 	void addName(const std::string& name);
 	void addName(const std::vector<std::string>& names);
-	bool isName(const std::string& name);
+	bool isName(const std::string& name) const;
 	friend bool operator<(const Token& left, const Token& right);
 
 private:
