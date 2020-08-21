@@ -1,6 +1,7 @@
 #include "Scope.h"
 #include "InterpeterException.h"
 #include "Utils.h"
+#include "Array.h"
 
 Scope::Scope() : _variables()
 {
@@ -49,7 +50,10 @@ void Scope::setVariable(const std::string& name, const std::shared_ptr<IVariable
 		}
 		else
 		{
-			_variables.at(variable)->setAt(indexVar->toString(), value);
+			if (_variables.find(variable) == _variables.end())
+				_variables[variable] = std::make_shared<Array>(indexVar->toString(), value);
+			else
+				_variables.at(variable)->setAt(indexVar->toString(), value);
 		}
 	}
 

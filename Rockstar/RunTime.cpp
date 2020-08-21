@@ -30,7 +30,9 @@ std::shared_ptr<ICodeBlock> RunTime::parseStatment(const Statement& stmt)
 	{
 		if (stmt.hasToken("value_var") && stmt.hasToken("value_idx_exp"))
 			return std::make_shared<PrintStatement>(Utils::createVariableExpression(stmt.getToken("value_var"), stmt.getToken("value_idx_exp")));
-		else		
+		else if (stmt.hasToken("value_var"))
+			return std::make_shared<PrintStatement>(Utils::createExpression(stmt.getToken("value_var")));
+		else
 			return std::make_shared<PrintStatement>(Utils::createExpression(stmt.getToken("value")));
 	}
 	else
