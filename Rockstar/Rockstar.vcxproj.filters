@@ -84,6 +84,9 @@
     <ClCompile Include="ISimpleVariable.cpp">
       <Filter>Source Files\Variables</Filter>
     </ClCompile>
+    <ClCompile Include="IModifyStatement.cpp">
+      <Filter>Source Files\CodeStatements</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Scope.h">
@@ -146,13 +149,13 @@
     <ClInclude Include="ISimpleVariable.h">
       <Filter>Header Files\Variables</Filter>
     </ClInclude>
+    <ClInclude Include="IModifyStatement.h">
+      <Filter>Header Files\CodeStatements</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="RockstarDefs.xml">
       <Filter>Resource Files</Filter>
     </Xml>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>

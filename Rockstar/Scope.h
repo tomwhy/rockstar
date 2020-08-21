@@ -4,14 +4,16 @@
 #include <map>
 
 class IExpression;
+class VariableName;
 
 class Scope
 {
 public:
 	Scope();
-	const std::shared_ptr<IVariable> getVariable(const std::string& name, std::shared_ptr<IExpression> index = {});
-	void setVariable(const std::string& name, const std::shared_ptr<IVariable> value, std::shared_ptr<IExpression> index = {});
+	const std::shared_ptr<IVariable> getVariable(std::shared_ptr<VariableName> var);
+	void setVariable(std::shared_ptr<VariableName> var, const std::shared_ptr<IVariable> value);
 	std::shared_ptr<IVariable> getLast() const;
+	std::string getLastName() const;
 
 private:
 	std::string _lastVar;

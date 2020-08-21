@@ -1,5 +1,7 @@
 #pragma once
 #include "IExpression.h"
+#include "VariableName.h"
+#include "GenericParser/include/Statement.h"
 #include "GenericParser/include/Token.h"
 #include <functional>
 #include <iterator>
@@ -8,7 +10,7 @@ class Utils
 {
 public:
 	static std::shared_ptr<IExpression> createExpression(const Token& token);
-	static std::shared_ptr<IExpression> createVariableExpression(const Token& name, const Token& index);
+	static std::shared_ptr<VariableName> createVariableExpression(const Statement& stmt, const std::string& name, const std::string& idx);
 	static std::string lower(const std::string& str);
 	
 	template <class Iter, class T>

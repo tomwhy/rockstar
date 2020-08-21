@@ -17,21 +17,12 @@ std::shared_ptr<ICodeBlock> RunTime::parseStatment(const Statement& stmt)
 {
 	if (stmt.name() == "Assign")
 	{
-		if (stmt.hasToken("var_idx_exp"))
-		{
-			return std::make_shared<AssignStatement>(stmt.getToken("var_var").value(), Utils::createExpression(stmt.getToken("var_idx_exp")), Utils::createExpression(stmt.getToken("value")));
-		}
-		else
-		{
-			return std::make_shared<AssignStatement>(stmt.getToken("var_var").value(), Utils::createExpression(stmt.getToken("value")));
-		}
+		return std::make_shared<AssignStatement>(Utils::createVariableExpression(stmt, "var_var", "var_idx_exp"), Utils::createExpression(stmt.getToken("value")));
 	}
 	else if (stmt.name() == "Print")
 	{
 		if (stmt.hasToken("value_var") && stmt.hasToken("value_idx_exp"))
-			return std::make_shared<PrintStatement>(Utils::createVariableExpression(stmt.getToken("value_var"), stmt.getToken("value_idx_exp")));
-		else if (stmt.hasToken("value_var"))
-			return std::make_shared<PrintStatement>(Utils::createExpression(stmt.getToken("value_var")));
+			return std::make_shared<PrintStatement>(Utils::createVariableExpression(stmt, "value_var", "value_idx_exp"));
 		else
 			return std::make_shared<PrintStatement>(Utils::createExpression(stmt.getToken("value")));
 	}

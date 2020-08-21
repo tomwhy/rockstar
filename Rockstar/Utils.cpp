@@ -24,15 +24,23 @@ std::shared_ptr<IExpression> Utils::createExpression(const Token& token)
 		throw InterpeterException("Invalid value: " + token.value());
 	}
 }
-std::shared_ptr<IExpression> Utils::createVariableExpression(const Token& name, const Token& index)
+std::shared_ptr<VariableName> Utils::createVariableExpression(const Statement& stmt, const std::string& name, const std::string& idx)
 {
-	if (name.isName("Pronoun"))
+	Token nameToken = stmt.getToken(name);
+	
+	if (nameToken.isName("Pronoun"))
 	{
-		return std::make_shared<Pronoun>(createExpression(index));
+		if (stmt.hasToken(idx))
+			return std::make_shared<Pronoun>(createExpression(stmt.getToken(idx)));
+		else
+			return std::make_shared<Pronoun>();
 	}
-	else if (name.isName("VariableName"))
+	else if (nameToken.isName("VariableName"))
 	{
-		return std::make_shared<VariableName>(name.value(), createExpression(index));
+		if (stmt.hasToken(idx))
+			return std::make_shared<VariableName>(nameToken.value(), createExpression(stmt.getToken(idx)));
+		else
+			return std::make_shared<VariableName>(nameToken.value());
 	}
 
 	throw InterpeterException("Not a variable name");

@@ -145,6 +145,7 @@
     <ClCompile Include="AssignStatement.cpp" />
     <ClCompile Include="Boolean.cpp" />
     <ClCompile Include="Constant.cpp" />
+    <ClCompile Include="IModifyStatement.cpp" />
     <ClCompile Include="InterpeterException.cpp" />
     <ClCompile Include="ISimpleVariable.cpp" />
     <ClCompile Include="main.cpp" />
@@ -166,6 +167,7 @@
     <ClInclude Include="Constant.h" />
     <ClInclude Include="ICodeBlock.h" />
     <ClInclude Include="IExpression.h" />
+    <ClInclude Include="IModifyStatement.h" />
     <ClInclude Include="InterpeterException.h" />
     <ClInclude Include="ISimpleVariable.h" />
     <ClInclude Include="IVariable.h" />
@@ -183,9 +185,6 @@
   </ItemGroup>
   <ItemGroup>
     <Xml Include="RockstarDefs.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
