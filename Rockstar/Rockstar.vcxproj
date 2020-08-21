@@ -141,10 +141,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Array.cpp" />
     <ClCompile Include="AssignStatement.cpp" />
     <ClCompile Include="Boolean.cpp" />
     <ClCompile Include="Constant.cpp" />
     <ClCompile Include="InterpeterException.cpp" />
+    <ClCompile Include="ISimpleVariable.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mysterious.cpp" />
     <ClCompile Include="Null.cpp" />
@@ -158,12 +160,14 @@
     <ClCompile Include="VariableName.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Array.h" />
     <ClInclude Include="AssignStatement.h" />
     <ClInclude Include="Boolean.h" />
     <ClInclude Include="Constant.h" />
     <ClInclude Include="ICodeBlock.h" />
     <ClInclude Include="IExpression.h" />
     <ClInclude Include="InterpeterException.h" />
+    <ClInclude Include="ISimpleVariable.h" />
     <ClInclude Include="IVariable.h" />
     <ClInclude Include="Mysterious.h" />
     <ClInclude Include="Null.h" />

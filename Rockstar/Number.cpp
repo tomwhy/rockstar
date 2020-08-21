@@ -5,6 +5,11 @@ Number::Number(double value) : _value(value)
 
 }
 
+bool Number::canBeIndex()
+{
+	return true;
+}
+
 std::string Number::toString()
 {
 	std::string res = std::to_string(_value);

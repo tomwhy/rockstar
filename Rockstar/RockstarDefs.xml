@@ -8,9 +8,16 @@
       <Into />
       <Put />
       <Say />
-      <regex icase="ture">at</regex>
+      <At />
     </Keyword>
 
+    <Index>
+      <sequence>
+        <At/>
+        <Expression name="exp"/>
+      </sequence>
+    </Index>
+    
     <Expression>
       <Literal />
       <Variable />
@@ -35,11 +42,11 @@
     </Literal>
   </defines>
   <tokens>
-    <Index>
+    <At>
       <contains>
-        <regex icase="true">at (\d+|"(:?[^"]|\\.)*?")</regex>
+        <regex icase="true">at</regex>
       </contains>
-    </Index>
+    </At>
 
     <VariableName>
       <contains>

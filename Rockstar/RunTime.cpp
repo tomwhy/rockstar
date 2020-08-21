@@ -16,7 +16,16 @@ RunTime::RunTime(const std::vector<Statement>& statements) : _globalScope()
 std::shared_ptr<ICodeBlock> RunTime::parseStatment(const Statement& stmt)
 {
 	if (stmt.name() == "Assign")
-		return std::make_shared<AssignStatement>(stmt.getToken("var").value(), Utils::createExpression(stmt.getToken("value")));
+	{
+		if (stmt.hasToken("var_idx_exp"))
+		{
+			return std::make_shared<AssignStatement>(stmt.getToken("var_var").value(), Utils::createExpression(stmt.getToken("var_idx_exp")), Utils::createExpression(stmt.getToken("value")));
+		}
+		else
+		{
+			return std::make_shared<AssignStatement>(stmt.getToken("var_var").value(), Utils::createExpression(stmt.getToken("value")));
+		}
+	}
 	else if (stmt.name() == "Print")
 		return std::make_shared<PrintStatement>(Utils::createExpression(stmt.getToken("value")));
 	else

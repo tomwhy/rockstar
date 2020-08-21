@@ -1,8 +1,10 @@
 #pragma once
-#include "IVariable.h"
-class Null : public IVariable
+#include "ISimpleVariable.h"
+
+class Null : public ISimpleVariable
 {
 public:
 	virtual std::string toString();
+	virtual bool canBeIndex();
 };
 

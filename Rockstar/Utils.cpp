@@ -11,11 +11,11 @@ std::shared_ptr<IExpression> Utils::createExpression(const Token& token)
 	{
 		return std::make_shared<Pronoun>();
 	}
-	else if (token.isName("Variable"))
+	else if (token.isName("VariableName"))
 	{
 		return std::make_shared<VariableName>(token.value());
-	}
-	else if (token.isName("Literal"))
+	}		
+	else if (token.isName("Mysterious") || token.isName("Null") || token.isName("Boolean") || token.isName("Number") || token.isName("String"))
 	{
 		return std::make_shared<Constant>(token);
 	}

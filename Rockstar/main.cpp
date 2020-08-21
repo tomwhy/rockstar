@@ -37,7 +37,7 @@ int main(int argc, char** argv)
 	}
 	catch (const StatementParsingException&)
 	{
-		std::cerr << "Unknow Statment" << std::endl;
+		std::cerr << "Parsing Error" << std::endl;
 		return 1;
 	}
 	catch (const std::exception& e)

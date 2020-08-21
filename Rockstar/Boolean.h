@@ -1,11 +1,12 @@
 #pragma once
-#include "IVariable.h"
+#include "ISimpleVariable.h"
 
-class Boolean : public IVariable
+class Boolean : public ISimpleVariable
 {
 public:
 	Boolean(bool value);
 	virtual std::string toString();
+	virtual bool canBeIndex();
 
 private:
 	bool _value;
