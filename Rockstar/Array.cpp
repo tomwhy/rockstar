@@ -10,7 +10,7 @@ Array::Array(const std::string& index, std::shared_ptr<IVariable> value) : _size
 
 bool Array::canBeIndex()
 {
-	return false;
+	return true;
 }
 
 std::string Array::toString()

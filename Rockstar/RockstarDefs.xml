@@ -54,8 +54,8 @@
 
     <VariableName>
       <contains>
-        <regex times="*">[A-Z][A-Za-z]+</regex>
         <regex>(:?[aA][nN]?|[Tt][Hh][Ee]|[Mm][Yy]|[Yy][Oo][Uu][Rr])\s+[a-z]+</regex>
+        <regex times="*">[A-Z][A-Za-z]+</regex>
         <regex>[A-Za-z]+</regex>
       </contains>
       <invalid>

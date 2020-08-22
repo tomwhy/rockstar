@@ -2,6 +2,7 @@
 #include "AssignStatement.h"
 #include "PrintStatement.h"
 #include "SplitStatement.h"
+#include "JoinStatement.h"
 #include "Constant.h"
 #include "InterpeterException.h"
 #include "Utils.h"
@@ -50,6 +51,10 @@ std::shared_ptr<ICodeBlock> RunTime::parseStatment(const Statement& stmt)
 		if (stmt.getToken("op").isName("Cut"))
 		{
 			return std::make_shared<SplitStatement>(exp, dest, argument);
+		}
+		else if (stmt.getToken("op").isName("Join"))
+		{
+			return std::make_shared<JoinStatement>(exp, dest, argument);
 		}
 		else
 		{

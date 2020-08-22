@@ -88,7 +88,10 @@
       <Filter>Source Files\CodeStatements</Filter>
     </ClCompile>
     <ClCompile Include="SplitStatement.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\CodeStatements</Filter>
+    </ClCompile>
+    <ClCompile Include="JoinStatement.cpp">
+      <Filter>Source Files\CodeStatements</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -156,7 +159,10 @@
       <Filter>Header Files\Variables</Filter>
     </ClInclude>
     <ClInclude Include="SplitStatement.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\CodeStatements</Filter>
+    </ClInclude>
+    <ClInclude Include="JoinStatement.h">
+      <Filter>Header Files\CodeStatements</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

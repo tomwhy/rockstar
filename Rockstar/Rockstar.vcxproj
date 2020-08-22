@@ -148,6 +148,7 @@
     <ClCompile Include="IModifyStatement.cpp" />
     <ClCompile Include="InterpeterException.cpp" />
     <ClCompile Include="ISimpleVariable.cpp" />
+    <ClCompile Include="JoinStatement.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mysterious.cpp" />
     <ClCompile Include="Null.cpp" />
@@ -172,6 +173,7 @@
     <ClInclude Include="InterpeterException.h" />
     <ClInclude Include="ISimpleVariable.h" />
     <ClInclude Include="IVariable.h" />
+    <ClInclude Include="JoinStatement.h" />
     <ClInclude Include="Mysterious.h" />
     <ClInclude Include="Null.h" />
     <ClInclude Include="Number.h" />
