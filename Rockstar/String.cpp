@@ -7,7 +7,6 @@ String::String(const std::string& value) : _value(value), IVariable("String")
 {
 
 }
-
 std::string String::toString()
 {
 	return _value;

@@ -144,6 +144,7 @@
     <ClCompile Include="Array.cpp" />
     <ClCompile Include="AssignStatement.cpp" />
     <ClCompile Include="Boolean.cpp" />
+    <ClCompile Include="CastStatement.cpp" />
     <ClCompile Include="Constant.cpp" />
     <ClCompile Include="IModifyStatement.cpp" />
     <ClCompile Include="InterpeterException.cpp" />
@@ -166,6 +167,7 @@
     <ClInclude Include="Array.h" />
     <ClInclude Include="AssignStatement.h" />
     <ClInclude Include="Boolean.h" />
+    <ClInclude Include="CastStatement.h" />
     <ClInclude Include="Constant.h" />
     <ClInclude Include="ICodeBlock.h" />
     <ClInclude Include="IExpression.h" />

@@ -93,6 +93,9 @@
     <ClCompile Include="JoinStatement.cpp">
       <Filter>Source Files\CodeStatements</Filter>
     </ClCompile>
+    <ClCompile Include="CastStatement.cpp">
+      <Filter>Source Files\CodeStatements</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Scope.h">
@@ -162,6 +165,9 @@
       <Filter>Header Files\CodeStatements</Filter>
     </ClInclude>
     <ClInclude Include="JoinStatement.h">
+      <Filter>Header Files\CodeStatements</Filter>
+    </ClInclude>
+    <ClInclude Include="CastStatement.h">
       <Filter>Header Files\CodeStatements</Filter>
     </ClInclude>
   </ItemGroup>
