@@ -156,6 +156,7 @@
     <ClCompile Include="Pronoun.cpp" />
     <ClCompile Include="RunTime.cpp" />
     <ClCompile Include="Scope.cpp" />
+    <ClCompile Include="SplitStatement.cpp" />
     <ClCompile Include="String.cpp" />
     <ClCompile Include="Utils.cpp" />
     <ClCompile Include="VariableName.cpp" />
@@ -178,6 +179,7 @@
     <ClInclude Include="Pronoun.h" />
     <ClInclude Include="RunTime.h" />
     <ClInclude Include="Scope.h" />
+    <ClInclude Include="SplitStatement.h" />
     <ClInclude Include="String.h" />
     <ClInclude Include="Utils.h" />
     <ClInclude Include="VariableName.h" />

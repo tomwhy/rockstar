@@ -6,7 +6,7 @@
 class Token
 {
 public:
-	Token(const std::string& name, const std::string& value);
+	Token(const std::string& name);
 	Token(const std::string& name, const std::map<size_t, std::string>& groups);
 	Token();
 

@@ -9,7 +9,7 @@ IModifyStatement::IModifyStatement(std::shared_ptr<IExpression> exp, std::shared
 }
 void IModifyStatement::execute(Scope& scope)
 {
-	std::shared_ptr<IVariable> newValue = modify();
+	std::shared_ptr<IVariable> newValue = modify(scope);
 
 	if (_dest != nullptr)
 		scope.setVariable(_dest, newValue);

@@ -12,6 +12,5 @@ AssignStatement::AssignStatement(const AssignStatement& other) : _var(other._var
 
 void AssignStatement::execute(Scope& scope)
 {
-	if (_var->hasIndex())
-		scope.setVariable(_var, _exp->evaluate(scope));
+	scope.setVariable(_var, _exp->evaluate(scope));
 }

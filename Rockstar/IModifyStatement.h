@@ -10,7 +10,7 @@ public:
 	IModifyStatement(std::shared_ptr<IExpression> exp, std::shared_ptr<VariableName> dest = {}, std::shared_ptr<IExpression> argument = {});
 	virtual void execute(Scope& scope);
 protected:
-	virtual std::shared_ptr<IVariable> modify() = 0;
+	virtual std::shared_ptr<IVariable> modify(Scope& scope) = 0;
 
 	std::shared_ptr<IExpression> _exp;
 	std::shared_ptr<IExpression> _argument;

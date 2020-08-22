@@ -118,6 +118,11 @@
         <regex icase="true">shatter</regex>
       </contains>
     </Cut>
+    <Empty>
+      <contains>
+        <regex>^$</regex>
+      </contains>
+    </Empty>
     <Join>
       <contains>
         <regex icase="true">join</regex>
@@ -213,7 +218,7 @@
         <or optional="true">
           <sequence>
             <Into/>
-            <Variable name="target"/>
+            <Variable name="dest"/>
             <sequence optional="true">
               <With/>
               <Expression name="arg"/>
@@ -226,5 +231,10 @@
         </or>
       </sequence>
     </Modify>
+    <EndBlock>
+      <sequence>
+        <Empty/>
+      </sequence>
+    </EndBlock>
   </statements>
 </root>

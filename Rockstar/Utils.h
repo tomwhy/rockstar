@@ -9,8 +9,8 @@
 class Utils
 {
 public:
-	static std::shared_ptr<IExpression> createExpression(const Token& token);
-	static std::shared_ptr<VariableName> createVariableExpression(const Statement& stmt, const std::string& name, const std::string& idx);
+	static std::shared_ptr<IExpression> createExpression(const Statement& stmt, const std::string& name);
+	static std::shared_ptr<VariableName> createVariableExpression(const Statement& stmt, const std::string& name);
 	static std::string lower(const std::string& str);
 	
 	template <class Iter, class T>

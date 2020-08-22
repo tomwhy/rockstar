@@ -5,17 +5,17 @@
 #include "InterpeterException.h"
 #include <algorithm>
 
-std::shared_ptr<IExpression> Utils::createExpression(const Token& token)
+std::shared_ptr<IExpression> Utils::createExpression(const Statement& stmt, const std::string& name)
 {
-	if (token.isName("Pronoun"))
-	{
-		return std::make_shared<Pronoun>();
-	}
-	else if (token.isName("VariableName"))
-	{
-		return std::make_shared<VariableName>(token.value());
-	}		
-	else if (token.isName("Mysterious") || token.isName("Null") || token.isName("Boolean") || token.isName("Number") || token.isName("String"))
+	if (stmt.hasToken(name + "_var"))
+		return Utils::createVariableExpression(stmt, name);
+
+	if (!stmt.hasToken(name))
+		throw InterpeterException("Could not find the token named: " + name);
+
+	Token token = stmt.getToken(name);
+	
+	if (token.isName("Mysterious") || token.isName("Null") || token.isName("Boolean") || token.isName("Number") || token.isName("String"))
 	{
 		return std::make_shared<Constant>(token);
 	}
@@ -24,21 +24,22 @@ std::shared_ptr<IExpression> Utils::createExpression(const Token& token)
 		throw InterpeterException("Invalid value: " + token.value());
 	}
 }
-std::shared_ptr<VariableName> Utils::createVariableExpression(const Statement& stmt, const std::string& name, const std::string& idx)
+std::shared_ptr<VariableName> Utils::createVariableExpression(const Statement& stmt, const std::string& name)
 {
-	Token nameToken = stmt.getToken(name);
-	
+	Token nameToken = stmt.getToken(name + "_var");
+	std::string idx = name + "_idx_exp";
+
 	if (nameToken.isName("Pronoun"))
 	{
 		if (stmt.hasToken(idx))
-			return std::make_shared<Pronoun>(createExpression(stmt.getToken(idx)));
+			return std::make_shared<Pronoun>(createExpression(stmt, idx));
 		else
 			return std::make_shared<Pronoun>();
 	}
 	else if (nameToken.isName("VariableName"))
 	{
 		if (stmt.hasToken(idx))
-			return std::make_shared<VariableName>(nameToken.value(), createExpression(stmt.getToken(idx)));
+			return std::make_shared<VariableName>(nameToken.value(), createExpression(stmt, idx));
 		else
 			return std::make_shared<VariableName>(nameToken.value());
 	}
