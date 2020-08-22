@@ -3,11 +3,10 @@
 #include "InterpeterException.h"
 #include "Utils.h"
 
-String::String(const std::string& value) : _value(value)
+String::String(const std::string& value) : _value(value), IVariable("String")
 {
 
 }
-
 std::string String::toString()
 {
 	return _value;

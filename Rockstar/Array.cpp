@@ -2,7 +2,7 @@
 #include "Utils.h"
 #include "Mysterious.h"
 
-Array::Array(const std::string& index, std::shared_ptr<IVariable> value) : _size(), _data()
+Array::Array(const std::string& index, std::shared_ptr<IVariable> value) : _size(), _data(), IVariable("Array")
 {
 	_data[index] = value;
 	updateSize(index);
@@ -10,7 +10,7 @@ Array::Array(const std::string& index, std::shared_ptr<IVariable> value) : _size
 
 bool Array::canBeIndex()
 {
-	return false;
+	return true;
 }
 
 std::string Array::toString()

@@ -9,8 +9,12 @@
       <Put />
       <Say />
       <At />
+      <With/>
+      <Cut/>
+      <Join/>
+      <Cast/>
     </Keyword>
-
+    
     <Index>
       <sequence>
         <At/>
@@ -50,8 +54,8 @@
 
     <VariableName>
       <contains>
-        <regex times="*">[A-Z][A-Za-z]+</regex>
         <regex>(:?[aA][nN]?|[Tt][Hh][Ee]|[Mm][Yy]|[Yy][Oo][Uu][Rr])\s+[a-z]+</regex>
+        <regex times="*">[A-Z][A-Za-z]+</regex>
         <regex>[A-Za-z]+</regex>
       </contains>
       <invalid>
@@ -106,6 +110,30 @@
         <regex icase="true">false</regex>
       </contains>
     </False>
+
+    <Cut>
+      <contains>
+        <regex icase="true">cut</regex>
+        <regex icase="true">split</regex>
+        <regex icase="true">shatter</regex>
+      </contains>
+    </Cut>
+    <Empty>
+      <contains>
+        <regex>^$</regex>
+      </contains>
+    </Empty>
+    <Join>
+      <contains>
+        <regex icase="true">join</regex>
+        <regex icase="true">unite</regex>
+      </contains>
+    </Join>
+    <Cast>
+      <contains>
+        <regex icase="true">cast</regex>
+      </contains>
+    </Cast>
     <Let>
       <contains>
         <regex icase="true">let</regex>
@@ -126,6 +154,11 @@
         <regex icase="true">into</regex>
       </contains>
     </Into>
+    <With>
+      <contains>
+        <regex icase="true">with</regex>
+      </contains>
+    </With>
     <Say>
       <contains>
         <regex icase="true">say</regex>
@@ -174,5 +207,34 @@
         <Expression name="value" />
       </sequence>
     </Print>
+    <Modify>
+      <sequence>
+        <or name="op">
+          <Join/>
+          <Cut/>
+          <Cast/>
+        </or>
+        <Expression name="exp"/>
+        <or optional="true">
+          <sequence>
+            <Into/>
+            <Variable name="dest"/>
+            <sequence optional="true">
+              <With/>
+              <Expression name="arg"/>
+            </sequence>
+          </sequence>
+          <sequence>
+            <With/>
+            <Expression name="arg"/>
+          </sequence>
+        </or>
+      </sequence>
+    </Modify>
+    <EndBlock>
+      <sequence>
+        <Empty/>
+      </sequence>
+    </EndBlock>
   </statements>
 </root>

@@ -1,6 +1,6 @@
 #include "Number.h"
 
-Number::Number(double value) : _value(value)
+Number::Number(double value) : _value(value), ISimpleVariable("Number")
 {
 
 }

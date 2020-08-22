@@ -144,9 +144,12 @@
     <ClCompile Include="Array.cpp" />
     <ClCompile Include="AssignStatement.cpp" />
     <ClCompile Include="Boolean.cpp" />
+    <ClCompile Include="CastStatement.cpp" />
     <ClCompile Include="Constant.cpp" />
+    <ClCompile Include="IModifyStatement.cpp" />
     <ClCompile Include="InterpeterException.cpp" />
     <ClCompile Include="ISimpleVariable.cpp" />
+    <ClCompile Include="JoinStatement.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mysterious.cpp" />
     <ClCompile Include="Null.cpp" />
@@ -155,6 +158,7 @@
     <ClCompile Include="Pronoun.cpp" />
     <ClCompile Include="RunTime.cpp" />
     <ClCompile Include="Scope.cpp" />
+    <ClCompile Include="SplitStatement.cpp" />
     <ClCompile Include="String.cpp" />
     <ClCompile Include="Utils.cpp" />
     <ClCompile Include="VariableName.cpp" />
@@ -163,12 +167,15 @@
     <ClInclude Include="Array.h" />
     <ClInclude Include="AssignStatement.h" />
     <ClInclude Include="Boolean.h" />
+    <ClInclude Include="CastStatement.h" />
     <ClInclude Include="Constant.h" />
     <ClInclude Include="ICodeBlock.h" />
     <ClInclude Include="IExpression.h" />
+    <ClInclude Include="IModifyStatement.h" />
     <ClInclude Include="InterpeterException.h" />
     <ClInclude Include="ISimpleVariable.h" />
     <ClInclude Include="IVariable.h" />
+    <ClInclude Include="JoinStatement.h" />
     <ClInclude Include="Mysterious.h" />
     <ClInclude Include="Null.h" />
     <ClInclude Include="Number.h" />
@@ -176,6 +183,7 @@
     <ClInclude Include="Pronoun.h" />
     <ClInclude Include="RunTime.h" />
     <ClInclude Include="Scope.h" />
+    <ClInclude Include="SplitStatement.h" />
     <ClInclude Include="String.h" />
     <ClInclude Include="Utils.h" />
     <ClInclude Include="VariableName.h" />
@@ -183,9 +191,6 @@
   </ItemGroup>
   <ItemGroup>
     <Xml Include="RockstarDefs.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

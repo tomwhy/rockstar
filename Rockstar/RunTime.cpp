@@ -1,6 +1,9 @@
 #include "RunTime.h"
 #include "AssignStatement.h"
 #include "PrintStatement.h"
+#include "SplitStatement.h"
+#include "JoinStatement.h"
+#include "CastStatement.h"
 #include "Constant.h"
 #include "InterpeterException.h"
 #include "Utils.h"
@@ -9,7 +12,9 @@ RunTime::RunTime(const std::vector<Statement>& statements) : _globalScope()
 {
 	for (auto statement : statements)
 	{
-		_code.push_back(parseStatment(statement));
+		std::shared_ptr<ICodeBlock> line = parseStatment(statement);
+		if(line != nullptr)
+			_code.push_back(line);
 	}
 }
 
@@ -17,23 +22,53 @@ std::shared_ptr<ICodeBlock> RunTime::parseStatment(const Statement& stmt)
 {
 	if (stmt.name() == "Assign")
 	{
-		if (stmt.hasToken("var_idx_exp"))
-		{
-			return std::make_shared<AssignStatement>(stmt.getToken("var_var").value(), Utils::createExpression(stmt.getToken("var_idx_exp")), Utils::createExpression(stmt.getToken("value")));
-		}
-		else
-		{
-			return std::make_shared<AssignStatement>(stmt.getToken("var_var").value(), Utils::createExpression(stmt.getToken("value")));
-		}
+		return std::make_shared<AssignStatement>(Utils::createVariableExpression(stmt, "var"), Utils::createExpression(stmt, "value"));
 	}
 	else if (stmt.name() == "Print")
 	{
-		if (stmt.hasToken("value_var") && stmt.hasToken("value_idx_exp"))
-			return std::make_shared<PrintStatement>(Utils::createVariableExpression(stmt.getToken("value_var"), stmt.getToken("value_idx_exp")));
-		else if (stmt.hasToken("value_var"))
-			return std::make_shared<PrintStatement>(Utils::createExpression(stmt.getToken("value_var")));
+		return std::make_shared<PrintStatement>(Utils::createExpression(stmt, "value"));
+	}
+	else if (stmt.name() == "Modify")
+	{
+		std::shared_ptr<IExpression> exp;
+		std::shared_ptr<VariableName> dest;
+		std::shared_ptr<IExpression> argument;
+		
+		exp = Utils::createExpression(stmt, "exp");
+		
+		if (stmt.hasToken("dest_var"))
+			dest = Utils::createVariableExpression(stmt, "dest");
+
+		try
+		{
+			argument = Utils::createExpression(stmt, "arg");
+		}
+		catch (const InterpeterException&)
+		{
+
+		}
+
+
+		if (stmt.getToken("op").isName("Cut"))
+		{
+			return std::make_shared<SplitStatement>(exp, dest, argument);
+		}
+		else if (stmt.getToken("op").isName("Join"))
+		{
+			return std::make_shared<JoinStatement>(exp, dest, argument);
+		}
+		else if (stmt.getToken("op").isName("Cast"))
+		{
+			return std::make_shared<CastStatement>(exp, dest, argument);
+		}
 		else
-			return std::make_shared<PrintStatement>(Utils::createExpression(stmt.getToken("value")));
+		{
+			throw InterpeterException("Unknown modify op: " + stmt.getToken("op").value());
+		}
+	}
+	else if (stmt.name() == "EndBlock")
+	{
+		return nullptr;
 	}
 	else
 		throw InterpeterException("Unknow statment: " + stmt.name());

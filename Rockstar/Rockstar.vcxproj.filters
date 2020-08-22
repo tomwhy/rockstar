@@ -84,6 +84,18 @@
     <ClCompile Include="ISimpleVariable.cpp">
       <Filter>Source Files\Variables</Filter>
     </ClCompile>
+    <ClCompile Include="IModifyStatement.cpp">
+      <Filter>Source Files\CodeStatements</Filter>
+    </ClCompile>
+    <ClCompile Include="SplitStatement.cpp">
+      <Filter>Source Files\CodeStatements</Filter>
+    </ClCompile>
+    <ClCompile Include="JoinStatement.cpp">
+      <Filter>Source Files\CodeStatements</Filter>
+    </ClCompile>
+    <ClCompile Include="CastStatement.cpp">
+      <Filter>Source Files\CodeStatements</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Scope.h">
@@ -143,16 +155,25 @@
     <ClInclude Include="Array.h">
       <Filter>Header Files\Variables</Filter>
     </ClInclude>
+    <ClInclude Include="IModifyStatement.h">
+      <Filter>Header Files\CodeStatements</Filter>
+    </ClInclude>
     <ClInclude Include="ISimpleVariable.h">
       <Filter>Header Files\Variables</Filter>
+    </ClInclude>
+    <ClInclude Include="SplitStatement.h">
+      <Filter>Header Files\CodeStatements</Filter>
+    </ClInclude>
+    <ClInclude Include="JoinStatement.h">
+      <Filter>Header Files\CodeStatements</Filter>
+    </ClInclude>
+    <ClInclude Include="CastStatement.h">
+      <Filter>Header Files\CodeStatements</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="RockstarDefs.xml">
       <Filter>Resource Files</Filter>
     </Xml>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>

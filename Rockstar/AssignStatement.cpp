@@ -1,14 +1,16 @@
 #include "AssignStatement.h"
 
-AssignStatement::AssignStatement(const std::string& name, std::shared_ptr<IExpression> value) : _name(name), _exp(value)
+AssignStatement::AssignStatement(std::shared_ptr<VariableName> name, std::shared_ptr<IExpression> value) : _var(name), _exp(value)
 {
 
 }
-AssignStatement::AssignStatement(const std::string& name, std::shared_ptr<IExpression> index, std::shared_ptr<IExpression> value) : _name(name), _exp(value), _index(index)
+
+AssignStatement::AssignStatement(const AssignStatement& other) : _var(other._var), _exp(other._exp)
 {
 
 }
+
 void AssignStatement::execute(Scope& scope)
 {
-	scope.setVariable(_name, _exp->evaluate(scope), _index);
+	scope.setVariable(_var, _exp->evaluate(scope));
 }
