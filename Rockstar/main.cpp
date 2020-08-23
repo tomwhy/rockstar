@@ -12,7 +12,7 @@
 
 std::vector<Statement> parseFile(const std::string& filePath);
 bool fileExists(const std::string& filePath);
-std::string removeComments(const std::string& line, bool inComment);
+std::string removeComments(const std::string& line);
 
 int main(int argc, char** argv)
 {
