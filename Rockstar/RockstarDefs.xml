@@ -185,6 +185,26 @@
         <regex icase="true">ver</regex>
       </contains>
     </Pronoun>
+    <Build>
+      <contains>
+        <regex icase="true">build</regex>
+      </contains>
+    </Build>
+    <Up>
+      <contains>
+        <regex icase="true" times="*">up[\s,]*</regex>
+      </contains>
+    </Up>
+    <Down>
+      <contains>
+        <regex icase="true" times="*">down[\s,]*</regex>
+      </contains>
+    </Down>
+    <Knock>
+      <contains>
+        <regex icase="true">knock</regex>
+      </contains>
+    </Knock>
   </tokens>
   <statements>
     <Assign>
@@ -236,5 +256,19 @@
         <Empty/>
       </sequence>
     </EndBlock>
+    <Increament>
+      <sequence>
+        <Build/>
+        <Variable/>
+        <Up/>
+      </sequence>
+    </Increament>
+    <Decreament>
+      <sequence>
+        <Knock/>
+        <Variable/>
+        <Down/>
+      </sequence>
+    </Decreament>
   </statements>
 </root>
