@@ -46,8 +46,51 @@ std::string PreProcessor::removeSingleQuotes(const std::string& line)
 {
 	std::regex shortcutRegex(R"('s\W+)");
 	std::string res = std::regex_replace(line, shortcutRegex, " is ");
+	std::regex stringLiteralRegexBoundry(R"(^[^\\"]*(?!\\)("))");
 
-	return std::regex_replace(res, std::regex(R"(')"), ""); //remove all other signle quotes
+
+	size_t offset = 0;
+	while (offset < res.size())
+	{
+		size_t saysPos = std::string::npos;
+		std::smatch match;
+		std::string subString = res.substr(offset);
+
+		saysPos = res.find("says", offset);
+
+		if (std::regex_search(subString, match, stringLiteralRegexBoundry))
+		{
+			size_t stringOffset = match.position(1) + offset;
+			if (saysPos != std::string::npos && saysPos < stringOffset)
+				break;
+			
+			res.erase(std::remove(res.begin() + offset, res.begin() + stringOffset, '\''), res.begin() + stringOffset);
+			subString = res.substr(stringOffset+1);
+			if (std::regex_search(subString, match, stringLiteralRegexBoundry))
+			{
+				offset = stringOffset + match.position(1) + 1;
+			}
+			else
+			{
+				throw std::exception(("Expected end of string literal. line: " + line).c_str());
+			}
+		}
+		else
+		{
+			if (saysPos == std::string::npos)
+			{
+				res.erase(std::remove(res.begin() + offset, res.end(), '\''), res.end());
+			}
+			else
+			{
+				res.erase(std::remove(res.begin() + offset, res.begin() + saysPos, '\''), res.begin() + saysPos);
+			}
+
+			break;
+		}
+	}
+
+	return res;
 }
 
 std::function<bool(std::string&)> PreProcessor::readLines(const std::string& filePath)
