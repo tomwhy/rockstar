@@ -2,14 +2,17 @@
 #include "GenericParser/include/ParsingExceptions.h"
 #include "RunTime.h"
 #include "InterpeterException.h"
+#include "Utils.h"
 #include <fstream>
 #include <iostream>
+#include <algorithm>
 
 #define ARG_COUNT 2
 #define ROCKSTAR_DEFS "RockstarDefs.xml"
 
 std::vector<Statement> parseFile(const std::string& filePath);
 bool fileExists(const std::string& filePath);
+std::string removeComments(const std::string& line, bool inComment);
 
 int main(int argc, char** argv)
 {
@@ -30,14 +33,14 @@ int main(int argc, char** argv)
 	{
 		lines = parseFile(argv[1]);
 	}
-	catch (const TokenParsingException&)
+	catch (const TokenParsingException& e)
 	{
-		std::cerr << "Error Tokenizing" << std::endl;
+		std::cerr << "Error Tokenizing" << std::endl << e.what() << std::endl;
 		return 1;
 	}
-	catch (const StatementParsingException&)
+	catch (const StatementParsingException& e)
 	{
-		std::cerr << "Parsing Error" << std::endl;
+		std::cerr << "Parsing Error" << std::endl << e.what() << std::endl;
 		return 1;
 	}
 	catch (const std::exception& e)
@@ -60,11 +63,78 @@ int main(int argc, char** argv)
 	return 0;
 }
 
+std::string removeComments(const std::string& line)
+{
+	static bool inComment = false;
+	std::string res(line);
+	std::regex commentRegex(R"(\(.*?\))"); //remove in line comments
+	
+
+	if (!inComment)
+	{
+		res = std::regex_replace(res, commentRegex, "");
+
+		size_t commentStart = res.find('(');
+		if (inComment = commentStart != std::string::npos)
+		{
+			return res.substr(0, commentStart);
+		}
+	}
+	else
+	{
+		size_t commentEnd = res.find(')');
+		if (inComment = commentEnd == std::string::npos)
+		{
+			return "";
+		}
+		else
+		{
+			res = res.substr(commentEnd + 1);
+			
+			res = std::regex_replace(res, commentRegex, "");
+			
+			size_t commentStart = res.find('(');
+			if (inComment = commentStart != std::string::npos)
+			{
+				return res.substr(0, commentStart);
+			}
+		}
+	}
+
+	return res;
+}
+
 std::vector<Statement> parseFile(const std::string& filePath)
 {
+	auto readLines = [filePath](std::string& line)
+	{
+		static std::fstream file(filePath, std::fstream::in);
+		std::regex emptyLineRegex(R"(^\s*$)");
+
+		
+		if (!std::getline(file, line))
+		{
+			file.close();
+			return false;
+		}
+
+		line = removeComments(line);
+		while (std::regex_match(line, emptyLineRegex))
+		{
+			if (!std::getline(file, line))
+			{
+				file.close();
+				return false;
+			}
+
+			line = removeComments(line);
+		}
+
+		return true;
+	};
+
 	Parser parser(ROCKSTAR_DEFS);
-	return parser.parse(filePath);
-	
+	return parser.parse(readLines);
 }
 
 bool fileExists(const std::string& filePath)

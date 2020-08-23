@@ -120,7 +120,7 @@
     </Cut>
     <Empty>
       <contains>
-        <regex>^$</regex>
+        <regex>^\s*$</regex>
       </contains>
     </Empty>
     <Join>

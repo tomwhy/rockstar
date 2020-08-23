@@ -18,7 +18,7 @@ public:
 	void addName(const std::vector<std::string>& names);
 	bool isName(const std::string& name) const;
 	const std::vector<std::string> getNames() const;
-	friend bool operator<(const Token& left, const Token& right);
+	friend bool operator==(const Token& left, const Token& right);
 
 private:
 	std::vector<std::string> _names;

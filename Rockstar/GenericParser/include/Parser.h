@@ -1,6 +1,7 @@
 #pragma once
 #include "Statement.h"
 #include "Tokenizer.h"
+#include <functional>
 
 
 class Parser
@@ -10,12 +11,13 @@ public:
 	~Parser();
 
 	std::vector<Statement> parse(const std::string& filePath);
+	std::vector<Statement> parse(const std::function<bool(std::string& line)>& lineFunc);
 
 private:
-	Statement parseLine(const std::vector<Token>& tokens);
-	std::map<Token, std::string> parseLine(const std::vector<Token>& tokens, const tinyxml2::XMLElement* sequence);
-	std::map<Token, std::string> parseOr(const std::vector<Token>& tokens, const tinyxml2::XMLElement* orElem);
-	std::map<Token, std::string> parseToken(const std::vector<Token>& tokens, const tinyxml2::XMLElement* elem);
+	Statement parseLine(const std::string& line);
+	std::vector<std::pair<Token, std::string>> parseSequence(const std::string& line, const tinyxml2::XMLElement* sequence);
+	std::vector<std::pair<Token, std::string>> parseOr(const std::string& line, const tinyxml2::XMLElement* orElem);
+	std::vector<std::pair<Token, std::string>> parseToken(const std::string& line, const tinyxml2::XMLElement* elem);
 
 	tinyxml2::XMLDocument _definitionsDoc;
 	tinyxml2::XMLElement* _statementDefs;
