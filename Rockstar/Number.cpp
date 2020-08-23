@@ -10,6 +10,11 @@ bool Number::canBeIndex()
 	return true;
 }
 
+bool Number::toBool()
+{
+	return _value != 0;
+}
+
 std::string Number::toString()
 {
 	std::string res = std::to_string(_value);

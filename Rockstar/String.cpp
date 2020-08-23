@@ -11,6 +11,10 @@ std::string String::toString()
 {
 	return _value;
 }
+bool String::toBool()
+{
+	return !_value.empty();
+}
 
 bool String::canBeIndex()
 {

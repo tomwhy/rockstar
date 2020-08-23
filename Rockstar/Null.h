@@ -7,5 +7,6 @@ public:
 	Null();
 	virtual std::string toString();
 	virtual bool canBeIndex();
+	virtual bool toBool();
 };
 

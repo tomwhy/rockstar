@@ -12,3 +12,7 @@ bool Mysterious::canBeIndex()
 {
 	return false;
 }
+bool Mysterious::toBool()
+{
+	return false;
+}

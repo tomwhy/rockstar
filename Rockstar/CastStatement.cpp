@@ -90,7 +90,7 @@ std::shared_ptr<IVariable> CastStatement::modify(Scope& scope)
 			if (numStr[i] == '.')
 				continue;
 
-			int power = i < decimalPoint ? decimalPoint - i - 1 : decimalPoint - i;
+			size_t power = i < decimalPoint ? decimalPoint - i - 1 : decimalPoint - i;
 			int digit = std::isdigit(numStr[i]) ? (numStr[i] - '0') : (numStr[i] - 'a' + 10);
 			number += digit * std::pow(base, power);
 		}

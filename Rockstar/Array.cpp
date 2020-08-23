@@ -13,6 +13,11 @@ bool Array::canBeIndex()
 	return true;
 }
 
+bool Array::toBool()
+{
+	return true;
+}
+
 std::string Array::toString()
 {
 	return std::to_string(_size);

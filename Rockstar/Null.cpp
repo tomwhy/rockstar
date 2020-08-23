@@ -14,3 +14,7 @@ bool Null::canBeIndex()
 {
 	return false;
 }
+bool Null::toBool()
+{
+	return false;
+}
