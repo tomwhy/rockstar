@@ -96,6 +96,9 @@
     <ClCompile Include="CastStatement.cpp">
       <Filter>Source Files\CodeStatements</Filter>
     </ClCompile>
+    <ClCompile Include="PreProcessor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Scope.h">
@@ -169,6 +172,9 @@
     </ClInclude>
     <ClInclude Include="CastStatement.h">
       <Filter>Header Files\CodeStatements</Filter>
+    </ClInclude>
+    <ClInclude Include="PreProcessor.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

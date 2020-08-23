@@ -3,6 +3,7 @@
 #include "RunTime.h"
 #include "InterpeterException.h"
 #include "Utils.h"
+#include "PreProcessor.h"
 #include <fstream>
 #include <iostream>
 #include <algorithm>
@@ -12,7 +13,7 @@
 
 std::vector<Statement> parseFile(const std::string& filePath);
 bool fileExists(const std::string& filePath);
-std::string removeComments(const std::string& line);
+
 
 int main(int argc, char** argv)
 {
@@ -63,78 +64,10 @@ int main(int argc, char** argv)
 	return 0;
 }
 
-std::string removeComments(const std::string& line)
-{
-	static bool inComment = false;
-	std::string res(line);
-	std::regex commentRegex(R"(\(.*?\))"); //remove in line comments
-	
-
-	if (!inComment)
-	{
-		res = std::regex_replace(res, commentRegex, "");
-
-		size_t commentStart = res.find('(');
-		if (inComment = commentStart != std::string::npos)
-		{
-			return res.substr(0, commentStart);
-		}
-	}
-	else
-	{
-		size_t commentEnd = res.find(')');
-		if (inComment = commentEnd == std::string::npos)
-		{
-			return "";
-		}
-		else
-		{
-			res = res.substr(commentEnd + 1);
-			
-			res = std::regex_replace(res, commentRegex, "");
-			
-			size_t commentStart = res.find('(');
-			if (inComment = commentStart != std::string::npos)
-			{
-				return res.substr(0, commentStart);
-			}
-		}
-	}
-
-	return res;
-}
-
 std::vector<Statement> parseFile(const std::string& filePath)
 {
-	auto readLines = [filePath](std::string& line)
-	{
-		static std::fstream file(filePath, std::fstream::in);
-		std::regex emptyLineRegex(R"(^\s*$)");
-
-		
-		if (!std::getline(file, line))
-		{
-			file.close();
-			return false;
-		}
-
-		line = removeComments(line);
-		while (std::regex_match(line, emptyLineRegex))
-		{
-			if (!std::getline(file, line))
-			{
-				file.close();
-				return false;
-			}
-
-			line = removeComments(line);
-		}
-
-		return true;
-	};
-
 	Parser parser(ROCKSTAR_DEFS);
-	return parser.parse(readLines);
+	return parser.parse(PreProcessor::readLines(filePath));
 }
 
 bool fileExists(const std::string& filePath)
