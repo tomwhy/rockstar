@@ -4,9 +4,11 @@
 #include "SplitStatement.h"
 #include "JoinStatement.h"
 #include "CastStatement.h"
+#include "IncreamentDecreamentStatement.h"
 #include "Constant.h"
 #include "InterpeterException.h"
 #include "Utils.h"
+#include <regex>
 
 RunTime::RunTime(const std::vector<Statement>& statements) : _globalScope()
 {
@@ -20,15 +22,16 @@ RunTime::RunTime(const std::vector<Statement>& statements) : _globalScope()
 
 std::shared_ptr<ICodeBlock> RunTime::parseStatment(const Statement& stmt)
 {
-	if (stmt.name() == "Assign")
+	std::string stmtName = stmt.name();
+	if (stmtName == "Assign")
 	{
 		return std::make_shared<AssignStatement>(Utils::createVariableExpression(stmt, "var"), Utils::createExpression(stmt, "value"));
 	}
-	else if (stmt.name() == "Print")
+	else if (stmtName == "Print")
 	{
 		return std::make_shared<PrintStatement>(Utils::createExpression(stmt, "value"));
 	}
-	else if (stmt.name() == "Modify")
+	else if (stmtName == "Modify")
 	{
 		std::shared_ptr<IExpression> exp;
 		std::shared_ptr<VariableName> dest;
@@ -66,9 +69,17 @@ std::shared_ptr<ICodeBlock> RunTime::parseStatment(const Statement& stmt)
 			throw InterpeterException("Unknown modify op: " + stmt.getToken("op").value());
 		}
 	}
-	else if (stmt.name() == "EndBlock")
+	else if (stmtName == "EndBlock")
 	{
 		return nullptr;
+	}
+	else if (stmtName == "Increament" || stmtName == "Decreament")
+	{
+		std::string temp = stmt.getToken("count").value();
+		std::regex regex(R"(\w+)");
+		int count = std::distance(std::sregex_iterator(temp.begin(), temp.end(), regex), std::sregex_iterator());
+
+		return std::make_shared<IncreamentDecreamentStatement>(Utils::createVariableExpression(stmt, "var"), count, stmtName == "Increament");
 	}
 	else
 		throw InterpeterException("Unknow statment: " + stmt.name());

@@ -9,6 +9,10 @@ public:
 	virtual bool toBool();
 	virtual bool canBeIndex();
 
+	virtual void increament();
+	virtual void decreament();
+	
+
 private:
 	bool _value;
 };

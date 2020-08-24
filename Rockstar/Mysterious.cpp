@@ -1,4 +1,5 @@
 #include "Mysterious.h"
+#include "InterpeterException.h"
 
 Mysterious::Mysterious() : ISimpleVariable("Mysterious")
 {
@@ -15,4 +16,13 @@ bool Mysterious::canBeIndex()
 bool Mysterious::toBool()
 {
 	return false;
+}
+
+void Mysterious::increament()
+{
+	throw InterpeterException("Mysterious type does not support increamenting");
+}
+void Mysterious::decreament()
+{
+	throw InterpeterException("Mysterious type does not support decreamenting");
 }

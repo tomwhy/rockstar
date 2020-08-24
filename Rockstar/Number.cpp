@@ -25,3 +25,12 @@ std::string Number::toString()
 
 	return res;
 }
+
+void Number::increament()
+{
+	_value+=1;
+}
+void Number::decreament()
+{
+	_value-=1;
+}

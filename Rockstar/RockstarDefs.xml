@@ -192,12 +192,12 @@
     </Build>
     <Up>
       <contains>
-        <regex icase="true" times="*">up[\s,]*</regex>
+        <regex icase="true" times="*">(up)[\s,]*</regex>
       </contains>
     </Up>
     <Down>
       <contains>
-        <regex icase="true" times="*">down[\s,]*</regex>
+        <regex icase="true" times="*">(down)[\s,]*</regex>
       </contains>
     </Down>
     <Knock>
@@ -259,15 +259,15 @@
     <Increament>
       <sequence>
         <Build/>
-        <Variable/>
-        <Up/>
+        <Variable name="var"/>
+        <Up name="count"/>
       </sequence>
     </Increament>
     <Decreament>
       <sequence>
         <Knock/>
-        <Variable/>
-        <Down/>
+        <Variable name="var"/>
+        <Down name="count"/>
       </sequence>
     </Decreament>
   </statements>

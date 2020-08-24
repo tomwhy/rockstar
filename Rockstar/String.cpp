@@ -41,3 +41,12 @@ void String::setAt(const std::string& index, std::shared_ptr<IVariable> value)
 {
 	throw InterpeterException("String is read-only");
 }
+
+void String::increament()
+{
+	throw InterpeterException("String type does not support increamenting");
+}
+void String::decreament()
+{
+	throw InterpeterException("String type does not support decreamenting");
+}

@@ -147,6 +147,7 @@
     <ClCompile Include="CastStatement.cpp" />
     <ClCompile Include="Constant.cpp" />
     <ClCompile Include="IModifyStatement.cpp" />
+    <ClCompile Include="IncreamentDecreamentStatement.cpp" />
     <ClCompile Include="InterpeterException.cpp" />
     <ClCompile Include="ISimpleVariable.cpp" />
     <ClCompile Include="JoinStatement.cpp" />
@@ -173,6 +174,7 @@
     <ClInclude Include="ICodeBlock.h" />
     <ClInclude Include="IExpression.h" />
     <ClInclude Include="IModifyStatement.h" />
+    <ClInclude Include="IncreamentDecreamentStatement.h" />
     <ClInclude Include="InterpeterException.h" />
     <ClInclude Include="ISimpleVariable.h" />
     <ClInclude Include="IVariable.h" />
