@@ -99,6 +99,9 @@
     <ClCompile Include="PreProcessor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="IncreamentDecreamentStatement.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Scope.h">
@@ -174,6 +177,9 @@
       <Filter>Header Files\CodeStatements</Filter>
     </ClInclude>
     <ClInclude Include="PreProcessor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IncreamentDecreamentStatement.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
