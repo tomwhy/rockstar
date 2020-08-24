@@ -13,7 +13,6 @@ public:
 	virtual std::shared_ptr<IVariable> getAt(const std::string& index) = 0;
 	virtual void setAt(const std::string& index, std::shared_ptr<IVariable> value) = 0;
 
-
 	virtual bool canBeIndex() = 0;
 	std::string type() { return _typeName; }
 
