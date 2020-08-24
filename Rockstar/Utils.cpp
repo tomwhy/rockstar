@@ -7,8 +7,10 @@
 
 std::shared_ptr<IExpression> Utils::createExpression(const Statement& stmt, const std::string& name)
 {
-	if (stmt.hasToken(name + "_var"))
+	if (stmt.contains(name + "_var"))
 		return Utils::createVariableExpression(stmt, name);
+
+	//TODO: added check to math expression here
 
 	if (!stmt.hasToken(name))
 		throw InterpeterException("Could not find the token named: " + name);
@@ -26,8 +28,10 @@ std::shared_ptr<IExpression> Utils::createExpression(const Statement& stmt, cons
 }
 std::shared_ptr<VariableName> Utils::createVariableExpression(const Statement& stmt, const std::string& name)
 {
-	Token nameToken = stmt.getToken(name + "_var");
-	std::string idx = name + "_idx_exp";
+	std::string varPrefix = name + "_var";
+	
+	Token nameToken = stmt.getToken(varPrefix + "_name");
+	std::string idx = varPrefix + "_idx_exp";
 
 	if (nameToken.isName("Pronoun"))
 	{

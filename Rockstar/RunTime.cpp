@@ -39,17 +39,14 @@ std::shared_ptr<ICodeBlock> RunTime::parseStatment(const Statement& stmt)
 		
 		exp = Utils::createExpression(stmt, "exp");
 		
-		if (stmt.hasToken("dest_var"))
+		if (stmt.contains("dest"))
 			dest = Utils::createVariableExpression(stmt, "dest");
 
-		try
+		if (stmt.contains("arg"))
 		{
 			argument = Utils::createExpression(stmt, "arg");
 		}
-		catch (const InterpeterException&)
-		{
-
-		}
+		
 
 
 		if (stmt.getToken("op").isName("Cut"))
