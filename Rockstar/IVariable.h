@@ -19,9 +19,6 @@ public:
 	virtual bool canBeIndex() = 0;
 	std::string type() { return _typeName; }
 
-	//math functions
-	virtual void increament() = 0;
-	virtual void decreament() = 0;
 private:
 	std::string _typeName;
 };

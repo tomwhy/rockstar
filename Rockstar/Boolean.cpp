@@ -19,12 +19,3 @@ std::string Boolean::toString()
 {
 	return _value ? "true" : "false";
 }
-
-void Boolean::increament()
-{
-	_value = !_value;
-}
-void Boolean::decreament()
-{
-	_value = !_value;
-}

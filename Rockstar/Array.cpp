@@ -45,12 +45,3 @@ void Array::setAt(const std::string& index, std::shared_ptr<IVariable> value)
 	_data[index] = value;
 	updateSize(index);
 }
-
-void Array::increament()
-{
-	throw InterpeterException("Array type does not support increamenting");
-}
-void Array::decreament()
-{
-	throw InterpeterException("Array type does not support decreamenting");
-}

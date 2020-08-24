@@ -7,31 +7,35 @@
 
 std::shared_ptr<IExpression> Utils::createExpression(const Statement& stmt, const std::string& name)
 {
-	if (stmt.contains(name + "_var"))
-		return Utils::createVariableExpression(stmt, name);
+	if (stmt.contains(name + "_exp_var"))
+		return Utils::createVariableExpression(stmt, name + "_exp_var");
 
 	//TODO: added check to math expression here
-
-	if (!stmt.hasToken(name))
-		throw InterpeterException("Could not find the token named: " + name);
-
-	Token token = stmt.getToken(name);
-	
-	if (token.isName("Mysterious") || token.isName("Null") || token.isName("Boolean") || token.isName("Number") || token.isName("String"))
+	else if (stmt.contains(name + "_exp"))
 	{
-		return std::make_shared<Constant>(token);
+		if (!stmt.hasToken(name + "_exp"))
+			throw InterpeterException("Could not find the token named: " + name + "_exp");
+
+		Token token = stmt.getToken(name + "_exp");
+	
+		if (token.isName("Mysterious") || token.isName("Null") || token.isName("Boolean") || token.isName("Number") || token.isName("String"))
+		{
+			return std::make_shared<Constant>(token);
+		}
+		else
+		{
+			throw InterpeterException("Invalid value: " + token.value());
+		}
 	}
 	else
 	{
-		throw InterpeterException("Invalid value: " + token.value());
+		throw InterpeterException("Invalid Expression");
 	}
 }
 std::shared_ptr<VariableName> Utils::createVariableExpression(const Statement& stmt, const std::string& name)
-{
-	std::string varPrefix = name + "_var";
-	
-	Token nameToken = stmt.getToken(varPrefix + "_name");
-	std::string idx = varPrefix + "_idx_exp";
+{	
+	Token nameToken = stmt.getToken(name + "_name");
+	std::string idx = name + "_idx_exp";
 
 	if (nameToken.isName("Pronoun"))
 	{

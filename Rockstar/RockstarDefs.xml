@@ -25,9 +25,13 @@
         <Expression name="exp"/>
       </sequence>
     </Index>
+
+    <Value>
+      <Arthimetic name="math"/>
+      <Expression name="exp"/>
+    </Value>
     
     <Expression>
-      <Arthimetic name="math"/>
       <Variable name="var"/>
       <Literal/>
     </Expression>
@@ -61,7 +65,10 @@
       <sequence>
         <Expression name="left"/>
         <MathOp name="op"/>
-        <Expression name="right"/>
+        <or name="right">
+          <Arthimetic name="math"/>
+          <Expression name="exp"/>
+        </or>
       </sequence>
     </Arthimetic>
   </defines>
@@ -177,7 +184,7 @@
     </Into>
     <Add>
       <contains>
-        <regex>+</regex>
+        <regex>\+</regex>
         <regex icase="true">plus</regex>
         <With/>
       </contains>
@@ -191,7 +198,7 @@
     </Subtract>
     <Multiply>
       <contains>
-        <regex>*</regex>
+        <regex>\*</regex>
         <regex icase="true">times</regex>
         <regex icase="true">of</regex>
       </contains>
@@ -263,11 +270,11 @@
         <Let />
         <Variable name="var" />
         <Be />
-        <Expression name="value" />
+        <Value name="value" />
       </sequence>
       <sequence>
         <Put />
-        <Expression name="value" />
+        <Value name="value" />
         <Into />
         <Variable name="var" />
       </sequence>
@@ -275,7 +282,7 @@
     <Print>
       <sequence>
         <Say />
-        <Expression name="value" />
+        <Value name="value" />
       </sequence>
     </Print>
     <Modify>
@@ -285,19 +292,19 @@
           <Cut/>
           <Cast/>
         </or>
-        <Expression name="exp"/>
+        <Value name="exp"/>
         <or optional="true">
           <sequence>
             <Into/>
             <Variable name="dest"/>
             <sequence optional="true">
               <With/>
-              <Expression name="arg"/>
+              <Value name="arg"/>
             </sequence>
           </sequence>
           <sequence>
             <With/>
-            <Expression name="arg"/>
+            <Value name="arg"/>
           </sequence>
         </or>
       </sequence>

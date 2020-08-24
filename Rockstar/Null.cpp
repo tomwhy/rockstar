@@ -19,12 +19,3 @@ bool Null::toBool()
 {
 	return false;
 }
-
-void Null::increament()
-{
-	throw InterpeterException("Null type does not support increamenting");
-}
-void Null::decreament()
-{
-	throw InterpeterException("Null type does not support decreamenting");
-}

@@ -1,4 +1,7 @@
 #include "IncreamentDecreamentStatement.h"
+#include "Number.h"
+#include "Boolean.h"
+#include "InterpeterException.h"
 
 IncreamentDecreamentStatement::IncreamentDecreamentStatement(std::shared_ptr<VariableName> var, size_t count, bool increament) :
 	_var(var), _count(count), _increament(increament)
@@ -8,16 +11,24 @@ IncreamentDecreamentStatement::IncreamentDecreamentStatement(std::shared_ptr<Var
 
 void IncreamentDecreamentStatement::execute(Scope& scope)
 {
-	std::shared_ptr<IVariable> value = scope.getVariable(_var);
+	std::shared_ptr<IVariable> var = scope.getVariable(_var);
 
-	if (_increament)
+	if (var->type() == "Number")
 	{
-		for (int i = 0; i < _count; i++)
-			value->increament();
+		double value = std::stod(var->toString());
+		
+		value += _increament ? _count : -(double)_count;
+		
+		scope.setVariable(_var, std::make_shared<Number>(value));
+	}
+	else if (var->type() == "Boolean")
+	{
+		bool value = var->toBool();
+		value = (_count % 2 == 1) ^ value;
+		scope.setVariable(_var, std::make_shared<Boolean>(value));
 	}
 	else
 	{
-		for (int i = 0; i < _count; i++)
-			value->decreament();
+		throw InterpeterException((_increament ? "Increament" : "Decrement") + std::string(" is not supported for ") + var->type());
 	}
 }

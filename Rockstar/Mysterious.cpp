@@ -17,12 +17,3 @@ bool Mysterious::toBool()
 {
 	return false;
 }
-
-void Mysterious::increament()
-{
-	throw InterpeterException("Mysterious type does not support increamenting");
-}
-void Mysterious::decreament()
-{
-	throw InterpeterException("Mysterious type does not support decreamenting");
-}

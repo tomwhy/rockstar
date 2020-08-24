@@ -13,8 +13,6 @@ public:
 	virtual void setAt(const std::string& index, std::shared_ptr<IVariable> value);
 	virtual bool canBeIndex();
 
-	virtual void increament();
-	virtual void decreament();
 private:
 	void updateSize(const std::string& index);
 	std::map<std::string, std::shared_ptr<IVariable>> _data;
