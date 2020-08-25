@@ -108,6 +108,9 @@
     <ClCompile Include="RoundStatement.cpp">
       <Filter>Source Files\CodeStatements</Filter>
     </ClCompile>
+    <ClCompile Include="ListArthimeticExpression.cpp">
+      <Filter>Source Files\Expressions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Scope.h">
@@ -193,6 +196,9 @@
     </ClInclude>
     <ClInclude Include="RoundStatement.h">
       <Filter>Header Files\CodeStatements</Filter>
+    </ClInclude>
+    <ClInclude Include="ListArthimeticExpression.h">
+      <Filter>Header Files\Expressions</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

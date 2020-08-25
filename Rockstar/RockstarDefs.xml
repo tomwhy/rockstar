@@ -19,6 +19,7 @@
       <Down/>
       <Turn/>
       <Round/>
+      <ListAnd/>
     </Keyword>
     
     <Index>
@@ -66,13 +67,25 @@
     <Arthimetic>
       <sequence>
         <Expression name="left_exp"/>
-        <MathOp name="op"/>
+        <MathOp name="op"/> 
         <or name="right">
+          <List name="list"/>
           <Arthimetic name="math"/>
           <Expression name="exp"/>
         </or>
       </sequence>
     </Arthimetic>
+
+    <List>
+      <sequence>
+        <Expression name="exp"/>
+        <sequence optional="true">
+          <ListAnd/>
+          <List name="next"/>
+        </sequence>
+      </sequence>
+    </List>
+    
   </defines>
   <tokens>
     <At>
@@ -83,7 +96,7 @@
 
     <VariableName>
       <contains>
-        <regex>(:?[aA][nN]?|[Tt][Hh][Ee]|[Mm][Yy]|[Yy][Oo][Uu][Rr])\s+[a-z]+</regex>
+        <regex>(?:[aA][nN]?|[Tt][Hh][Ee]|[Mm][Yy]|[Yy][Oo][Uu][Rr])\s+[a-z]+</regex>
         <regex times="*">[A-Z][A-Za-z]+</regex>
         <regex>[A-Za-z]+</regex>
       </contains>
@@ -116,12 +129,12 @@
     </Boolean>
     <Number>
       <contains>
-        <regex>-?\d+(:?.\d+)?</regex>
+        <regex>-?\d+(?:.\d+)?</regex>
       </contains>
     </Number>
     <String>
       <contains>
-        <regex>"(:?[^"]|\\.)*?"</regex>
+        <regex>"(?:[^"]|\\.)*?"</regex>
       </contains>
     </String>
     <True>
@@ -274,6 +287,11 @@
         <regex icase="true">a?round</regex>
       </contains>
     </Round>
+    <ListAnd>
+      <contains>
+        <regex icase="true">,\s*(?:and)?</regex>
+      </contains>
+    </ListAnd>
     
   </tokens>
   <statements>
@@ -282,8 +300,17 @@
         <Let />
         <Variable name="var" />
         <Be />
-        <MathOp name="op" optional="true"/>
-        <Value name="value" />
+        <or>
+          <sequence name="compound">
+            <MathOp name="op"/>
+            <List name="list"/>
+          </sequence>
+          <sequence name="compound">
+            <MathOp name="op"/>
+            <Value name="value" />
+          </sequence>
+          <Value name="value" />
+        </or>
       </sequence>
       <sequence>
         <Put />
@@ -364,5 +391,6 @@
         </or>
       </sequence>
     </Rounding>
+    
   </statements>
 </root>

@@ -69,6 +69,9 @@ std::string PreProcessor::removeSingleQuotes(const std::string& line)
 			if (std::regex_search(subString, match, stringLiteralRegexBoundry))
 			{
 				offset = stringOffset + match.position(1) + 2;
+				if (res[offset] == ',') //insert a space between an end of string literal and a comma (because \b is \w\W|\W\w|^\w|\w$ and both " and , are \W)
+					res.insert(res.begin() + offset, ' '); //a temporary solution until a better one is found
+				offset++;
 			}
 			else
 			{

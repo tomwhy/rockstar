@@ -151,6 +151,7 @@
     <ClCompile Include="InterpeterException.cpp" />
     <ClCompile Include="ISimpleVariable.cpp" />
     <ClCompile Include="JoinStatement.cpp" />
+    <ClCompile Include="ListArthimeticExpression.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MathExpression.cpp" />
     <ClCompile Include="Mysterious.cpp" />
@@ -181,6 +182,7 @@
     <ClInclude Include="ISimpleVariable.h" />
     <ClInclude Include="IVariable.h" />
     <ClInclude Include="JoinStatement.h" />
+    <ClInclude Include="ListArthimeticExpression.h" />
     <ClInclude Include="MathExpression.h" />
     <ClInclude Include="Mysterious.h" />
     <ClInclude Include="Null.h" />

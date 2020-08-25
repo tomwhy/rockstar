@@ -27,9 +27,19 @@ std::shared_ptr<ICodeBlock> RunTime::parseStatment(const Statement& stmt)
 	if (stmtName == "Assign")
 	{
 		std::shared_ptr<IExpression> value;
-		if (stmt.hasToken("op")) //compound assignment
+		if (stmt.contains("compound")) //compound assignment
 		{
-			value = std::make_shared<MathExpression>(Utils::createVariableExpression(stmt, "var"), MathExpression::getOpFromToken(stmt.getToken("op")), Utils::createExpression(stmt, "value"));
+			std::shared_ptr<VariableName> var = Utils::createVariableExpression(stmt, "var");
+			MathOp op = MathExpression::getOpFromToken(stmt.getToken("compound_op"));
+
+			if (stmt.hasToken("compound_list"))
+			{
+				value = Utils::createListExpression(stmt, "compound", var, op);
+			}
+			else
+			{
+				value = std::make_shared<MathExpression>(var, op, Utils::createExpression(stmt, "compound_value"));
+			}
 		}
 		else
 		{

@@ -75,7 +75,25 @@ std::shared_ptr<MathExpression> Utils::createMathExpression(const Statement& stm
 			return std::make_shared<MathExpression>(leftEXp, rightOp, Utils::createExpression(stmt, name + "_right_math_right"));
 		}
 	}
+	else if (stmt.contains(name + "_right_list")) //if the right expression is a list
+	{
+		return createListExpression(stmt, name + "_right", left, op);
+	}
 	return std::make_shared<MathExpression>(left, op, Utils::createExpression(stmt, name + "_right"));
+}
+
+std::shared_ptr<ListArthimeticExpression> Utils::createListExpression(const Statement& stmt, const std::string& name, std::shared_ptr<IExpression> left, MathOp op)
+{
+	std::vector<std::shared_ptr<IExpression>> rightVec;
+	std::string elem = name + "_list";
+
+	do
+	{
+		rightVec.push_back(Utils::createExpression(stmt, elem));
+		elem += "_next";
+	} while (stmt.contains(elem));
+
+	return std::make_shared<ListArthimeticExpression>(left, op, rightVec);
 }
 
 std::string Utils::repeat(const std::string& str, int times)
