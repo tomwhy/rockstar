@@ -68,7 +68,7 @@ std::string PreProcessor::removeSingleQuotes(const std::string& line)
 			subString = res.substr(stringOffset+1);
 			if (std::regex_search(subString, match, stringLiteralRegexBoundry))
 			{
-				offset = stringOffset + match.position(1) + 1;
+				offset = stringOffset + match.position(1) + 2;
 			}
 			else
 			{

@@ -63,7 +63,7 @@
     
     <Arthimetic>
       <sequence>
-        <Expression name="left"/>
+        <Expression name="left_exp"/>
         <MathOp name="op"/>
         <or name="right">
           <Arthimetic name="math"/>

@@ -4,13 +4,14 @@
 #include "Pronoun.h"
 #include "InterpeterException.h"
 #include <algorithm>
+#include <sstream>
 
 std::shared_ptr<IExpression> Utils::createExpression(const Statement& stmt, const std::string& name)
 {
 	if (stmt.contains(name + "_exp_var"))
 		return Utils::createVariableExpression(stmt, name + "_exp_var");
-
-	//TODO: added check to math expression here
+	else if (stmt.contains(name + "_math"))
+		return Utils::createMathExpression(stmt, name + "_math");
 	else if (stmt.contains(name + "_exp"))
 	{
 		if (!stmt.hasToken(name + "_exp"))
@@ -53,6 +54,38 @@ std::shared_ptr<VariableName> Utils::createVariableExpression(const Statement& s
 	}
 
 	throw InterpeterException("Not a variable name");
+}
+
+std::shared_ptr<MathExpression> Utils::createMathExpression(const Statement& stmt, const std::string& name)
+{
+	std::shared_ptr<IExpression> left = Utils::createExpression(stmt, name+"_left"); // left will never be a math expression
+
+	Token opToken = stmt.getToken(name + "_op");
+	MathOp op = MathExpression::getOpFromToken(opToken);
+
+	if (stmt.contains(name + "_right_math")) // if the right expression is a Math Expression
+	{
+		MathOp rightOp = MathExpression::getOpFromToken(stmt.getToken(name + "_right_math_op"));
+		if ((op == MathOp::Divide || op == MathOp::Multiply) && (rightOp == MathOp::Add || rightOp == MathOp::Subtract))
+		{
+			//the current operation is stronger (needs to come first)
+			std::shared_ptr<IExpression> right = Utils::createExpression(stmt, name + "_right_math_left"); // take the expression next to the current op
+			
+			std::shared_ptr<MathExpression> leftEXp = std::make_shared<MathExpression>(left, op, right);
+			return std::make_shared<MathExpression>(leftEXp, rightOp, Utils::createExpression(stmt, name + "_right_math_right"));
+		}
+	}
+	return std::make_shared<MathExpression>(left, op, Utils::createExpression(stmt, name + "_right"));
+}
+
+std::string Utils::repeat(const std::string& str, int times)
+{
+	std::stringstream res;
+	for (int i = 0; i < times; i++)
+	{
+		res << str;
+	}
+	return res.str();
 }
 
 std::string Utils::lower(const std::string& str)

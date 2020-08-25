@@ -102,6 +102,9 @@
     <ClCompile Include="IncreamentDecreamentStatement.cpp">
       <Filter>Source Files\CodeStatements</Filter>
     </ClCompile>
+    <ClCompile Include="MathExpression.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Scope.h">
@@ -181,6 +184,9 @@
     </ClInclude>
     <ClInclude Include="IncreamentDecreamentStatement.h">
       <Filter>Header Files\CodeStatements</Filter>
+    </ClInclude>
+    <ClInclude Include="MathExpression.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
