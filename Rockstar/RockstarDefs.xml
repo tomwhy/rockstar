@@ -270,6 +270,7 @@
         <Let />
         <Variable name="var" />
         <Be />
+        <MathOp name="op" optional="true"/>
         <Value name="value" />
       </sequence>
       <sequence>
