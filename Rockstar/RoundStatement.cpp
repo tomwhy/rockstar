@@ -30,8 +30,8 @@ void RoundStatement::execute(Scope& scope)
 		return;
 	}
 
-	double number = std::stod(value->toString());
-	double result = 0;
+	long double number = std::stold(value->toString());
+	long double result = 0;
 	switch (_op)
 	{
 	case RoundOp::Up:

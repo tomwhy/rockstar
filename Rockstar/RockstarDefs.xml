@@ -20,6 +20,8 @@
       <Turn/>
       <Round/>
       <ListAnd/>
+      <PoeticIs/>
+      <Says/>
     </Keyword>
     
     <Index>
@@ -224,7 +226,12 @@
         <regex icase="true">over</regex>
       </contains>
     </Divide>
-    
+
+    <Says>
+      <contains>
+        <regex icase="true">says</regex>
+      </contains>
+    </Says>
     <Say>
       <contains>
         <regex icase="true">say</regex>
@@ -292,7 +299,24 @@
         <regex icase="true">,\s*(?:and)?</regex>
       </contains>
     </ListAnd>
-    
+    <Is>
+      <contains>
+        <regex icase="true">is</regex>
+      </contains>
+    </Is>
+    <PoeticIs>
+      <contains>
+        <Is/>
+        <regex icase="true">was</regex>
+        <regex icase="true">are</regex>
+        <regex icase="true">were</regex>
+      </contains>
+    </PoeticIs>
+    <PoeticLiteral>
+      <contains>
+        <regex>.*</regex>
+      </contains>
+    </PoeticLiteral>
   </tokens>
   <statements>
     <Assign>
@@ -319,6 +343,19 @@
         <Variable name="var" />
       </sequence>
     </Assign>
+    <PoeticAssign>
+      <sequence>
+        <Variable name="var"/>
+        <or name="op">
+          <PoeticIs/>
+          <Says/>
+        </or>
+        <or name="literal">
+          <Literal/>
+          <PoeticLiteral/>
+        </or>
+      </sequence>
+    </PoeticAssign>
     <Print>
       <sequence>
         <Say />

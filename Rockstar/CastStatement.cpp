@@ -82,7 +82,7 @@ std::shared_ptr<IVariable> CastStatement::modify(Scope& scope)
 			}
 		}
 
-		double number = 0;
+		long double number = 0;
 
 		//convert string to number
 		for (int i = 0; i < numStr.size(); i++)

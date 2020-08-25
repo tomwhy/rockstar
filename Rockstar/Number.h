@@ -3,12 +3,12 @@
 class Number : public ISimpleVariable
 {
 public:
-	Number(double value);
+	Number(long double value);
 	virtual std::string toString();
 	virtual bool canBeIndex();
 	virtual bool toBool();
 
 private:
-	double _value;
+	long double _value;
 };
 

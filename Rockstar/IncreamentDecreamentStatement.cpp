@@ -15,9 +15,9 @@ void IncreamentDecreamentStatement::execute(Scope& scope)
 
 	if (var->type() == "Number")
 	{
-		double value = std::stod(var->toString());
+		long double value = std::stold(var->toString());
 		
-		value += _increament ? _count : -(double)_count;
+		value += _increament ? _count : -(long double)_count;
 		
 		scope.setVariable(_var, std::make_shared<Number>(value));
 	}

@@ -7,6 +7,7 @@
 #include "IncreamentDecreamentStatement.h"
 #include "RoundStatement.h"
 #include "Constant.h"
+#include "PoeticExpression.h"
 #include "InterpeterException.h"
 #include "Utils.h"
 #include <regex>
@@ -46,6 +47,10 @@ std::shared_ptr<ICodeBlock> RunTime::parseStatment(const Statement& stmt)
 			value = Utils::createExpression(stmt, "value");
 		}
 		return std::make_shared<AssignStatement>(Utils::createVariableExpression(stmt, "var"), value);
+	}
+	else if (stmtName == "PoeticAssign")
+	{
+		return std::make_shared<AssignStatement>(Utils::createVariableExpression(stmt, "var"), std::make_shared<PoeticExpression>(stmt.getToken("literal"), stmt.getToken("op").isName("Says")));
 	}
 	else if (stmtName == "Print")
 	{

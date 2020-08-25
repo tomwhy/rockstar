@@ -63,7 +63,7 @@ std::shared_ptr<IVariable> MathExpression::add(Scope& scope) const
 
 	if (left->type() == "Number" && right->type() == "Number")
 	{
-		double res = std::stod(left->toString()) + std::stod(right->toString());
+		long double res = std::stold(left->toString()) + std::stold(right->toString());
 		return std::make_shared<Number>(res);
 	}
 	else if (left->type() == "String" || right->type() == "String")
@@ -83,7 +83,7 @@ std::shared_ptr<IVariable> MathExpression::subtract(Scope& scope) const
 
 	if (left->type() == "Number" && right->type() == "Number")
 	{
-		double res = std::stod(left->toString()) - std::stod(right->toString());
+		long double res = std::stold(left->toString()) - std::stold(right->toString());
 		return std::make_shared<Number>(res);
 	}
 	else
@@ -98,7 +98,7 @@ std::shared_ptr<IVariable> MathExpression::multiply(Scope& scope) const
 
 	if (left->type() == "Number" && right->type() == "Number")
 	{
-		double res = std::stod(left->toString()) * std::stod(right->toString());
+		long double res = std::stold(left->toString()) * std::stold(right->toString());
 		return std::make_shared<Number>(res);
 	}
 	else
@@ -139,7 +139,7 @@ std::shared_ptr<IVariable> MathExpression::divide(Scope& scope) const
 		{
 			return std::make_shared<Mysterious>();
 		}
-		double res = std::stod(left->toString()) / std::stod(right->toString());
+		long double res = std::stold(left->toString()) / std::stold(right->toString());
 		return std::make_shared<Number>(res);
 	}
 	else

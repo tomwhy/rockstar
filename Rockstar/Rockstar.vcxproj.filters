@@ -111,6 +111,9 @@
     <ClCompile Include="ListArthimeticExpression.cpp">
       <Filter>Source Files\Expressions</Filter>
     </ClCompile>
+    <ClCompile Include="PoeticExpression.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Scope.h">
@@ -199,6 +202,9 @@
     </ClInclude>
     <ClInclude Include="ListArthimeticExpression.h">
       <Filter>Header Files\Expressions</Filter>
+    </ClInclude>
+    <ClInclude Include="PoeticExpression.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

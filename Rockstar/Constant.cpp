@@ -15,7 +15,7 @@ std::shared_ptr<IVariable> Constant::evaluate(Scope& scope) const
 	else if (_value.isName("Boolean"))
 		return std::make_shared<Boolean>(_value.isName("True"));
 	else if (_value.isName("Number"))
-		return std::make_shared<Number>(std::stod(_value.value()));
+		return std::make_shared<Number>(std::stold(_value.value()));
 	else if (_value.isName("String"))
 		return std::make_shared<String>(_value.value().substr(1, _value.value().size() - 2)); //remove the surrounding "
 	else

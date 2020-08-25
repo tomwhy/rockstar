@@ -157,6 +157,7 @@
     <ClCompile Include="Mysterious.cpp" />
     <ClCompile Include="Null.cpp" />
     <ClCompile Include="Number.cpp" />
+    <ClCompile Include="PoeticExpression.cpp" />
     <ClCompile Include="PreProcessor.cpp" />
     <ClCompile Include="PrintStatement.cpp" />
     <ClCompile Include="Pronoun.cpp" />
@@ -187,6 +188,7 @@
     <ClInclude Include="Mysterious.h" />
     <ClInclude Include="Null.h" />
     <ClInclude Include="Number.h" />
+    <ClInclude Include="PoeticExpression.h" />
     <ClInclude Include="PreProcessor.h" />
     <ClInclude Include="PrintStatement.h" />
     <ClInclude Include="Pronoun.h" />
