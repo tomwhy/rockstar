@@ -11,7 +11,7 @@ public:
 	virtual std::shared_ptr<IVariable> evaluate(Scope& scope) const;
 	virtual bool isVariable() const;
 
-	std::string name(Scope& scope) const;
+	virtual std::string name(Scope& scope) const;
 	std::string index(Scope& scope) const;
 	bool hasIndex() const;
 	

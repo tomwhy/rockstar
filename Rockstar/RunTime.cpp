@@ -5,6 +5,7 @@
 #include "JoinStatement.h"
 #include "CastStatement.h"
 #include "IncreamentDecreamentStatement.h"
+#include "RoundStatement.h"
 #include "Constant.h"
 #include "InterpeterException.h"
 #include "Utils.h"
@@ -83,9 +84,13 @@ std::shared_ptr<ICodeBlock> RunTime::parseStatment(const Statement& stmt)
 	{
 		std::string temp = stmt.getToken("count").value();
 		std::regex regex(R"(\w+)");
-		int count = std::distance(std::sregex_iterator(temp.begin(), temp.end(), regex), std::sregex_iterator());
+		int count = (int)std::distance(std::sregex_iterator(temp.begin(), temp.end(), regex), std::sregex_iterator());
 
 		return std::make_shared<IncreamentDecreamentStatement>(Utils::createVariableExpression(stmt, "var"), count, stmtName == "Increament");
+	}
+	else if (stmtName == "Rounding")
+	{
+		return std::make_shared<RoundStatement>(Utils::createVariableExpression(stmt, "var"), RoundStatement::getOpFromToken(stmt.getToken("op")));
 	}
 	else
 		throw InterpeterException("Unknow statment: " + stmt.name());

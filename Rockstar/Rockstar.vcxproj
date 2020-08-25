@@ -159,6 +159,7 @@
     <ClCompile Include="PreProcessor.cpp" />
     <ClCompile Include="PrintStatement.cpp" />
     <ClCompile Include="Pronoun.cpp" />
+    <ClCompile Include="RoundStatement.cpp" />
     <ClCompile Include="RunTime.cpp" />
     <ClCompile Include="Scope.cpp" />
     <ClCompile Include="SplitStatement.cpp" />
@@ -187,6 +188,7 @@
     <ClInclude Include="PreProcessor.h" />
     <ClInclude Include="PrintStatement.h" />
     <ClInclude Include="Pronoun.h" />
+    <ClInclude Include="RoundStatement.h" />
     <ClInclude Include="RunTime.h" />
     <ClInclude Include="Scope.h" />
     <ClInclude Include="SplitStatement.h" />

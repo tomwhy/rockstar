@@ -8,7 +8,7 @@ public:
 	Pronoun(std::shared_ptr<IExpression> index = {});
 	virtual std::shared_ptr<IVariable> evaluate(Scope& scope) const;
 
-	std::string name(Scope& scope) const;
+	virtual std::string name(Scope& scope) const;
 private:
 	std::shared_ptr<IExpression> _index;
 };

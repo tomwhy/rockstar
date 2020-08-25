@@ -17,6 +17,8 @@
       <Up/>
       <Knock/>
       <Down/>
+      <Turn/>
+      <Round/>
     </Keyword>
     
     <Index>
@@ -38,9 +40,9 @@
 
     <Variable>
       <sequence>
-        <or>
+        <or name="name">
           <Pronoun />
-          <VariableName name="name"/>
+          <VariableName/>
         </or>
         <Index optional="true" name="idx"/>
       </sequence>
@@ -262,6 +264,16 @@
         <regex icase="true">with</regex>
       </contains>
     </With>
+    <Turn>
+      <contains>
+        <regex icase="true">turn</regex>
+      </contains>
+    </Turn>
+    <Round>
+      <contains>
+        <regex icase="true">a?round</regex>
+      </contains>
+    </Round>
     
   </tokens>
   <statements>
@@ -329,5 +341,28 @@
         <Down name="count"/>
       </sequence>
     </Decreament>
+    <Rounding>
+      <sequence>
+        <Turn/>
+        <or>
+          <sequence>
+            <or name="op">
+              <Up/>
+              <Down/>
+              <Round/>
+            </or>
+            <Variable name="var"/>
+          </sequence>
+          <sequence>
+            <Variable name="var"/>
+            <or name="op">
+              <Up/>
+              <Down/>
+              <Round/>
+            </or>
+          </sequence>
+        </or>
+      </sequence>
+    </Rounding>
   </statements>
 </root>

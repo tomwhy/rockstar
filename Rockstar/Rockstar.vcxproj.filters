@@ -103,7 +103,10 @@
       <Filter>Source Files\CodeStatements</Filter>
     </ClCompile>
     <ClCompile Include="MathExpression.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Expressions</Filter>
+    </ClCompile>
+    <ClCompile Include="RoundStatement.cpp">
+      <Filter>Source Files\CodeStatements</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -186,7 +189,10 @@
       <Filter>Header Files\CodeStatements</Filter>
     </ClInclude>
     <ClInclude Include="MathExpression.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Expressions</Filter>
+    </ClInclude>
+    <ClInclude Include="RoundStatement.h">
+      <Filter>Header Files\CodeStatements</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
