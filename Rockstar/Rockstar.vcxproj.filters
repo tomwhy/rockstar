@@ -112,7 +112,7 @@
       <Filter>Source Files\Expressions</Filter>
     </ClCompile>
     <ClCompile Include="PoeticExpression.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Expressions</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -204,7 +204,7 @@
       <Filter>Header Files\Expressions</Filter>
     </ClInclude>
     <ClInclude Include="PoeticExpression.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Expressions</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
