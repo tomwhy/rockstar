@@ -1,4 +1,9 @@
 #include "Number.h"
+#include "String.h"
+#include "Null.h"
+#include "Mysterious.h"
+#include "Utils.h"
+#include "InterpeterExceptions.h"
 #include <sstream>
 #include <iomanip>
 
@@ -27,4 +32,112 @@ std::string Number::toString()
 		res = res.substr(0, res.size() - 1);
 
 	return res;
+}
+
+std::shared_ptr<IVariable> Number::cast(std::shared_ptr<IVariable> arg)
+{
+	if (std::trunc(_value) != _value)  // trunc returns the whole part of a floating point number
+	{
+		throw InterpeterException("Cannot convert " + toString() + " to string");
+	}
+
+	std::ostringstream res;
+	res << static_cast<char>((int)_value);
+	return std::make_shared<String>(res.str());
+}
+
+void Number::increament(size_t count)
+{
+	_value += count;
+}
+void Number::decreament(size_t count)
+{
+	_value -= count;
+}
+
+std::shared_ptr<IVariable> Number::add(std::shared_ptr<IVariable> other)
+{
+	if (std::dynamic_pointer_cast<Number>(other) != nullptr) //Number + Number
+	{
+		std::shared_ptr<Number> right = std::dynamic_pointer_cast<Number>(other);
+
+		return std::make_shared<Number>(_value + right->_value);
+	}
+	else if (std::dynamic_pointer_cast<Null>(other) != nullptr)
+	{
+		return std::make_shared<Number>(_value); // _value + 0 = _value
+	}
+	else
+	{
+		return IVariable::add(other);
+	}
+}
+std::shared_ptr<IVariable> Number::subtract(std::shared_ptr<IVariable> other)
+{
+	if (std::dynamic_pointer_cast<Number>(other) != nullptr) //Number - Number
+	{
+		std::shared_ptr<Number> right = std::dynamic_pointer_cast<Number>(other);
+
+		return std::make_shared<Number>(_value - right->_value);
+	}
+	else if (std::dynamic_pointer_cast<Null>(other) != nullptr)
+	{
+		return std::make_shared<Number>(_value); // _value - 0 = _value
+	}
+	else
+	{
+		return std::make_shared<Mysterious>();
+	}
+}
+std::shared_ptr<IVariable> Number::multiply(std::shared_ptr<IVariable> other)
+{
+	if (std::dynamic_pointer_cast<Number>(other) != nullptr) //Number + Number
+	{
+		std::shared_ptr<Number> right = std::dynamic_pointer_cast<Number>(other);
+
+		return std::make_shared<Number>(_value * right->_value);
+	}
+	else if (std::dynamic_pointer_cast<String>(other) != nullptr) //Number + String
+	{
+		std::shared_ptr<String> right = std::dynamic_pointer_cast<String>(other);
+
+		return std::make_shared<String>(Utils::repeat(right->toString(), (long)_value));
+	}
+	else if (std::dynamic_pointer_cast<Null>(other) != nullptr)
+	{
+		return std::make_shared<Number>(0); // _value * 0 = 0
+	}
+	else
+	{
+		return std::make_shared<Mysterious>();
+	}
+}
+std::shared_ptr<IVariable> Number::divide(std::shared_ptr<IVariable> other)
+{
+	if (std::dynamic_pointer_cast<Number>(other) != nullptr) //Number + Number
+	{
+		std::shared_ptr<Number> right = std::dynamic_pointer_cast<Number>(other);
+		
+		if(right == 0)
+			return std::make_shared<Mysterious>();
+
+		return std::make_shared<Number>(_value / right->_value);
+	}
+	else
+	{
+		return std::make_shared<Mysterious>();
+	}
+}
+
+void Number::ceil()
+{
+	_value = std::ceil(_value);
+}
+void Number::floor()
+{
+	_value = std::floor(_value);
+}
+void Number::round()
+{
+	_value = std::round(_value);
 }

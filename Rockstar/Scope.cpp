@@ -1,5 +1,5 @@
 #include "Scope.h"
-#include "InterpeterException.h"
+#include "InterpeterExceptions.h"
 #include "Utils.h"
 #include "Array.h"
 #include "VariableName.h"

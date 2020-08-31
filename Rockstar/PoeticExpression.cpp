@@ -2,26 +2,23 @@
 #include <sstream>
 #include <algorithm>
 
-PoeticExpression::PoeticExpression(const Token& token, bool stringLiteral) : Constant(parseLiteral(token, stringLiteral))
+PoeticExpression::PoeticExpression(const std::string& string, bool stringLiteral) : Constant(parseLiteral(string, stringLiteral))
 {
 
 }
 
-Token PoeticExpression::parseLiteral(const Token& token, bool stringLiteral)
+Token PoeticExpression::parseLiteral(const std::string& value, bool stringLiteral)
 {
-	if (!token.isName("PoeticLiteral"))
-		return token;
-
 	if (stringLiteral)
-		return Token("String", { {0, '"' + token.value() + '"' } });
+		return Token("String", { {0, '"' + value + '"' } });
 
-	std::stringstream value(token.value());
+	std::stringstream valueStream(value);
 	std::string word;
 
 	std::stringstream res;
 	bool decimalPlaces = false;
 
-	while (std::getline(value, word, ' '))
+	while (std::getline(valueStream, word, ' '))
 	{
 		int digit = 0;
 

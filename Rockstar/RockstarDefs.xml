@@ -63,7 +63,7 @@
       <Add/>
       <Subtract/>
       <Multiply/>
-      <Devide/>
+      <Divide/>
     </MathOp>
     
     <Arthimetic>
@@ -87,6 +87,13 @@
         </sequence>
       </sequence>
     </List>
+
+    <PoeticLiteral>
+      <sequence>
+        <NonLiteral name="start"/>
+        <PoeticString name="end"/>
+      </sequence>
+    </PoeticLiteral>
     
   </defines>
   <tokens>
@@ -99,14 +106,30 @@
     <VariableName>
       <contains>
         <regex>(?:[aA][nN]?|[Tt][Hh][Ee]|[Mm][Yy]|[Yy][Oo][Uu][Rr])\s+[a-z]+</regex>
-        <regex times="*">[A-Z][A-Za-z]+</regex>
+        <SimpleVariable/>
+        <ProperNoun/>
+      </contains>
+    </VariableName>
+
+    <SimpleVariable>
+      <contains>
         <regex>[A-Za-z]+</regex>
       </contains>
       <invalid>
-        <Keyword />
+        <Keyword/>
         <Literal/>
       </invalid>
-    </VariableName>
+    </SimpleVariable>
+
+    <ProperNoun>
+      <contains>
+        <regex times="*">[A-Z][A-Za-z]+</regex>
+      </contains>
+      <invalid>
+        <Keyword/>
+        <Literal/>
+      </invalid>
+    </ProperNoun>
 
     <Mysterious>
       <contains>
@@ -312,11 +335,19 @@
         <regex icase="true">were</regex>
       </contains>
     </PoeticIs>
-    <PoeticLiteral>
+    <NonLiteral>
+      <contains>
+        <regex>[^\s]+</regex>
+      </contains>
+      <invalid>
+        <Literal/>
+      </invalid>
+    </NonLiteral>
+    <PoeticString>
       <contains>
         <regex>.*</regex>
       </contains>
-    </PoeticLiteral>
+    </PoeticString>
   </tokens>
   <statements>
     <Assign>
@@ -327,11 +358,11 @@
         <or>
           <sequence name="compound">
             <MathOp name="op"/>
-            <List name="list"/>
+            <Value name="value" />
           </sequence>
           <sequence name="compound">
             <MathOp name="op"/>
-            <Value name="value" />
+            <List name="list"/>
           </sequence>
           <Value name="value" />
         </or>
@@ -346,13 +377,16 @@
     <PoeticAssign>
       <sequence>
         <Variable name="var"/>
-        <or name="op">
-          <PoeticIs/>
-          <Says/>
-        </or>
+        <Says name="op"/>
+        <PoeticString name="literal"/>
+      </sequence>
+      <sequence>
+        <Variable name="var"/>
+        <PoeticIs name="op"/>
         <or name="literal">
-          <Literal/>
+          <Literal name="literal"/>
           <PoeticLiteral/>
+          <Value name="val"/>
         </or>
       </sequence>
     </PoeticAssign>
@@ -369,7 +403,7 @@
           <Cut/>
           <Cast/>
         </or>
-        <Value name="exp"/>
+        <Value name="exp" lazy="true"/>
         <or optional="true">
           <sequence>
             <Into/>

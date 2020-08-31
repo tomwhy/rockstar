@@ -8,7 +8,7 @@
 #include "RoundStatement.h"
 #include "Constant.h"
 #include "PoeticExpression.h"
-#include "InterpeterException.h"
+#include "InterpeterExceptions.h"
 #include "Utils.h"
 #include <regex>
 
@@ -50,7 +50,29 @@ std::shared_ptr<ICodeBlock> RunTime::parseStatment(const Statement& stmt)
 	}
 	else if (stmtName == "PoeticAssign")
 	{
-		return std::make_shared<AssignStatement>(Utils::createVariableExpression(stmt, "var"), std::make_shared<PoeticExpression>(stmt.getToken("literal"), stmt.getToken("op").isName("Says")));
+		std::shared_ptr<VariableName> var = Utils::createVariableExpression(stmt, "var");
+		if (stmt.getToken("op").isName("Says"))
+		{
+			return std::make_shared<AssignStatement>(var, std::make_shared<PoeticExpression>(stmt.getToken("literal").value(), true));
+		}
+		else
+		{
+			if (stmt.contains("literal_val"))
+			{
+				return std::make_shared<AssignStatement>(var, Utils::createExpression(stmt, "literal_val"));
+			}
+			else if(stmt.contains("literal_literal"))
+			{
+				return std::make_shared<AssignStatement>(var, Utils::createExpression(stmt, "literal_literal"));
+			}
+			else
+			{
+				std::string str;
+				str = stmt.getToken("literal_start").value() + " " + stmt.getToken("literal_end").value();
+
+				return std::make_shared<AssignStatement>(var, std::make_shared<PoeticExpression>(str, false));
+			}
+		}
 	}
 	else if (stmtName == "Print")
 	{

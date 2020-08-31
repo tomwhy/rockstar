@@ -1,5 +1,5 @@
 #include "ISimpleVariable.h"
-#include "InterpeterException.h"
+#include "InterpeterExceptions.h"
 
 ISimpleVariable::ISimpleVariable(const std::string& typeName) : IVariable(typeName)
 {

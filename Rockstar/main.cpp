@@ -1,7 +1,7 @@
 #include "GenericParser/include/Parser.h"
 #include "GenericParser/include/ParsingExceptions.h"
 #include "RunTime.h"
-#include "InterpeterException.h"
+#include "InterpeterExceptions.h"
 #include "Utils.h"
 #include "PreProcessor.h"
 #include <fstream>

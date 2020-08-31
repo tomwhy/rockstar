@@ -1,6 +1,6 @@
 #include "Constant.h"
 #include "VariableTypes.h"
-#include "InterpeterException.h"
+#include "InterpeterExceptions.h"
 
 Constant::Constant(const Token& value) : _value(value)
 {

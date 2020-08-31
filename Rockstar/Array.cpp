@@ -1,7 +1,8 @@
 #include "Array.h"
 #include "Utils.h"
 #include "Mysterious.h"
-#include "InterpeterException.h"
+#include "Null.h"
+#include "InterpeterExceptions.h"
 
 Array::Array(const std::string& index, std::shared_ptr<IVariable> value) : _size(), _data(), IVariable("Array")
 {
@@ -44,4 +45,25 @@ void Array::setAt(const std::string& index, std::shared_ptr<IVariable> value)
 {
 	_data[index] = value;
 	updateSize(index);
+}
+
+std::shared_ptr<String> Array::join(std::shared_ptr<IVariable> delim)
+{
+	std::string res;
+	std::string delimStr = delim == nullptr ? "" : delim->toString();
+
+	for (int i = 0; i < _size; i++)
+	{
+		std::shared_ptr<IVariable> valueAtIndex = _data[std::to_string(i)];
+		if (std::dynamic_pointer_cast<Mysterious>(valueAtIndex) == nullptr && std::dynamic_pointer_cast<Null>(valueAtIndex) == nullptr)
+		{ //if the value is not of type null or mysterious
+			res += valueAtIndex->toString();
+			if (i < _size - 1)
+			{
+				res += delimStr;
+			}
+		}
+	}
+
+	return std::make_shared<String>(res);
 }

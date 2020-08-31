@@ -1,5 +1,5 @@
 #include "VariableName.h"
-#include "InterpeterException.h"
+#include "InterpeterExceptions.h"
 #include <algorithm>
 
 VariableName::VariableName(const std::string& name) : VariableName(name, nullptr)

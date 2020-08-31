@@ -31,6 +31,9 @@
     <Filter Include="Source Files\Expressions">
       <UniqueIdentifier>{69b26f34-35d9-4246-a462-1fc5f17f9bfe}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Interfaces">
+      <UniqueIdentifier>{91fd292b-5c11-47d4-b492-362b4cd6a154}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -53,9 +56,6 @@
     </ClCompile>
     <ClCompile Include="String.cpp">
       <Filter>Source Files\Variables</Filter>
-    </ClCompile>
-    <ClCompile Include="InterpeterException.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Constant.cpp">
       <Filter>Source Files\Expressions</Filter>
@@ -114,6 +114,12 @@
     <ClCompile Include="PoeticExpression.cpp">
       <Filter>Source Files\Expressions</Filter>
     </ClCompile>
+    <ClCompile Include="InterpeterExceptions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="IVariable.cpp">
+      <Filter>Source Files\Variables</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Scope.h">
@@ -145,9 +151,6 @@
     </ClInclude>
     <ClInclude Include="VariableTypes.h">
       <Filter>Header Files\Variables</Filter>
-    </ClInclude>
-    <ClInclude Include="InterpeterException.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Constant.h">
       <Filter>Header Files\Expressions</Filter>
@@ -205,6 +208,27 @@
     </ClInclude>
     <ClInclude Include="PoeticExpression.h">
       <Filter>Header Files\Expressions</Filter>
+    </ClInclude>
+    <ClInclude Include="InterpeterExceptions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ICastable.h">
+      <Filter>Header Files\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="IIncreametable.h">
+      <Filter>Header Files\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="IJoinable.h">
+      <Filter>Header Files\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="MathInterfaces.h">
+      <Filter>Header Files\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="IRoundable.h">
+      <Filter>Header Files\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="ISplitable.h">
+      <Filter>Header Files\Interfaces</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
