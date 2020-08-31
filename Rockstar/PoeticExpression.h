@@ -3,9 +3,9 @@
 class PoeticExpression : public Constant
 {
 public:
-	PoeticExpression(const Token& token, bool stringLiteral);
+	PoeticExpression(const std::string& value, bool stringLiteral);
 
 private:
-	static Token parseLiteral(const Token& token, bool stringLiteral);
+	static Token parseLiteral(const std::string& value, bool stringLiteral);
 };
 

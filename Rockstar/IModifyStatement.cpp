@@ -1,5 +1,5 @@
 #include "IModifyStatement.h"
-#include "InterpeterException.h"
+#include "InterpeterExceptions.h"
 
 IModifyStatement::IModifyStatement(std::shared_ptr<IExpression> exp, std::shared_ptr<VariableName> dest, std::shared_ptr<IExpression> argument) : 
 	_exp(exp), _dest(dest), _argument(argument)

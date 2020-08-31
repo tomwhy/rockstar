@@ -2,7 +2,7 @@
 #include "VariableName.h"
 #include "Constant.h"
 #include "Pronoun.h"
-#include "InterpeterException.h"
+#include "InterpeterExceptions.h"
 #include <algorithm>
 #include <sstream>
 

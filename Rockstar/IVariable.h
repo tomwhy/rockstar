@@ -17,8 +17,11 @@ public:
 
 	//meta functions
 	virtual bool canBeIndex() = 0;
-	std::string type() { return _typeName; }
+	//std::string type() { return _typeName; }
+
+	virtual std::shared_ptr<IVariable> add(std::shared_ptr<IVariable> other);
 
 private:
 	std::string _typeName;
+	friend class TypeException;
 };

@@ -1,7 +1,6 @@
 #include "MathExpression.h"
-#include "InterpeterException.h"
-#include "Number.h"
-#include "String.h"
+#include "InterpeterExceptions.h"
+#include "MathInterfaces.h"
 #include "Utils.h"
 #include "Mysterious.h"
 
@@ -37,113 +36,38 @@ MathOp MathExpression::getOpFromToken(const Token& token)
 
 std::shared_ptr<IVariable> MathExpression::evaluate(Scope& scope) const
 {
+	std::shared_ptr<IVariable> left = _left->evaluate(scope);
+	std::shared_ptr<IVariable> right = _right->evaluate(scope);
+
 	switch (_op)
 	{
 	case MathOp::Add:
-		return add(scope);
+		return left->add(right);
 		break;
 	case MathOp::Subtract:
-		return subtract(scope);
+	{
+		std::shared_ptr<ISubtractable> subtractable = std::dynamic_pointer_cast<ISubtractable>(left);
+		if (subtractable != nullptr)
+			return subtractable->subtract(right);
 		break;
+	}
 	case MathOp::Multiply:
-		return multiply(scope);
+	{
+		std::shared_ptr<IMultiplyable> multiplyable = std::dynamic_pointer_cast<IMultiplyable>(left);
+		if (multiplyable != nullptr)
+			return multiplyable->multiply(right);
 		break;
+	}
 	case MathOp::Divide:
-		return divide(scope);
+	{
+		std::shared_ptr<IDivieable> divideable = std::dynamic_pointer_cast<IDivieable>(left);
+		if (divideable != nullptr)
+			return divideable->divide(right);
 		break;
+	}
 	default:
 		throw InterpeterException("Invalid Math operation");
 	}
-}
 
-std::shared_ptr<IVariable> MathExpression::add(Scope& scope) const
-{
-	std::shared_ptr<IVariable> left = _left->evaluate(scope);
-	std::shared_ptr<IVariable> right = _right->evaluate(scope);
-
-	if (left->type() == "Number" && right->type() == "Number")
-	{
-		long double res = std::stold(left->toString()) + std::stold(right->toString());
-		return std::make_shared<Number>(res);
-	}
-	else if (left->type() == "String" || right->type() == "String")
-	{
-		std::string res = left->toString() + right->toString();
-		return std::make_shared<String>(res);
-	}
-	else
-	{
-		return std::make_shared<Mysterious>();
-	}
-}
-std::shared_ptr<IVariable> MathExpression::subtract(Scope& scope) const
-{
-	std::shared_ptr<IVariable> left = _left->evaluate(scope);
-	std::shared_ptr<IVariable> right = _right->evaluate(scope);
-
-	if (left->type() == "Number" && right->type() == "Number")
-	{
-		long double res = std::stold(left->toString()) - std::stold(right->toString());
-		return std::make_shared<Number>(res);
-	}
-	else
-	{
-		return std::make_shared<Mysterious>();
-	}
-}
-std::shared_ptr<IVariable> MathExpression::multiply(Scope& scope) const
-{
-	std::shared_ptr<IVariable> left = _left->evaluate(scope);
-	std::shared_ptr<IVariable> right = _right->evaluate(scope);
-
-	if (left->type() == "Number" && right->type() == "Number")
-	{
-		long double res = std::stold(left->toString()) * std::stold(right->toString());
-		return std::make_shared<Number>(res);
-	}
-	else
-	{
-		std::string times;
-		std::string str;
-		if (left->type() == "Number" && right->type() == "String")
-		{
-			times = left->toString();
-			str = right->toString();
-		}
-		else if (right->type() == "Number" && left->type() == "String")
-		{
-			times = right->toString();
-			str = left->toString();
-		}
-		else
-		{
-			return std::make_shared<Mysterious>();
-		}
-
-		if (!(Utils::all<std::string::const_iterator, char>(times.begin(), times.end(), std::isdigit)))
-		{
-			return std::make_shared<Mysterious>();
-		}
-
-		return std::make_shared<String>(Utils::repeat(str, std::stoi(times)));
-	}
-}
-std::shared_ptr<IVariable> MathExpression::divide(Scope& scope) const
-{
-	std::shared_ptr<IVariable> left = _left->evaluate(scope);
-	std::shared_ptr<IVariable> right = _right->evaluate(scope);
-
-	if (left->type() == "Number" && right->type() == "Number")
-	{
-		if (right->toString() == "0")
-		{
-			return std::make_shared<Mysterious>();
-		}
-		long double res = std::stold(left->toString()) / std::stold(right->toString());
-		return std::make_shared<Number>(res);
-	}
-	else
-	{
-		return std::make_shared<Mysterious>();
-	}
+	return std::make_shared<Mysterious>();
 }

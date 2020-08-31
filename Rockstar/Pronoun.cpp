@@ -1,5 +1,5 @@
 #include "Pronoun.h"
-#include "InterpeterException.h"
+#include "InterpeterExceptions.h"
 
 Pronoun::Pronoun(std::shared_ptr<IExpression> index) : VariableName("", index)
 {

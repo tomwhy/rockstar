@@ -12,12 +12,6 @@ public:
 
 	static MathOp getOpFromToken(const Token& token);
 
-protected:
-	std::shared_ptr<IVariable> add(Scope& scope) const;
-	std::shared_ptr<IVariable> subtract(Scope& scope) const;
-	std::shared_ptr<IVariable> multiply(Scope& scope) const;
-	std::shared_ptr<IVariable> divide(Scope& scope) const;
-
 private:
 	std::shared_ptr<IExpression> _left;
 	MathOp _op;

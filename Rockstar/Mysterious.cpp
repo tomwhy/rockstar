@@ -1,5 +1,5 @@
 #include "Mysterious.h"
-#include "InterpeterException.h"
+#include "InterpeterExceptions.h"
 
 Mysterious::Mysterious() : ISimpleVariable("Mysterious")
 {

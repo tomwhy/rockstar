@@ -1,7 +1,7 @@
 #include "RoundStatement.h"
 #include "Mysterious.h"
-#include "Number.h"
-#include "InterpeterException.h"
+#include "IRoundable.h"
+#include "InterpeterExceptions.h"
 #include <cmath>
 
 RoundStatement::RoundStatement(std::shared_ptr<VariableName> var, RoundOp op) : _var(var), _op(op)
@@ -23,30 +23,26 @@ RoundOp RoundStatement::getOpFromToken(const Token& token)
 
 void RoundStatement::execute(Scope& scope)
 {
-	std::shared_ptr<IVariable> value = _var->evaluate(scope);
-	if (value->type() != "Number")
+	std::shared_ptr<IRoundable> value = std::dynamic_pointer_cast<IRoundable>(_var->evaluate(scope));
+	if (value == nullptr)
 	{
 		scope.setVariable(_var, std::make_shared<Mysterious>());
 		return;
 	}
 
-	long double number = std::stold(value->toString());
-	long double result = 0;
 	switch (_op)
 	{
 	case RoundOp::Up:
-		result = std::ceil(number);
+		value->ceil();
 		break;
 	case RoundOp::Down:
-		result = std::floor(number);
+		value->floor();
 		break;
 	case RoundOp::Nearest:
-		result = std::round(number);
+		value->round();
 		break;
 	default:
 		throw InterpeterException("Invalid rounding operation");
 		break;
 	}
-
-	scope.setVariable(_var, std::make_shared<Number>(result));
 }

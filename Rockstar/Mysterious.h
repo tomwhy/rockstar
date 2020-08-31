@@ -1,5 +1,6 @@
 #pragma once
 #include "ISimpleVariable.h"
+#include "MathInterfaces.h"
 
 class Mysterious : public ISimpleVariable
 {
