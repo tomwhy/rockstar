@@ -15,5 +15,8 @@ public:
 	virtual std::shared_ptr<IVariable> multiply(std::shared_ptr<IVariable> other);
 	virtual std::shared_ptr<IVariable> divide(std::shared_ptr<IVariable> other);
 
+	virtual bool equal(std::shared_ptr<IVariable> other);
+	virtual bool less(std::shared_ptr<IVariable> other);
+
 };
 

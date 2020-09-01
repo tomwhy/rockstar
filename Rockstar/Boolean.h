@@ -14,6 +14,8 @@ public:
 	virtual void increament(size_t count);
 	virtual void decreament(size_t count);
 
+	virtual bool equal(std::shared_ptr<IVariable> other);
+
 private:
 	bool _value;
 };

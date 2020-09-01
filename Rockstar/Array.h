@@ -16,6 +16,9 @@ public:
 
 	virtual std::shared_ptr<String> join(std::shared_ptr<IVariable> delim);
 
+	virtual bool equal(std::shared_ptr<IVariable> other);
+	virtual bool less(std::shared_ptr<IVariable> other);
+
 private:
 	void updateSize(const std::string& index);
 	std::map<std::string, std::shared_ptr<IVariable>> _data;

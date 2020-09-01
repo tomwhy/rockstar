@@ -2,6 +2,7 @@
 #include "Utils.h"
 #include "Mysterious.h"
 #include "Null.h"
+#include "Number.h"
 #include "InterpeterExceptions.h"
 
 Array::Array(const std::string& index, std::shared_ptr<IVariable> value) : _size(), _data(), IVariable("Array")
@@ -17,7 +18,7 @@ bool Array::canBeIndex()
 
 bool Array::toBool()
 {
-	return true;
+	return (bool)_size;
 }
 
 std::string Array::toString()
@@ -66,4 +67,14 @@ std::shared_ptr<String> Array::join(std::shared_ptr<IVariable> delim)
 	}
 
 	return std::make_shared<String>(res);
+}
+
+bool Array::equal(std::shared_ptr<IVariable> other)
+{
+	return Number(_size).equal(other);
+}
+
+bool Array::less(std::shared_ptr<IVariable> other)
+{
+	return Number(_size).less(other);
 }

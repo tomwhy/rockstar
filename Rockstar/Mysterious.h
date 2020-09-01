@@ -9,5 +9,7 @@ public:
 	virtual std::string toString();
 	virtual bool canBeIndex();
 	virtual bool toBool();
+
+	virtual bool equal(std::shared_ptr<IVariable> other);
 };
 

@@ -61,9 +61,9 @@ std::shared_ptr<ICodeBlock> RunTime::parseStatment(const Statement& stmt)
 			{
 				return std::make_shared<AssignStatement>(var, Utils::createExpression(stmt, "literal_val"));
 			}
-			else if(stmt.contains("literal_literal"))
+			else if(stmt.contains("literal_exp"))
 			{
-				return std::make_shared<AssignStatement>(var, Utils::createExpression(stmt, "literal_literal"));
+				return std::make_shared<AssignStatement>(var, Utils::createExpression(stmt, "literal"));
 			}
 			else
 			{

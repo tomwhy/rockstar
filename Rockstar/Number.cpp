@@ -2,6 +2,8 @@
 #include "String.h"
 #include "Null.h"
 #include "Mysterious.h"
+#include "Boolean.h"
+#include "Array.h"
 #include "Utils.h"
 #include "InterpeterExceptions.h"
 #include <sstream>
@@ -119,9 +121,13 @@ std::shared_ptr<IVariable> Number::divide(std::shared_ptr<IVariable> other)
 		std::shared_ptr<Number> right = std::dynamic_pointer_cast<Number>(other);
 		
 		if(right == 0)
-			return std::make_shared<Mysterious>();
+			throw InterpeterException("divition by zero error");
 
 		return std::make_shared<Number>(_value / right->_value);
+	}
+	else if (std::dynamic_pointer_cast<Null>(other) != nullptr)
+	{
+		throw InterpeterException("divition by zero error");
 	}
 	else
 	{
@@ -140,4 +146,74 @@ void Number::floor()
 void Number::round()
 {
 	_value = std::round(_value);
+}
+
+bool Number::equal(std::shared_ptr<IVariable> other)
+{
+	if (std::dynamic_pointer_cast<Mysterious>(other) != nullptr)
+	{
+		return false;
+	}
+	else if (std::dynamic_pointer_cast<String>(other) != nullptr)
+	{
+		try
+		{
+			long double right = std::stold(other->toString());
+
+			return _value == right;
+		}
+		catch(const std::invalid_argument&)
+		{
+			return false;
+		}
+	}
+	else if (std::dynamic_pointer_cast<Boolean>(other) != nullptr)
+	{
+		return toBool() == other->toBool();
+	}
+	else if (std::dynamic_pointer_cast<Null>(other) != nullptr)
+	{
+		return _value == 0;
+	}
+	else if (std::dynamic_pointer_cast<Array>(other) != nullptr)
+	{
+		return _value == std::stoull(std::dynamic_pointer_cast<Array>(other)->toString());
+	}
+	else //number
+	{
+		return _value == std::dynamic_pointer_cast<Number>(other)->_value;
+	}
+}
+
+bool Number::less(std::shared_ptr<IVariable> other)
+{
+	if (std::dynamic_pointer_cast<String>(other) != nullptr)
+	{
+		try
+		{
+			long double right = std::stold(other->toString());
+
+			return _value < right;
+		}
+		catch (const std::invalid_argument&)
+		{
+			return false;
+		}
+	}
+	else if (std::dynamic_pointer_cast<Array>(other) != nullptr)
+	{
+		return _value < std::stoull(std::dynamic_pointer_cast<Array>(other)->toString());
+	}
+	else if(std::dynamic_pointer_cast<Number>(other) != nullptr)
+	{
+		return _value < std::dynamic_pointer_cast<Number>(other)->_value;
+	}
+	else if (std::dynamic_pointer_cast<Null>(other) != nullptr)
+	{
+		return _value < 0;
+	}
+	else
+	{
+		return IVariable::less(other);
+	}
 }

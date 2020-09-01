@@ -31,6 +31,10 @@ public:
 	virtual void floor();
 	virtual void round();
 
+	//comparison
+	virtual bool equal(std::shared_ptr<IVariable> other);
+	virtual bool less(std::shared_ptr<IVariable> other);
+
 private:
 	long double _value;
 };

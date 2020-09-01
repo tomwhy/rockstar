@@ -145,7 +145,9 @@
     <ClCompile Include="AssignStatement.cpp" />
     <ClCompile Include="Boolean.cpp" />
     <ClCompile Include="CastStatement.cpp" />
+    <ClCompile Include="Comparison.cpp" />
     <ClCompile Include="Constant.cpp" />
+    <ClCompile Include="Flags.cpp" />
     <ClCompile Include="IModifyStatement.cpp" />
     <ClCompile Include="IncreamentDecreamentStatement.cpp" />
     <ClCompile Include="InterpeterExceptions.cpp" />
@@ -175,7 +177,9 @@
     <ClInclude Include="AssignStatement.h" />
     <ClInclude Include="Boolean.h" />
     <ClInclude Include="CastStatement.h" />
+    <ClInclude Include="Comparison.h" />
     <ClInclude Include="Constant.h" />
+    <ClInclude Include="Flags.h" />
     <ClInclude Include="ICastable.h" />
     <ClInclude Include="ICodeBlock.h" />
     <ClInclude Include="IExpression.h" />

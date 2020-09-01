@@ -34,6 +34,12 @@
     <Filter Include="Header Files\Interfaces">
       <UniqueIdentifier>{91fd292b-5c11-47d4-b492-362b4cd6a154}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Utils">
+      <UniqueIdentifier>{ee952cdb-2b08-4717-b58d-5aad52e3435e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Utils">
+      <UniqueIdentifier>{f93ddde5-c5ac-4389-a2c6-43dca78ba05f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -68,9 +74,6 @@
     </ClCompile>
     <ClCompile Include="VariableName.cpp">
       <Filter>Source Files\Expressions</Filter>
-    </ClCompile>
-    <ClCompile Include="Utils.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PrintStatement.cpp">
       <Filter>Source Files\CodeStatements</Filter>
@@ -120,6 +123,15 @@
     <ClCompile Include="IVariable.cpp">
       <Filter>Source Files\Variables</Filter>
     </ClCompile>
+    <ClCompile Include="Comparison.cpp">
+      <Filter>Source Files\Expressions</Filter>
+    </ClCompile>
+    <ClCompile Include="Flags.cpp">
+      <Filter>Source Files\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils.cpp">
+      <Filter>Source Files\Utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Scope.h">
@@ -163,9 +175,6 @@
     </ClInclude>
     <ClInclude Include="VariableName.h">
       <Filter>Header Files\Expressions</Filter>
-    </ClInclude>
-    <ClInclude Include="Utils.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PrintStatement.h">
       <Filter>Header Files\CodeStatements</Filter>
@@ -229,6 +238,15 @@
     </ClInclude>
     <ClInclude Include="ISplitable.h">
       <Filter>Header Files\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="Comparison.h">
+      <Filter>Header Files\Expressions</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils.h">
+      <Filter>Header Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Flags.h">
+      <Filter>Header Files\Utils</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

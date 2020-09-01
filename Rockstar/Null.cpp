@@ -2,6 +2,8 @@
 #include "Number.h"
 #include "String.h"
 #include "Mysterious.h"
+#include "Boolean.h"
+#include "Array.h"
 #include "InterpeterExceptions.h"
 
 Null::Null() : ISimpleVariable("Null")
@@ -88,5 +90,40 @@ std::shared_ptr<IVariable> Null::divide(std::shared_ptr<IVariable> other)
 	else
 	{
 		return std::make_shared<Mysterious>();
+	}
+}
+
+bool Null::equal(std::shared_ptr<IVariable> other)
+{
+	if (std::dynamic_pointer_cast<Mysterious>(other) != nullptr ||
+		std::dynamic_pointer_cast<String>(other) != nullptr)
+	{
+		return false;
+	}
+	else if (std::dynamic_pointer_cast<Number>(other) != nullptr ||
+			std::dynamic_pointer_cast<Array>(other) != nullptr)
+	{
+		return Number(0).equal(other);
+	}
+	else if (std::dynamic_pointer_cast<Boolean>(other) != nullptr)
+	{
+		return Boolean(false).equal(other);
+	}
+	else // null
+	{
+		return true;
+	}
+}
+
+bool Null::less(std::shared_ptr<IVariable> other)
+{
+	if (std::dynamic_pointer_cast<Number>(other) != nullptr ||
+		std::dynamic_pointer_cast<Array>(other) != nullptr)
+	{
+		return Number(0).less(other);
+	}
+	else // null
+	{
+		return IVariable::less(other);
 	}
 }

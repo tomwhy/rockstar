@@ -3,6 +3,7 @@
 #include "VariableName.h"
 #include "MathExpression.h"
 #include "ListArthimeticExpression.h"
+#include "Comparison.h"
 #include "GenericParser/include/Statement.h"
 #include "GenericParser/include/Token.h"
 #include <functional>
@@ -14,6 +15,7 @@ public:
 	static std::shared_ptr<IExpression> createExpression(const Statement& stmt, const std::string& name);
 	static std::shared_ptr<MathExpression> createMathExpression(const Statement& stmt, const std::string& name);
 	static std::shared_ptr<VariableName> createVariableExpression(const Statement& stmt, const std::string& name);
+	static std::shared_ptr<Comparison> createComparisonExpression(const Statement& stmt, const std::string& name);
 	static std::shared_ptr<ListArthimeticExpression> createListExpression(const Statement& stmt, const std::string& name, std::shared_ptr<IExpression> left, MathOp op);
 	static std::string lower(const std::string& str);
 	static std::string repeat(const std::string& str, int times);

@@ -22,25 +22,79 @@
       <ListAnd/>
       <PoeticIs/>
       <Says/>
+      <Isnt/>
+      <As/>
+      <Than/>
+      <Higher/>
+      <Lower/>
+      <High/>
+      <Low/>
     </Keyword>
     
     <Index>
       <sequence>
         <At/>
-        <Expression name="exp"/>
+        <Value name="exp"/>
       </sequence>
     </Index>
 
     <Value>
       <Arthimetic name="math"/>
-      <Expression name="exp"/>
+      <Comparison name="comp"/>
+      <AtomicExpression name="exp"/>
     </Value>
     
-    <Expression>
+    <AtomicExpression>
       <Variable name="var"/>
       <Literal/>
-    </Expression>
+    </AtomicExpression>
 
+    <ComperisonExpression>
+      <Arthimetic name="math"/>
+      <AtomicExpression name="exp"/>
+    </ComperisonExpression>
+    
+    <Comparison>
+      <sequence>
+        <ComperisonExpression name="left"/>
+        <or>
+          <sequence name="equ">
+            <or name="neg">
+              <Is/>
+              <Isnt/>
+            </or>
+          </sequence>
+          <sequence name="order">
+            <or name="neg">
+              <Is/>
+              <Isnt/>
+            </or>
+            <or name="order">
+              <Higher/>
+              <Lower/>
+            </or>
+            <Than/>
+          </sequence>
+          <sequence name="order equ">
+            <or name="neg">
+              <Is/>
+              <Isnt/>
+            </or>
+            <As/>
+            <or name="order">
+              <High/>
+              <Low/>
+            </or>
+            <As/>
+          </sequence>
+        </or>
+        <or name="right">
+          <Comparison name="comp"/>
+          <ComperisonExpression/>
+        </or>
+      </sequence>
+    </Comparison>
+    
     <Variable>
       <sequence>
         <or name="name">
@@ -68,19 +122,19 @@
     
     <Arthimetic>
       <sequence>
-        <Expression name="left_exp"/>
+        <AtomicExpression name="left_exp"/>
         <MathOp name="op"/> 
         <or name="right">
           <List name="list"/>
           <Arthimetic name="math"/>
-          <Expression name="exp"/>
+          <AtomicExpression name="exp"/>
         </or>
       </sequence>
     </Arthimetic>
 
     <List>
       <sequence>
-        <Expression name="exp"/>
+        <AtomicExpression name="exp"/>
         <sequence optional="true">
           <ListAnd/>
           <List name="next"/>
@@ -327,6 +381,54 @@
         <regex icase="true">is</regex>
       </contains>
     </Is>
+    <Isnt>
+      <contains>
+        <regex icase="true">isnt</regex>
+        <regex icase="true">aint</regex>
+      </contains>
+    </Isnt>
+    <As>
+      <contains>
+        <regex icase="true">as</regex>
+      </contains>
+    </As>
+    <Than>
+      <contains>
+        <regex icase="true">than</regex>
+      </contains>
+    </Than>
+    <Higher>
+      <contains>
+        <regex icase="true">higher</regex>
+        <regex icase="true">greater</regex>
+        <regex icase="true">bigger</regex>
+        <regex icase="true">stronger</regex>
+      </contains>
+    </Higher>
+    <Lower>
+      <contains>
+        <regex icase="true">lower</regex>
+        <regex icase="true">less</regex>
+        <regex icase="true">smaller</regex>
+        <regex icase="true">weaker</regex>
+      </contains>
+    </Lower>
+    <High>
+      <contains>
+        <regex icase="true">high</regex>
+        <regex icase="true">great</regex>
+        <regex icase="true">big</regex>
+        <regex icase="true">strong</regex>
+      </contains>
+    </High>
+    <Low>
+      <contains>
+        <regex icase="true">low</regex>
+        <regex icase="true">little</regex>
+        <regex icase="true">small</regex>
+        <regex icase="true">weak</regex>
+      </contains>
+    </Low>
     <PoeticIs>
       <contains>
         <Is/>
@@ -384,7 +486,7 @@
         <Variable name="var"/>
         <PoeticIs name="op"/>
         <or name="literal">
-          <Literal name="literal"/>
+          <Literal name="exp"/>
           <PoeticLiteral/>
           <Value name="val"/>
         </or>

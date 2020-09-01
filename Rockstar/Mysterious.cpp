@@ -17,3 +17,15 @@ bool Mysterious::toBool()
 {
 	return false;
 }
+
+bool Mysterious::equal(std::shared_ptr<IVariable> other)
+{
+	if (std::dynamic_pointer_cast<Mysterious>(other) != nullptr)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}

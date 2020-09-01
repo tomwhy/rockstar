@@ -5,6 +5,7 @@
 #include "InterpeterExceptions.h"
 #include "Utils.h"
 #include "Array.h"
+#include "Boolean.h"
 #include <cmath>
 
 String::String(const std::string& value) : _value(value), IVariable("String")
@@ -187,4 +188,42 @@ std::shared_ptr<IVariable> String::split(std::shared_ptr<IVariable> arg)
 	}
 
 	return res;
+}
+
+bool String::equal(std::shared_ptr<IVariable> other)
+{
+	if (std::dynamic_pointer_cast<Mysterious>(other) != nullptr ||
+		std::dynamic_pointer_cast<Null>(other) != nullptr)
+	{
+		return false;
+	}
+	else if (std::dynamic_pointer_cast<Number>(other) != nullptr ||
+		std::dynamic_pointer_cast<Array>(other) != nullptr)
+	{
+		return Number(std::stold(_value)).equal(other);
+	}
+	else if (std::dynamic_pointer_cast<Boolean>(other) != nullptr)
+	{
+		return toBool() == other->toBool();
+	}
+	else //string
+	{
+		return _value == std::dynamic_pointer_cast<String>(other)->_value;
+	}
+}
+bool String::less(std::shared_ptr<IVariable> other)
+{
+	if (std::dynamic_pointer_cast<Number>(other) != nullptr ||
+		std::dynamic_pointer_cast<Array>(other) != nullptr)
+	{
+		return Number(std::stold(_value)).less(other);
+	}
+	else if(std::dynamic_pointer_cast<String>(other) != nullptr)
+	{
+		return _value < std::dynamic_pointer_cast<String>(other)->_value;
+	}
+	else
+	{
+		return IVariable::less(other);
+	}
 }

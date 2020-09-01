@@ -2,7 +2,6 @@
 #include <string>
 #include <memory>
 
-
 class IVariable
 {
 public:
@@ -20,6 +19,8 @@ public:
 	//std::string type() { return _typeName; }
 
 	virtual std::shared_ptr<IVariable> add(std::shared_ptr<IVariable> other);
+	virtual bool equal(std::shared_ptr<IVariable> other);
+	virtual bool less(std::shared_ptr<IVariable> other);
 
 private:
 	std::string _typeName;
