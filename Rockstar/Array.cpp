@@ -33,7 +33,7 @@ std::shared_ptr<IVariable> Array::getAt(const std::string& index)
 }
 void Array::updateSize(const std::string& index)
 {
-	if (Utils::all<std::string::const_iterator, char>(index.begin(), index.end(), std::isdigit))
+	if (Utils::all<std::string::const_iterator, char>(index.begin(), index.end(), [](char c) {return std::isdigit(c); }))
 	{
 		int intIndex = std::stoi(index);
 		if (_size - 1 < intIndex)

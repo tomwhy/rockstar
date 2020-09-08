@@ -28,7 +28,7 @@ bool String::canBeIndex()
 
 std::shared_ptr<IVariable> String::getAt(const std::string& index)
 {
-	if (Utils::all<std::string::const_iterator, char>(index.begin(), index.end(), std::isdigit))
+	if (Utils::all<std::string::const_iterator, char>(index.begin(), index.end(), [](char c) {return std::isdigit(c); }))
 	{
 		int intIndex = std::stoi(index);
 		if (intIndex >= _value.size() || intIndex < 0)
@@ -62,7 +62,7 @@ std::shared_ptr<IVariable> String::cast(std::shared_ptr<IVariable> arg)
 	if (arg != nullptr)
 	{
 		std::string baseStr = arg->toString();
-		if (!Utils::all<std::string::const_iterator, char>(baseStr.begin(), baseStr.end(), std::isdigit))
+		if (!Utils::all<std::string::const_iterator, char>(baseStr.begin(), baseStr.end(), [](char c) {return std::isdigit(c); }))
 		{
 			throw InterpeterException("Cannot cast with: " + baseStr);
 		}

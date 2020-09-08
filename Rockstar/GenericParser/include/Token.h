@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <regex>
 
 class Token
 {
@@ -19,6 +20,8 @@ public:
 	bool isName(const std::string& name) const;
 	const std::vector<std::string> getNames() const;
 	friend bool operator==(const Token& left, const Token& right);
+
+	std::string getValueRegex(bool optionalSpaces) const;
 
 private:
 	std::vector<std::string> _names;

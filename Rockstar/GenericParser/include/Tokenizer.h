@@ -7,10 +7,10 @@
 class Tokenizer
 {
 public:
-	Tokenizer(tinyxml2::XMLElement* tokenDefs, tinyxml2::XMLElement* defineTags);
+	Tokenizer(tinyxml2::XMLElement* tokenDefs);
 
-	static tinyxml2::XMLElement* findTag(const std::string& name, std::vector<tinyxml2::XMLElement*> defs);
-	std::vector<Token> getTokens(const std::string& line);
+	tinyxml2::XMLElement* findTag(const std::string& name, const char* parent);
+	std::vector<Token> TokenizeLine(const std::string& line);
 
 private:
 	Token getToken(const std::string& line, const tinyxml2::XMLElement* token);
@@ -18,6 +18,6 @@ private:
 	bool checkInvalid(const std::string& str, const tinyxml2::XMLElement* token);
 
 
+
 	tinyxml2::XMLElement* _tokenDefs;
-	tinyxml2::XMLElement* _definesTags;
 };
