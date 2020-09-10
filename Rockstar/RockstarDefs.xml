@@ -294,6 +294,24 @@
             <regex icase="true">were</regex>
           </contains>
         </PoeticIs>
+        <Pronoun>
+          <contains>
+            <regex icase="true">it</regex>
+            <regex icase="true">he</regex>
+            <regex icase="true">she</regex>
+            <regex icase="true">him</regex>
+            <regex icase="true">her</regex>
+            <regex icase="true">they</regex>
+            <regex icase="true">ze</regex>
+            <regex icase="true">hir</regex>
+            <regex icase="true">zie</regex>
+            <regex icase="true">zir</regex>
+            <regex icase="true">xe</regex>
+            <regex icase="true">xem</regex>
+            <regex icase="true">ve</regex>
+            <regex icase="true">ver</regex>
+          </contains>
+        </Pronoun>
       </contains>
     </Keyword>
 
@@ -373,25 +391,6 @@
 
       </contains>
     </VariableName>
-
-    <Pronoun>
-      <contains>
-        <regex icase="true">it</regex>
-        <regex icase="true">he</regex>
-        <regex icase="true">she</regex>
-        <regex icase="true">him</regex>
-        <regex icase="true">her</regex>
-        <regex icase="true">they</regex>
-        <regex icase="true">ze</regex>
-        <regex icase="true">hir</regex>
-        <regex icase="true">zie</regex>
-        <regex icase="true">zir</regex>
-        <regex icase="true">xe</regex>
-        <regex icase="true">xem</regex>
-        <regex icase="true">ve</regex>
-        <regex icase="true">ver</regex>
-      </contains>
-    </Pronoun>
 
     <Word>
       <contains>
