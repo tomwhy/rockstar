@@ -1,6 +1,8 @@
 ﻿.vs/
 Debug/
+x64/
 /GenericTokenizer/Release
 !Rockstar/GenericParser/*
+!Tester/tests/*
 *.rock
 *.cd
