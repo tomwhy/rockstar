@@ -5,3 +5,4 @@ x64/
 !Rockstar/GenericParser/*
 Rockstar/*.rock
 *.cd
+__pycache__/

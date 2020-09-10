@@ -1,0 +1,10 @@
+zero
+one
+321
+256
+some_value
+0
+8
+a
+b
+c

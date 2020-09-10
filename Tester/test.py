@@ -2,7 +2,9 @@ import os
 import subprocess
 from typing import List, Tuple
 import itertools
+import timeit
 
+TEST_TIME = 10
 
 class TestResult:
     def __init__(self, diff: List[Tuple[str, str]]):
@@ -15,6 +17,12 @@ class TestResult:
             elif out and not expected:
                 self._msg += "got unexpected line: {}\n".format(out)
         self._msg = self._msg[:-1]
+
+    @staticmethod
+    def create(msg):
+        res = TestResult([])
+        res._msg = msg
+        return res
 
     @property
     def success(self) -> bool:
@@ -43,8 +51,12 @@ class Test:
     def test(self) -> TestResult:
         diff = []
 
-        res = subprocess.run(self._cmd, stdout=subprocess.PIPE,
-                             stderr=subprocess.STDOUT, text=True)
+        try:
+            res = subprocess.run(self._cmd, stdout=subprocess.PIPE,
+                             stderr=subprocess.STDOUT, text=True, timeout=TEST_TIME)
+        except subprocess.TimeoutExpired:
+            return TestResult.create("Timeout")
+
         with open(self._expected_output) as file:
             for out, expected in itertools.zip_longest(res.stdout.splitlines(), file, fillvalue=str()):
                 expected = expected.replace("\n", "")
