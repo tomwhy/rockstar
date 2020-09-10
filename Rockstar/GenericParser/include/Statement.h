@@ -14,7 +14,7 @@ public:
 
 	const std::string name() const;
 	const Token getToken(const std::string& tokenName, size_t index=0) const;
-	const std::vector<Token> getTokens(const std::string& prefix) const;
+	const std::vector<Token> getTokens(const std::string& tokenName) const;
 	const bool hasToken(const std::string& tokenName) const;
 	bool contains(const std::string& tokenPrefix) const;
 

@@ -1,0 +1,510 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+  <defines>
+
+    <Index>
+      <sequence>
+        <At />
+        <Value name="exp" />
+      </sequence>
+    </Index>
+
+    <Value>
+      <Arthimetic name="math" />
+      <Comparison name="comp" />
+      <AtomicExpression name="exp" />
+    </Value>
+
+    <AtomicExpression>
+      <Variable name="var" />
+      <Literal />
+    </AtomicExpression>
+
+    <ComperisonExpression>
+      <Arthimetic name="math" />
+      <AtomicExpression name="exp" />
+    </ComperisonExpression>
+
+    <Comparison>
+      <sequence>
+        <ComperisonExpression name="left" />
+        <or>
+          <sequence name="equ">
+            <or name="neg">
+              <Is />
+              <Isnt />
+            </or>
+          </sequence>
+          <sequence name="order">
+            <or name="neg">
+              <Is />
+              <Isnt />
+            </or>
+            <or name="order">
+              <Higher />
+              <Lower />
+            </or>
+            <Than />
+          </sequence>
+          <sequence name="order equ">
+            <or name="neg">
+              <Is />
+              <Isnt />
+            </or>
+            <As />
+            <or name="order">
+              <High />
+              <Low />
+            </or>
+            <As />
+          </sequence>
+        </or>
+        <or name="right">
+          <Comparison name="comp" />
+          <ComperisonExpression />
+        </or>
+      </sequence>
+    </Comparison>
+
+    <Variable>
+      <sequence>
+        <or name="name">
+          <Pronoun />
+          <VariableName />
+        </or>
+        <Index optional="true" name="idx" />
+      </sequence>
+    </Variable>
+
+    <Arthimetic>
+      <sequence>
+        <AtomicExpression name="left_exp" />
+        <MathOp name="op" />
+        <or name="right">
+          <List name="list" />
+          <Arthimetic name="math" />
+          <AtomicExpression name="exp" />
+        </or>
+      </sequence>
+    </Arthimetic>
+
+    <List>
+      <sequence>
+        <AtomicExpression name="exp" />
+        <sequence optional="true">
+          <ListAnd />
+          <List name="next" />
+        </sequence>
+      </sequence>
+    </List>
+
+  </defines>
+  <tokens>
+    <Keyword>
+      <contains>
+        <At>
+          <contains>
+            <regex icase="true">at</regex>
+          </contains>
+        </At>
+        <Cut>
+          <contains>
+            <regex icase="true">cut</regex>
+            <regex icase="true">split</regex>
+            <regex icase="true">shatter</regex>
+          </contains>
+        </Cut>
+        <Empty>
+          <contains>
+            <regex>^\s*$</regex>
+          </contains>
+        </Empty>
+        <Join>
+          <contains>
+            <regex icase="true">join</regex>
+            <regex icase="true">unite</regex>
+          </contains>
+        </Join>
+        <Cast>
+          <contains>
+            <regex icase="true">cast</regex>
+          </contains>
+        </Cast>
+        <Let>
+          <contains>
+            <regex icase="true">let</regex>
+          </contains>
+        </Let>
+        <Be>
+          <contains>
+            <regex icase="true">be</regex>
+          </contains>
+        </Be>
+        <Put>
+          <contains>
+            <regex icase="true">put</regex>
+          </contains>
+        </Put>
+        <Into>
+          <contains>
+            <regex icase="true">into</regex>
+          </contains>
+        </Into>
+        <MathOp>
+          <contains>
+            <Add>
+              <contains>
+                <regex>\+</regex>
+                <regex icase="true">plus</regex>
+                <With>
+                  <contains>
+                    <regex icase="true">with</regex>
+                  </contains>
+                </With>
+              </contains>
+            </Add>
+            <Subtract>
+              <contains>
+                <regex>-</regex>
+                <regex icase="true">minus</regex>
+                <regex icase="true">without</regex>
+              </contains>
+            </Subtract>
+            <Multiply>
+              <contains>
+                <regex>\*</regex>
+                <regex icase="true">times</regex>
+                <regex icase="true">of</regex>
+              </contains>
+            </Multiply>
+            <Divide>
+              <contains>
+                <regex>/</regex>
+                <regex icase="true">over</regex>
+              </contains>
+            </Divide>
+          </contains>
+        </MathOp>
+        <Says>
+          <contains>
+            <regex icase="true">says</regex>
+          </contains>
+        </Says>
+        <Say>
+          <contains>
+            <regex icase="true">say</regex>
+            <regex icase="true">shout</regex>
+            <regex icase="true">whisper</regex>
+            <regex icase="true">scream</regex>
+          </contains>
+        </Say>
+        <Build>
+          <contains>
+            <regex icase="true">build</regex>
+          </contains>
+        </Build>
+        <Up>
+          <contains>
+            <regex icase="true" times="*">(up)[\s,]*</regex>
+          </contains>
+        </Up>
+        <Down>
+          <contains>
+            <regex icase="true" times="*">(down)[\s,]*</regex>
+          </contains>
+        </Down>
+        <Knock>
+          <contains>
+            <regex icase="true">knock</regex>
+          </contains>
+        </Knock>
+        <Turn>
+          <contains>
+            <regex icase="true">turn</regex>
+          </contains>
+        </Turn>
+        <Round>
+          <contains>
+            <regex icase="true">a?round</regex>
+          </contains>
+        </Round>
+        <ListAnd>
+          <contains>
+            <regex icase="true">,\s*(?:and)?</regex>
+          </contains>
+        </ListAnd>
+        <Isnt>
+          <contains>
+            <regex icase="true">isnt</regex>
+            <regex icase="true">aint</regex>
+          </contains>
+        </Isnt>
+        <As>
+          <contains>
+            <regex icase="true">as</regex>
+          </contains>
+        </As>
+        <Than>
+          <contains>
+            <regex icase="true">than</regex>
+          </contains>
+        </Than>
+        <Higher>
+          <contains>
+            <regex icase="true">higher</regex>
+            <regex icase="true">greater</regex>
+            <regex icase="true">bigger</regex>
+            <regex icase="true">stronger</regex>
+          </contains>
+        </Higher>
+        <Lower>
+          <contains>
+            <regex icase="true">lower</regex>
+            <regex icase="true">less</regex>
+            <regex icase="true">smaller</regex>
+            <regex icase="true">weaker</regex>
+          </contains>
+        </Lower>
+        <High>
+          <contains>
+            <regex icase="true">high</regex>
+            <regex icase="true">great</regex>
+            <regex icase="true">big</regex>
+            <regex icase="true">strong</regex>
+          </contains>
+        </High>
+        <Low>
+          <contains>
+            <regex icase="true">low</regex>
+            <regex icase="true">little</regex>
+            <regex icase="true">small</regex>
+            <regex icase="true">weak</regex>
+          </contains>
+        </Low>
+        <PoeticIs>
+          <contains>
+            <Is>
+              <contains>
+                <regex icase="true">is</regex>
+              </contains>
+            </Is>
+            <regex icase="true">was</regex>
+            <regex icase="true">are</regex>
+            <regex icase="true">were</regex>
+          </contains>
+        </PoeticIs>
+      </contains>
+    </Keyword>
+
+    <Literal>
+      <contains>
+        <Mysterious>
+          <contains>
+            <regex icase="true">mysterious</regex>
+          </contains>
+        </Mysterious>
+        <Null>
+          <contains>
+            <regex icase="true">null</regex>
+            <regex icase="true">nothing</regex>
+            <regex icase="true">nowhere</regex>
+            <regex icase="true">nobody</regex>
+            <regex icase="true">empty</regex>
+            <regex icase="true">gone</regex>
+          </contains>
+        </Null>
+        <Boolean>
+          <contains>
+            <True>
+              <contains>
+                <regex icase="true">right</regex>
+                <regex icase="true">yes</regex>
+                <regex icase="true">ok</regex>
+                <regex icase="true">true</regex>
+              </contains>
+            </True>
+            <False>
+              <contains>
+                <regex icase="true">wrong</regex>
+                <regex icase="true">no</regex>
+                <regex icase="true">lies</regex>
+                <regex icase="true">false</regex>
+              </contains>
+            </False>
+          </contains>
+        </Boolean>
+        <Number>
+          <contains>
+            <regex>-?\d+(?:.\d+)?</regex>
+          </contains>
+        </Number>
+        <String>
+          <contains>
+            <regex>"(?:[^"]|\\.)*?"</regex>
+          </contains>
+        </String>
+      </contains>
+    </Literal>
+
+    <VariableName>
+      <contains>
+        <regex>(?:[aA][nN]?|[Tt][Hh][Ee]|[Mm][Yy]|[Yy][Oo][Uu][Rr])\s+[a-z]+</regex>
+        <SimpleVariable>
+          <contains>
+            <regex>[A-Za-z]+</regex>
+          </contains>
+          <invalid>
+            <Keyword />
+            <Literal />
+          </invalid>
+        </SimpleVariable>
+
+        <ProperNoun>
+          <contains>
+            <regex times="*">[A-Z][A-Za-z]+</regex>
+          </contains>
+          <invalid>
+            <Keyword />
+            <Literal />
+          </invalid>
+        </ProperNoun>
+      </contains>
+    </VariableName>
+
+    <Pronoun>
+      <contains>
+        <regex icase="true">it</regex>
+        <regex icase="true">he</regex>
+        <regex icase="true">she</regex>
+        <regex icase="true">him</regex>
+        <regex icase="true">her</regex>
+        <regex icase="true">they</regex>
+        <regex icase="true">ze</regex>
+        <regex icase="true">hir</regex>
+        <regex icase="true">zie</regex>
+        <regex icase="true">zir</regex>
+        <regex icase="true">xe</regex>
+        <regex icase="true">xem</regex>
+        <regex icase="true">ve</regex>
+        <regex icase="true">ver</regex>
+      </contains>
+    </Pronoun>
+
+    <Word>
+      <contains>
+        <regex>[^\s]+</regex>
+      </contains>
+    </Word>
+
+  </tokens>
+  <statements>
+    <Assign>
+      <sequence>
+        <Let />
+        <Variable name="var" />
+        <Be />
+        <or>
+          <sequence name="compound">
+            <MathOp name="op" />
+            <Value name="value" />
+          </sequence>
+          <sequence name="compound">
+            <MathOp name="op" />
+            <List name="list" />
+          </sequence>
+          <Value name="value" />
+        </or>
+      </sequence>
+      <sequence>
+        <Put />
+        <Value name="value" />
+        <Into />
+        <Variable name="var" />
+      </sequence>
+    </Assign>
+    <PoeticAssign>
+      <sequence>
+        <Variable name="var" />
+        <or name="op">
+          <Says/>
+          <PoeticIs/>
+        </or>
+        <Remaining name="literal"/>
+      </sequence>
+    </PoeticAssign>
+    <Print>
+      <sequence>
+        <Say />
+        <Value name="value" />
+      </sequence>
+    </Print>
+    <Modify>
+      <sequence>
+        <or name="op">
+          <Join />
+          <Cut />
+          <Cast />
+        </or>
+        <Value name="exp" lazy="true" />
+        <or optional="true">
+          <sequence>
+            <Into />
+            <Variable name="dest" />
+            <sequence optional="true">
+              <With />
+              <Value name="arg" />
+            </sequence>
+          </sequence>
+          <sequence>
+            <With />
+            <Value name="arg" />
+          </sequence>
+        </or>
+      </sequence>
+    </Modify>
+    <EndBlock>
+      <sequence>
+        <Empty />
+      </sequence>
+    </EndBlock>
+    <Increament>
+      <sequence>
+        <Build />
+        <Variable name="var" />
+        <Up name="count" />
+      </sequence>
+    </Increament>
+    <Decreament>
+      <sequence>
+        <Knock />
+        <Variable name="var" />
+        <Down name="count" />
+      </sequence>
+    </Decreament>
+    <Rounding>
+      <sequence>
+        <Turn />
+        <or>
+          <sequence>
+            <or name="op">
+              <Up />
+              <Down />
+              <Round />
+            </or>
+            <Variable name="var" />
+          </sequence>
+          <sequence>
+            <Variable name="var" />
+            <or name="op">
+              <Up />
+              <Down />
+              <Round />
+            </or>
+          </sequence>
+        </or>
+      </sequence>
+    </Rounding>
+
+  </statements>
+</root>

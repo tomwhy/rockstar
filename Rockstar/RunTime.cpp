@@ -11,6 +11,7 @@
 #include "InterpeterExceptions.h"
 #include "Utils.h"
 #include <regex>
+#include <numeric>
 
 RunTime::RunTime(const std::vector<Statement>& statements) : _globalScope()
 {
@@ -51,26 +52,24 @@ std::shared_ptr<ICodeBlock> RunTime::parseStatment(const Statement& stmt)
 	else if (stmtName == "PoeticAssign")
 	{
 		std::shared_ptr<VariableName> var = Utils::createVariableExpression(stmt, "var");
+		std::vector<Token> literals = stmt.getTokens("literal");
 		if (stmt.getToken("op").isName("Says"))
 		{
-			return std::make_shared<AssignStatement>(var, std::make_shared<PoeticExpression>(stmt.getToken("literal").value(), true));
+			std::string value = std::accumulate(literals.begin(), literals.end(), std::string(), [](std::string& res, Token& t) {return res + t.value(false); });
+
+			return std::make_shared<AssignStatement>(var, std::make_shared<PoeticExpression>(value, true));
 		}
 		else
 		{
-			if (stmt.contains("literal_val"))
+			if (literals[0].isName("Literal"))
 			{
-				return std::make_shared<AssignStatement>(var, Utils::createExpression(stmt, "literal_val"));
-			}
-			else if(stmt.contains("literal_exp"))
-			{
-				return std::make_shared<AssignStatement>(var, Utils::createExpression(stmt, "literal"));
+				return std::make_shared<AssignStatement>(var, Utils::createExpression(Utils::parseExpression(literals, "literal"), "literal"));
 			}
 			else
 			{
-				std::string str;
-				str = stmt.getToken("literal_start").value() + " " + stmt.getToken("literal_end").value();
+				std::string value = std::accumulate(literals.begin(), literals.end(), std::string(), [](std::string& res, Token& t) {return res + t.value(false); });
 
-				return std::make_shared<AssignStatement>(var, std::make_shared<PoeticExpression>(str, false));
+				return std::make_shared<AssignStatement>(var, std::make_shared<PoeticExpression>(value, false));
 			}
 		}
 	}
@@ -135,6 +134,7 @@ std::shared_ptr<ICodeBlock> RunTime::parseStatment(const Statement& stmt)
 
 void RunTime::run()
 {
+
 	for (std::shared_ptr<ICodeBlock> statement : _code)
 	{
 		statement->execute(_globalScope);

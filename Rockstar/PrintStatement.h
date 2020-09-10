@@ -1,6 +1,7 @@
 #pragma once
 #include "ICodeBlock.h"
 #include "IExpression.h"
+#include <ostream>
 
 class PrintStatement : public ICodeBlock
 {

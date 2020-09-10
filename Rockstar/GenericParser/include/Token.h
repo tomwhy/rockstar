@@ -11,7 +11,7 @@ public:
 	Token(const std::string& name, const std::map<size_t, std::string>& groups);
 	Token();
 
-	std::string value() const;
+	std::string value(bool trimmed = true) const;
 	std::string group(int group) const;
 	std::map<size_t, std::string> groups() const;
 

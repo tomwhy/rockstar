@@ -350,15 +350,6 @@
     <VariableName>
       <contains>
         <regex>(?:[aA][nN]?|[Tt][Hh][Ee]|[Mm][Yy]|[Yy][Oo][Uu][Rr])\s+[a-z]+</regex>
-        <SimpleVariable>
-          <contains>
-            <regex>[A-Za-z]+</regex>
-          </contains>
-          <invalid>
-            <Keyword />
-            <Literal />
-          </invalid>
-        </SimpleVariable>
 
         <ProperNoun>
           <contains>
@@ -369,6 +360,17 @@
             <Literal />
           </invalid>
         </ProperNoun>
+        
+        <SimpleVariable>
+          <contains>
+            <regex>[A-Za-z]+</regex>
+          </contains>
+          <invalid>
+            <Keyword />
+            <Literal />
+          </invalid>
+        </SimpleVariable>
+
       </contains>
     </VariableName>
 

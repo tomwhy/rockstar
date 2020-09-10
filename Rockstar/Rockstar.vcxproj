@@ -150,6 +150,7 @@
     <ClCompile Include="Flags.cpp" />
     <ClCompile Include="IModifyStatement.cpp" />
     <ClCompile Include="IncreamentDecreamentStatement.cpp" />
+    <ClCompile Include="Interpeter.cpp" />
     <ClCompile Include="InterpeterExceptions.cpp" />
     <ClCompile Include="ISimpleVariable.cpp" />
     <ClCompile Include="IVariable.cpp" />
@@ -187,6 +188,7 @@
     <ClInclude Include="IJoinable.h" />
     <ClInclude Include="IModifyStatement.h" />
     <ClInclude Include="IncreamentDecreamentStatement.h" />
+    <ClInclude Include="Interpeter.h" />
     <ClInclude Include="InterpeterExceptions.h" />
     <ClInclude Include="IRoundable.h" />
     <ClInclude Include="ISimpleVariable.h" />
@@ -213,7 +215,9 @@
     <ClInclude Include="VariableTypes.h" />
   </ItemGroup>
   <ItemGroup>
-    <Xml Include="RockstarDefs.xml" />
+    <Xml Include="RockstarDefs.xml">
+      <DeploymentContent>true</DeploymentContent>
+    </Xml>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
