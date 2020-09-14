@@ -1,6 +1,7 @@
 #pragma once
 #include "Possibility.h"
 #include <memory>
+#include <unordered_map>
 
 class SequencePossibilityIterator;
 class TokenPossibilityIterator;
@@ -12,18 +13,13 @@ public:
 	PossiblityIterator(const std::vector<Token>& line, const tinyxml2::XMLElement* tag, const tinyxml2::XMLElement* defines);
 	PossiblityIterator(const PossiblityIterator& other);
 
-	const Possibility& operator*() const;
-	const Possibility* operator->() const;
-
-	virtual void getNext() = 0;
-
-	operator bool();
+	Possibility current();
+	virtual bool getNext() = 0;
 
 protected:
-	Possibility addNameAttr(const Possibility& possibility) const;
 	static std::unique_ptr<PossiblityIterator> getIterator(const std::vector<Token>& line, const tinyxml2::XMLElement* tag, const tinyxml2::XMLElement* defines);
+	static std::unique_ptr<PossiblityIterator> getIterator(const std::vector<Token>& line, const tinyxml2::XMLElement* tag, const tinyxml2::XMLElement* defines, bool lazy);
 	
-
 	Possibility _curr;
 	const tinyxml2::XMLElement* _tag;
 	const tinyxml2::XMLElement* _defines;
@@ -33,7 +29,8 @@ protected:
 	std::string _nameAttr;
 	bool _lazy;
 	bool _optional;
-	bool _valid;
+private:
+	Possibility addNameAttr(const Possibility& possibility) const;
 };
 
 class OrPossibilityIterator : public PossiblityIterator
@@ -45,14 +42,11 @@ public:
 
 	OrPossibilityIterator& operator=(OrPossibilityIterator&& other) noexcept;
 
-	virtual void getNext();
+	virtual bool getNext();
 
 private:
-	void getPossibility();
-	
-	int _end;
-	const tinyxml2::XMLElement* _currTag;
-	std::unique_ptr<PossiblityIterator> _tagPossibilities;
+	std::vector<std::unique_ptr<PossiblityIterator>> _possibilityIterators;
+	std::vector<Possibility> _possibilities;
 };
 
 class SequencePossibilityIterator : public PossiblityIterator
@@ -68,12 +62,10 @@ public:
 	SequencePossibilityIterator(const std::vector<Token>& line, const tinyxml2::XMLElement* tag, const tinyxml2::XMLElement* defines);
 	SequencePossibilityIterator(SequencePossibilityIterator&& other) noexcept;
 
-	virtual void getNext();
+	virtual bool getNext();
 
 private:
-	void getPossibility();
-
-	size_t _end;
+	int _end;
 	std::stack<StackPossibility> _possibilities;
 };
 
@@ -83,11 +75,10 @@ public:
 	TokenPossibilityIterator(const std::vector<Token>& line, const tinyxml2::XMLElement* tag, const tinyxml2::XMLElement* defines);
 	TokenPossibilityIterator(TokenPossibilityIterator&& other) noexcept;
 
-	virtual void getNext();
+	virtual bool getNext();
 
 private:
 	bool _define;
-	Possibility _token;
 	std::unique_ptr<OrPossibilityIterator> _definePossibilities;
 };
 

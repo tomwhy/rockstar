@@ -55,7 +55,7 @@ std::shared_ptr<VariableName> Utils::createVariableExpression(const Statement& s
 	}
 	else if (nameToken.isName("VariableName"))
 	{
-		if (stmt.hasToken(idx))
+		if (stmt.contains(idx))
 			return std::make_shared<VariableName>(nameToken.value(), createExpression(stmt, idx));
 		else
 			return std::make_shared<VariableName>(nameToken.value());
@@ -141,9 +141,9 @@ Statement Utils::parseExpression(const std::vector<Token>& line, const std::stri
 
 	Statement s("Remaining");
 
-	while (it)
+	while (it.getNext())
 	{
-		Possibility p = *it;
+		Possibility p = it.current();
 		if (p.tokens.size() == line.size())
 		{
 			for (auto& t : p.tokens)
