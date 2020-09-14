@@ -1,0 +1,58 @@
+Split "a,b,c" into the array (the array is ["a", ",", "b", ",", "c"])
+Shout the array
+Shout the array at 0
+Shout the array at 1
+Shout the array at 2
+Shout the array at 3
+Shout the array at 4
+Split "a,b,c" into the array with "," (the array is ["a", "b", "c"])
+Shout the array
+Shout the array at 0
+Shout the array at 1
+Shout the array at 2
+
+my string says Hello, World!
+Split my string (my string will split in-place to an array of characters)
+Shout my string
+Shout my string at 1
+Shout my string at 2
+Shout my string at 10
+
+my string says Hello, World!
+x is ", "
+Split my string with x (split my string in-place using the current value of x as a delimiter)
+Shout my string
+Shout my string at 0
+Shout my string at 1
+
+my life is "abcd"
+Cut my life into pieces
+shout pieces 
+shout pieces at 0 
+shout pieces at 1
+shout pieces at 2
+shout pieces at 3
+  (split my life, put the resulting array in pieces)
+
+your cake says hello
+my knife is "ll"
+Cut your cake with my knife
+  (modify your cake in-place, by splitting it using my knife as a delimiter)
+shout your cake 
+shout your cake at 0
+shout your cake at 1
+
+my heart is "fragile"
+your lies are "agile"
+Shatter my heart into pieces with your lies
+   (Split my heart, using your lies as a delimiter, and put the result into pieces)
+shout pieces
+shout pieces at 0
+shout pieces at 1
+
+Split "a,b,c,d,e" into tokens with "," (valid - tokens now contains ["a","b","c","d","e"])
+Shout tokens
+Shout tokens at 0
+Shout tokens at 1
+Shout tokens at 3
+Split "a,b,c,d,e" with "," (NOT VALID - nowhere to place the output)

@@ -20,7 +20,7 @@ def getDateParts(total_milliseconds: int) -> str:
 
 def getTimeStr(elapsedTime: int) -> str:
     elapsedTime = math.floor(elapsedTime * 10**3)  # convert seconds to milliseconds
-    return ", ".join([t for t in getDateParts(math.floor(elapsedTime * 1000)) if t])    
+    return ", ".join([t for t in getDateParts(math.floor(elapsedTime)) if t][::-1])    
 
 class TestResult:
     def __init__(self, diff: List[Tuple[str, str]]):
