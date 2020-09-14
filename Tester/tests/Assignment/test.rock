@@ -1,0 +1,10 @@
+Put 123 into x
+shout x (123)
+Put "Hello San Francisco" into the message
+shout the message (Hello San Francisco)
+Let my balance be 1000000
+shout my balance (1000000)
+the brave are brave (5)
+the fallen are lost (4)
+Let the survivors be the brave without the fallen
+shout the survivors (1)
