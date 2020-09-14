@@ -34,7 +34,7 @@ std::shared_ptr<ICodeBlock> RunTime::parseStatment(const Statement& stmt)
 			std::shared_ptr<VariableName> var = Utils::createVariableExpression(stmt, "var");
 			MathOp op = MathExpression::getOpFromToken(stmt.getToken("compound_op"));
 
-			if (stmt.hasToken("compound_list"))
+			if (stmt.contains("compound_list"))
 			{
 				value = Utils::createListExpression(stmt, "compound", var, op);
 			}
