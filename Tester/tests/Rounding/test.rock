@@ -1,0 +1,16 @@
+X is 1.2
+Turn up X
+Shout X (will print 2)
+
+X is 1.2
+Turn down X
+Shout X (will print 1)
+
+The radio's playing. The night has just begun. 
+ (initialises the radio with 7.35345)
+Turn up the radio
+Say the radio (will print 8)
+
+My heart is on fire. Aflame with desire.
+Turn it up
+Shout it (25)
