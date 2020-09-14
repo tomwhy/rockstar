@@ -1,0 +1,13 @@
+Let X be "123.45"
+Cast X
+shout X (X now contains the numeric value 123.45)
+Let X be "ff"
+Cast X with 16
+shout X (X now contains the numeric value 255 - OxFF)
+Cast "12345" into result
+Shout result (result now contains the number 12345)
+Cast "aa" into result with 16
+shout result (result now contains the number 170 - 0xAA)
+
+Cast 65 into result
+shout result (result now contains the string "A" - ASCII code 65)
