@@ -1,0 +1,11 @@
+Let the string be "abcde"
+Split the string into tokens
+Join tokens with ";"
+shout tokens
+    (the tokens now contains "a;b;c;d;e")
+
+The input says hey now hey now now
+Split the input into words with " "
+Unite words into the output with "! "
+    (the output now contains "hey! now! hey! now! now!")
+shout the output
