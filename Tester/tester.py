@@ -3,12 +3,7 @@ import argparse
 import sys
 import test
 from typing import Tuple, Iterator
-
-GREEN = u"\u001b[32m"
-RED = u"\u001b[31m"
-YELLOW = u"\u001b[33m"
-RESET = u"\u001b[0m"
-
+import colorama
 
 def get_tests(interpeter: str, path: str) -> Iterator[Tuple[str, test.Test]]:
     for entry in os.scandir(path):
@@ -29,13 +24,14 @@ def main(args):
         print(u"\u001b[2K", end="\r")
         if test_result.success:
             print("[{0}V{1}] Test {2}{3}{1} {0}succeeded{1}. test took: {4}".format(
-                GREEN, RESET, YELLOW, t[0], total_time))
+                colorama.Fore.LIGHTGREEN_EX, colorama.Fore.RESET, colorama.Fore.LIGHTYELLOW_EX, t[0], total_time))
         else:
             print("[{0}X{1}] Test {2}{3}{1} {0}falied{1} with the following error:\n{4}".format(
-                RED, RESET, YELLOW, t[0], test_result.msg))
+                colorama.Fore.LIGHTRED_EX, colorama.Fore.RESET, colorama.Fore.LIGHTYELLOW_EX, t[0], test_result.msg))
 
 
 if __name__ == "__main__":
+    colorama.init()
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "Interpeter", help="The path to the rockstar interpeter")

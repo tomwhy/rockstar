@@ -9,8 +9,10 @@ class RunTime
 {
 public:
 	RunTime(const std::vector<Statement>& statements);
+	RunTime();
 
 	void run();
+	void run(const Statement& line);
 
 protected:
 	std::vector<std::shared_ptr<ICodeBlock>> _code;

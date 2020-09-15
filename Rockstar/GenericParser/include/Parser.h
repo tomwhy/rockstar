@@ -14,10 +14,10 @@ public:
 
 	std::vector<Statement> parse(const std::string& filePath);
 	std::vector<Statement> parse(const std::function<bool(std::string& line)>& lineFunc);
+	Statement parseLine(const std::string& line);
 
 private:
 	static std::regex createRegex(const Possibility& p);
-	Statement parseLine(const std::string& line);
 
 	tinyxml2::XMLDocument _definitionsDoc;
 	tinyxml2::XMLElement* _statementDefs;

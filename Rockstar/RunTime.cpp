@@ -23,6 +23,11 @@ RunTime::RunTime(const std::vector<Statement>& statements) : _globalScope()
 	}
 }
 
+RunTime::RunTime() :_globalScope(), _code()
+{
+
+}
+
 std::shared_ptr<ICodeBlock> RunTime::parseStatment(const Statement& stmt)
 {
 	std::string stmtName = stmt.name();
@@ -139,4 +144,11 @@ void RunTime::run()
 	{
 		statement->execute(_globalScope);
 	}
+}
+
+void RunTime::run(const Statement& line)
+{
+	std::shared_ptr<ICodeBlock> code = parseStatment(line);
+	if (code != nullptr)
+		code->execute(_globalScope);
 }

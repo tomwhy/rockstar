@@ -1,7 +1,10 @@
 #pragma once
 #include <string>
 #include <vector>
+#include <fstream>
 #include "RunTime.h"
+#include "GenericParser/include/Parser.h"
+
 
 class Interpeter
 {
@@ -10,9 +13,8 @@ public:
 
 	void run();
 private:
-	static std::vector<Statement> parseFile(const std::string& filePath);
-
-	
+	std::ifstream _file;
+	Parser _parser;
 	RunTime _runtime;
 };
 
