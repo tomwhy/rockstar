@@ -2,14 +2,25 @@
 #include "Mysterious.h"
 #include "IRoundable.h"
 #include "InterpeterExceptions.h"
+#include "Utils.h"
+#include "Compiler.h"
 #include <cmath>
 
 RoundStatement::RoundStatement(std::shared_ptr<VariableName> var, RoundOp op) : _var(var), _op(op)
 {
 
 }
+RoundStatement::RoundStatement(const CompiledObject& obj)
+{
+	if (obj.code() != CompiledObject::ObjectCode::roundStmt)
+		throw std::runtime_error("Not a round statement");
 
-RoundOp RoundStatement::getOpFromToken(const Token& token)
+	_op = obj.at<RoundOp>("op");
+	_var = Compiler::parseVariableName(obj.at<CompiledObject>("var"));
+}
+
+
+RoundOp RoundStatement::getOpFromToken(const genericparser::Token& token)
 {
 	if (token.isName("Up"))
 		return RoundOp::Up;
@@ -45,4 +56,13 @@ void RoundStatement::execute(Scope& scope)
 		throw InterpeterException("Invalid rounding operation");
 		break;
 	}
+}
+
+CompiledObject RoundStatement::serialize() const
+{
+	nlohmann::json json;
+	json["var"] = _var->serialize();
+	json["op"] = _op;
+
+	return CompiledObject(CompiledObject::ObjectCode::roundStmt, json);
 }

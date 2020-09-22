@@ -3,13 +3,24 @@
 #include "MathInterfaces.h"
 #include "Utils.h"
 #include "Mysterious.h"
+#include "Compiler.h"
 
 MathExpression::MathExpression(std::shared_ptr<IExpression> left, MathOp op, std::shared_ptr<IExpression> right) :
 	_left(left), _op(op), _right(right)
 {
 
 }
-MathOp MathExpression::getOpFromToken(const Token& token)
+MathExpression::MathExpression(const CompiledObject& obj)
+{
+	if (obj.code() != CompiledObject::ObjectCode::mathExp)
+		throw std::runtime_error("Not a math expression");
+
+	_left = Compiler::parseCompiledExp(obj.at<CompiledObject>("left"));
+	_right = Compiler::parseCompiledExp(obj.at<CompiledObject>("right"));
+	_op = obj.at<MathOp>("op");
+}
+
+MathOp MathExpression::getOpFromToken(const genericparser::Token& token)
 {
 	if (token.isName("Add"))
 	{
@@ -70,4 +81,15 @@ std::shared_ptr<IVariable> MathExpression::evaluate(Scope& scope) const
 	}
 
 	return std::make_shared<Mysterious>();
+}
+
+CompiledObject MathExpression::serialize() const
+{
+	// data will be left, op (char), right
+	nlohmann::json json;
+	json["left"] = _left->serialize();
+	json["op"] = _op;
+	json["right"] = _right->serialize();
+
+	return CompiledObject(CompiledObject::ObjectCode::mathExp, json);
 }

@@ -3,10 +3,16 @@
 #include "Constant.h"
 #include "Pronoun.h"
 #include "InterpeterExceptions.h"
+#include "GenericParser/include/PossibilityIterator.h"
+#include "GenericParser/include/tinyxml2/tinyxml2.h"
 #include <algorithm>
 #include <sstream>
+#include <numeric>
+#include <Windows.h>
 
-std::shared_ptr<IExpression> Utils::createExpression(const Statement& stmt, const std::string& name)
+#define ROCKSTAR_DEFS "RockstarDefs.xml"
+
+std::shared_ptr<IExpression> Utils::createExpression(const genericparser::Statement& stmt, const std::string& name)
 {
 	if (stmt.contains(name + "_exp_var"))
 		return Utils::createVariableExpression(stmt, name + "_exp_var");
@@ -19,7 +25,7 @@ std::shared_ptr<IExpression> Utils::createExpression(const Statement& stmt, cons
 		if (!stmt.hasToken(name + "_exp"))
 			throw InterpeterException("Could not find the token named: " + name + "_exp");
 
-		Token token = stmt.getToken(name + "_exp");
+		genericparser::Token token = stmt.getToken(name + "_exp");
 	
 		if (token.isName("Mysterious") || token.isName("Null") || token.isName("Boolean") || token.isName("Number") || token.isName("String"))
 		{
@@ -35,9 +41,9 @@ std::shared_ptr<IExpression> Utils::createExpression(const Statement& stmt, cons
 		throw InterpeterException("Invalid Expression");
 	}
 }
-std::shared_ptr<VariableName> Utils::createVariableExpression(const Statement& stmt, const std::string& name)
+std::shared_ptr<VariableName> Utils::createVariableExpression(const genericparser::Statement& stmt, const std::string& name)
 {	
-	Token nameToken = stmt.getToken(name + "_name");
+	genericparser::Token nameToken = stmt.getToken(name + "_name");
 	std::string idx = name + "_idx_exp";
 
 	if (nameToken.isName("Pronoun"))
@@ -49,7 +55,7 @@ std::shared_ptr<VariableName> Utils::createVariableExpression(const Statement& s
 	}
 	else if (nameToken.isName("VariableName"))
 	{
-		if (stmt.hasToken(idx))
+		if (stmt.contains(idx))
 			return std::make_shared<VariableName>(nameToken.value(), createExpression(stmt, idx));
 		else
 			return std::make_shared<VariableName>(nameToken.value());
@@ -57,8 +63,7 @@ std::shared_ptr<VariableName> Utils::createVariableExpression(const Statement& s
 
 	throw InterpeterException("Not a variable name");
 }
-
-std::shared_ptr<Comparison> Utils::createComparisonExpression(const Statement& stmt, const std::string& name)
+std::shared_ptr<Comparison> Utils::createComparisonExpression(const genericparser::Statement& stmt, const std::string& name)
 {
 	std::shared_ptr<IExpression> left = Utils::createExpression(stmt, name + "_left");
 	std::shared_ptr<IExpression> right = Utils::createExpression(stmt, name + "_right");
@@ -86,12 +91,11 @@ std::shared_ptr<Comparison> Utils::createComparisonExpression(const Statement& s
 
 	return std::make_shared<Comparison>(left, op, right, negate);
 }
-
-std::shared_ptr<MathExpression> Utils::createMathExpression(const Statement& stmt, const std::string& name)
+std::shared_ptr<MathExpression> Utils::createMathExpression(const genericparser::Statement& stmt, const std::string& name)
 {
 	std::shared_ptr<IExpression> left = Utils::createExpression(stmt, name+"_left"); // left will never be a math expression
 
-	Token opToken = stmt.getToken(name + "_op");
+	genericparser::Token opToken = stmt.getToken(name + "_op");
 	MathOp op = MathExpression::getOpFromToken(opToken);
 
 	if (stmt.contains(name + "_right_math")) // if the right expression is a Math Expression
@@ -112,8 +116,7 @@ std::shared_ptr<MathExpression> Utils::createMathExpression(const Statement& stm
 	}
 	return std::make_shared<MathExpression>(left, op, Utils::createExpression(stmt, name + "_right"));
 }
-
-std::shared_ptr<ListArthimeticExpression> Utils::createListExpression(const Statement& stmt, const std::string& name, std::shared_ptr<IExpression> left, MathOp op)
+std::shared_ptr<ListArthimeticExpression> Utils::createListExpression(const genericparser::Statement& stmt, const std::string& name, std::shared_ptr<IExpression> left, MathOp op)
 {
 	std::vector<std::shared_ptr<IExpression>> rightVec;
 	std::string elem = name + "_list";
@@ -125,6 +128,42 @@ std::shared_ptr<ListArthimeticExpression> Utils::createListExpression(const Stat
 	} while (stmt.contains(elem));
 
 	return std::make_shared<ListArthimeticExpression>(left, op, rightVec);
+}
+
+genericparser::Statement Utils::parseExpression(const std::vector<genericparser::Token>& line, const std::string& name)
+{
+	tinyxml2::XMLDocument xml;
+	xml.LoadFile(getDefsPath().c_str());
+	tinyxml2::XMLElement* root = xml.FirstChildElement();
+	tinyxml2::XMLElement* defines = root->FirstChildElement("defines");
+	
+	genericparser::OrPossibilityIterator it(line, defines->FirstChildElement("Value"), defines);
+
+	genericparser::Statement s("Remaining");
+
+	while (it.getNext())
+	{
+		genericparser::Possibility p = it.current();
+		if (p.tokens.size() == line.size())
+		{
+			for (auto& t : p.tokens)
+			{
+				if (!t.second.empty())
+				{
+					s.addToken(name + "_" + t.second, t.first);
+				}
+				else
+				{
+					s.addToken(name, t.first);
+
+				}
+			}
+
+			return s;
+		}
+	}
+
+	throw std::runtime_error("Invalid expression: " + std::accumulate(line.begin(), line.end(), std::string(""), [](const std::string& res, const genericparser::Token& t) {return res + t.value(false); }));
 }
 
 std::string Utils::repeat(const std::string& str, int times)
@@ -142,4 +181,16 @@ std::string Utils::lower(const std::string& str)
 	std::string res(str);
 	std::transform(res.begin(), res.end(), res.begin(), [](char c) {return std::tolower(c); });
 	return res;
+}
+
+std::string Utils::getDefsPath()
+{
+	char path[MAX_PATH] = { 0 };
+
+	GetModuleFileNameA(NULL, path, MAX_PATH);
+
+	std::string defsPath(path);
+	defsPath = defsPath.substr(0, defsPath.find_last_of("\\/") + 1) + ROCKSTAR_DEFS;
+
+	return defsPath;
 }

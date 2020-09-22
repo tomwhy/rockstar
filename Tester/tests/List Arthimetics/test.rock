@@ -1,0 +1,14 @@
+Let X be 1 with 2, 3, 4
+shout x (10)
+Let X be "foo" with "bar", and "baz"
+shout x (foobarbaz)
+The wolf is hungry, out on the street (initialise the_wolf = 63236)
+Fear is the mind killer (fear = 346)
+Fury is the demon child (fury = 355)
+Hate is the only truth (hate = 345)
+Let the wolf be without fear, fury, and hate (the_wolf = the_wolf - 346 - 355 - 345) 
+Shout the wolf (output 62190)
+Let X be "foo" times 2, 2, 2
+shout x (foofoofoofoofoofoofoofoo)
+Let X be 2 times "foo", "bar"
+shout X (mysterious)

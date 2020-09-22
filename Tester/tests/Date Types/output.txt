@@ -1,0 +1,6 @@
+mysterious
+
+false
+true
+666.6
+horrible

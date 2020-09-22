@@ -13,7 +13,7 @@ Null::Null() : ISimpleVariable("Null")
 
 std::string Null::toString()
 {
-	return "null";
+	return "";
 }
 
 bool Null::canBeIndex()

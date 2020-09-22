@@ -1,0 +1,23 @@
+Let the array at 0 be "zero"
+Let the array at 1 be "one"
+Let the array at 255 be 321
+Shout the array at 0
+Shout the array at 1
+Shout the array at 255
+
+Let my array at 255 be "some value"
+Shout my array (will print the value 256)
+
+let my array at "some_key" be "some_value"
+Shout my array at "some_key"
+
+Let an array at "some_key" be "some_value"
+Shout an array (will print 0, since there are no numeric indexes)
+Let an array at 7 be "some other value"
+Shout an array (will now print 8, since assigning my array at 7 modifies the array length)
+
+Let my string be "abcdefg"
+Shout my string at 0 (will print "a")
+Shout my string at 1 (will print "b")
+Let the character be my string at 2
+Shout the character

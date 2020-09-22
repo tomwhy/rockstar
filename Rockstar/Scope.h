@@ -15,6 +15,7 @@ public:
 	std::shared_ptr<IVariable> getLast() const;
 	std::string getLastName() const;
 
+	std::map<std::string, std::shared_ptr<IVariable>> getVariables() const;
 private:
 	std::string _lastVar;
 	std::map<std::string, std::shared_ptr<IVariable>> _variables;

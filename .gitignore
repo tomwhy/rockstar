@@ -1,6 +1,9 @@
 ﻿.vs/
 Debug/
+x64/
 /GenericTokenizer/Release
 !Rockstar/GenericParser/*
-*.rock
+Rockstar/*.rock
 *.cd
+__pycache__/
+.rock/

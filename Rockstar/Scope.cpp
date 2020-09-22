@@ -57,3 +57,8 @@ std::string Scope::getLastName() const
 {
 	return _lastVar;
 }
+
+std::map<std::string, std::shared_ptr<IVariable>> Scope::getVariables() const
+{
+	return _variables;
+}

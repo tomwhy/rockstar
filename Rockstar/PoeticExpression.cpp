@@ -7,10 +7,10 @@ PoeticExpression::PoeticExpression(const std::string& string, bool stringLiteral
 
 }
 
-Token PoeticExpression::parseLiteral(const std::string& value, bool stringLiteral)
+genericparser::Token PoeticExpression::parseLiteral(const std::string& value, bool stringLiteral)
 {
 	if (stringLiteral)
-		return Token("String", { {0, '"' + value + '"' } });
+		return genericparser::Token("String", { {0, '"' + value + '"' } });
 
 	std::stringstream valueStream(value);
 	std::string word;
@@ -57,5 +57,5 @@ Token PoeticExpression::parseLiteral(const std::string& value, bool stringLitera
 		
 	}
 
-	return Token("Number", {{0, res.str()}});
+	return genericparser::Token("Number", {{0, res.str()}});
 }

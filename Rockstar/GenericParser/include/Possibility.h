@@ -4,9 +4,12 @@
 #include <vector>
 #include <stack>
 
-struct Possibility
+namespace genericparser
 {
-	std::vector<std::pair<Token, std::string>> tokens;
+	struct Possibility
+	{
+		std::vector<std::pair<Token, std::string>> tokens;
 
-	size_t size();
-};
+		size_t size() const;
+	};
+}

@@ -7,8 +7,10 @@ public:
 	VariableName(const std::string& name);
 	VariableName(const std::string& name, std::shared_ptr<IExpression> index);
 	VariableName(const VariableName& other);
+	VariableName(const CompiledObject& obj);
 
 	virtual std::shared_ptr<IVariable> evaluate(Scope& scope) const;
+	virtual CompiledObject serialize() const;
 	virtual bool isVariable() const;
 
 	virtual std::string name(Scope& scope) const;
