@@ -6,6 +6,6 @@ public:
 	PoeticExpression(const std::string& value, bool stringLiteral);
 
 private:
-	static Token parseLiteral(const std::string& value, bool stringLiteral);
+	static genericparser::Token parseLiteral(const std::string& value, bool stringLiteral);
 };
 

@@ -1,5 +1,7 @@
 #include "VariableName.h"
 #include "InterpeterExceptions.h"
+#include "Utils.h"
+#include "Compiler.h"
 #include <algorithm>
 
 VariableName::VariableName(const std::string& name) : VariableName(name, nullptr)
@@ -13,6 +15,18 @@ VariableName::VariableName(const VariableName& other) : _name(other._name), _ind
 {
 
 }
+VariableName::VariableName(const CompiledObject& obj)
+{
+	if (obj.code() != CompiledObject::ObjectCode::variableExp)
+		throw std::runtime_error("Not a variable name expression");
+
+	_name = obj.at<std::string>("name");
+	if (obj.contains("index"))
+		_index = Compiler::parseCompiledExp(obj.at<CompiledObject>("index"));
+	else
+		_index = nullptr;
+}
+
 
 std::shared_ptr<IVariable> VariableName::evaluate(Scope& scope) const
 {
@@ -41,4 +55,15 @@ std::string VariableName::index(Scope& scope) const
 bool VariableName::isVariable() const
 {
 	return true;
+}
+
+CompiledObject VariableName::serialize() const
+{
+	// data will be name, index
+	nlohmann::json json;
+	json["name"] = _name;
+	if(_index != nullptr)
+		json["index"] = _index->serialize();
+
+	return CompiledObject(CompiledObject::ObjectCode::variableExp, json);
 }

@@ -1,4 +1,5 @@
 #pragma once
+#include "json.hpp"
 
 class Flags
 {
@@ -16,6 +17,8 @@ public:
 	Flags& operator&=(size_t rhs);
 
 	constexpr operator size_t() const;
+
+	NLOHMANN_DEFINE_TYPE_INTRUSIVE(Flags, _value);
 
 private:
 	size_t _value;

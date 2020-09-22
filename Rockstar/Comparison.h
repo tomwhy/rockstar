@@ -13,7 +13,9 @@ class Comparison : public IExpression
 {
 public:
 	Comparison(std::shared_ptr<IExpression> left, const ComparisonFlags& op, std::shared_ptr<IExpression> right, bool negate);
+	Comparison(const CompiledObject& obj);
 	virtual std::shared_ptr<IVariable> evaluate(Scope& scope) const;
+	virtual CompiledObject serialize() const;
 
 private:
 	std::shared_ptr<IExpression> _left;

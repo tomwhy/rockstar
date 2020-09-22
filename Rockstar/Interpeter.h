@@ -3,7 +3,7 @@
 #include <vector>
 #include <fstream>
 #include "RunTime.h"
-#include "GenericParser/include/Parser.h"
+#include "Compiler.h"
 
 
 class Interpeter
@@ -13,8 +13,7 @@ public:
 
 	void run();
 private:
-	std::ifstream _file;
-	Parser _parser;
+	Compiler _compiler;
 	RunTime _runtime;
 };
 

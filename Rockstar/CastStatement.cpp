@@ -9,6 +9,11 @@ CastStatement::CastStatement(std::shared_ptr<IExpression> exp, std::shared_ptr<V
 {
 
 }
+CastStatement::CastStatement(const CompiledObject& obj) : IModifyStatement(checkObjectCode(obj))
+{
+	
+}
+
 
 std::shared_ptr<IVariable> CastStatement::modify(Scope& scope)
 {
@@ -23,4 +28,16 @@ std::shared_ptr<IVariable> CastStatement::modify(Scope& scope)
 	{
 		throw TypeException("Cannot cast ", exp);
 	}
+}
+
+CompiledObject CastStatement::serialize() const
+{
+	return CompiledObject(CompiledObject::ObjectCode::castStmt, serializeExpressions());
+}
+
+CompiledObject CastStatement::checkObjectCode(const CompiledObject& obj)
+{
+	if (obj.code() != CompiledObject::ObjectCode::castStmt)
+		throw std::runtime_error("Not a cast statement");
+	return obj;
 }

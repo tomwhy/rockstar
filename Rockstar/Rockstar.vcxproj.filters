@@ -40,12 +40,21 @@
     <Filter Include="Header Files\Utils">
       <UniqueIdentifier>{f93ddde5-c5ac-4389-a2c6-43dca78ba05f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Interpeter">
+      <UniqueIdentifier>{9282cf2d-6278-4511-823f-74b805b3a2f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Interpeter">
+      <UniqueIdentifier>{ed404145-ad65-4e26-8ef6-c1255ed4d91b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Compiler">
+      <UniqueIdentifier>{f7eb7ebf-20e8-4d85-9b2d-014011156a20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Compiler">
+      <UniqueIdentifier>{8ee42f6b-bd43-46e0-95de-9974404b107e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Scope.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Mysterious.cpp">
@@ -68,9 +77,6 @@
     </ClCompile>
     <ClCompile Include="AssignStatement.cpp">
       <Filter>Source Files\CodeStatements</Filter>
-    </ClCompile>
-    <ClCompile Include="RunTime.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="VariableName.cpp">
       <Filter>Source Files\Expressions</Filter>
@@ -98,9 +104,6 @@
     </ClCompile>
     <ClCompile Include="CastStatement.cpp">
       <Filter>Source Files\CodeStatements</Filter>
-    </ClCompile>
-    <ClCompile Include="PreProcessor.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="IncreamentDecreamentStatement.cpp">
       <Filter>Source Files\CodeStatements</Filter>
@@ -133,13 +136,25 @@
       <Filter>Source Files\Utils</Filter>
     </ClCompile>
     <ClCompile Include="Interpeter.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Interpeter</Filter>
+    </ClCompile>
+    <ClCompile Include="PreProcessor.cpp">
+      <Filter>Source Files\Interpeter</Filter>
+    </ClCompile>
+    <ClCompile Include="RunTime.cpp">
+      <Filter>Source Files\Interpeter</Filter>
+    </ClCompile>
+    <ClCompile Include="Scope.cpp">
+      <Filter>Source Files\Interpeter</Filter>
+    </ClCompile>
+    <ClCompile Include="Compiler.cpp">
+      <Filter>Source Files\Compiler</Filter>
+    </ClCompile>
+    <ClCompile Include="CompiledObject.cpp">
+      <Filter>Source Files\Compiler</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Scope.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="IVariable.h">
       <Filter>Header Files\Variables</Filter>
     </ClInclude>
@@ -173,9 +188,6 @@
     <ClInclude Include="AssignStatement.h">
       <Filter>Header Files\CodeStatements</Filter>
     </ClInclude>
-    <ClInclude Include="RunTime.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="VariableName.h">
       <Filter>Header Files\Expressions</Filter>
     </ClInclude>
@@ -202,9 +214,6 @@
     </ClInclude>
     <ClInclude Include="CastStatement.h">
       <Filter>Header Files\CodeStatements</Filter>
-    </ClInclude>
-    <ClInclude Include="PreProcessor.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="IncreamentDecreamentStatement.h">
       <Filter>Header Files\CodeStatements</Filter>
@@ -252,7 +261,25 @@
       <Filter>Header Files\Utils</Filter>
     </ClInclude>
     <ClInclude Include="Interpeter.h">
+      <Filter>Header Files\Interpeter</Filter>
+    </ClInclude>
+    <ClInclude Include="PreProcessor.h">
+      <Filter>Header Files\Interpeter</Filter>
+    </ClInclude>
+    <ClInclude Include="RunTime.h">
+      <Filter>Header Files\Interpeter</Filter>
+    </ClInclude>
+    <ClInclude Include="Scope.h">
+      <Filter>Header Files\Interpeter</Filter>
+    </ClInclude>
+    <ClInclude Include="json.hpp">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CompiledObject.h">
+      <Filter>Header Files\Compiler</Filter>
+    </ClInclude>
+    <ClInclude Include="Compiler.h">
+      <Filter>Header Files\Compiler</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

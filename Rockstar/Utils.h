@@ -12,12 +12,12 @@
 class Utils
 {
 public:
-	static std::shared_ptr<IExpression> createExpression(const Statement& stmt, const std::string& name);
-	static std::shared_ptr<MathExpression> createMathExpression(const Statement& stmt, const std::string& name);
-	static std::shared_ptr<VariableName> createVariableExpression(const Statement& stmt, const std::string& name);
-	static std::shared_ptr<Comparison> createComparisonExpression(const Statement& stmt, const std::string& name);
-	static std::shared_ptr<ListArthimeticExpression> createListExpression(const Statement& stmt, const std::string& name, std::shared_ptr<IExpression> left, MathOp op);
-	static Statement parseExpression(const std::vector<Token>& line, const std::string& name);
+	static std::shared_ptr<IExpression> createExpression(const genericparser::Statement& stmt, const std::string& name);
+	static std::shared_ptr<MathExpression> createMathExpression(const genericparser::Statement& stmt, const std::string& name);
+	static std::shared_ptr<VariableName> createVariableExpression(const genericparser::Statement& stmt, const std::string& name);
+	static std::shared_ptr<Comparison> createComparisonExpression(const genericparser::Statement& stmt, const std::string& name);
+	static std::shared_ptr<ListArthimeticExpression> createListExpression(const genericparser::Statement& stmt, const std::string& name, std::shared_ptr<IExpression> left, MathOp op);
+	static genericparser::Statement parseExpression(const std::vector<genericparser::Token>& line, const std::string& name);
 	static std::string lower(const std::string& str);
 	static std::string repeat(const std::string& str, int times);
 	static std::string getDefsPath();
@@ -32,6 +32,18 @@ public:
 		}
 
 		return true;
+	}
+
+	template <typename Iter>
+	static std::vector<char> serializeType(Iter begin, Iter end)
+	{
+		return std::vector<char>(begin, end);
+	}
+
+	template <typename T>
+	static std::vector<char> serializeType(T value)
+	{
+		return serializeType((char*)&value, (char*)&value + sizeof(T));
 	}
 };
 

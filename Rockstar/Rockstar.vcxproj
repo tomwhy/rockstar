@@ -116,6 +116,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -131,6 +132,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -144,6 +146,8 @@
     <ClCompile Include="Array.cpp" />
     <ClCompile Include="AssignStatement.cpp" />
     <ClCompile Include="Boolean.cpp" />
+    <ClCompile Include="CompiledObject.cpp" />
+    <ClCompile Include="Compiler.cpp" />
     <ClCompile Include="CastStatement.cpp" />
     <ClCompile Include="Comparison.cpp" />
     <ClCompile Include="Constant.cpp" />
@@ -177,6 +181,8 @@
     <ClInclude Include="Array.h" />
     <ClInclude Include="AssignStatement.h" />
     <ClInclude Include="Boolean.h" />
+    <ClInclude Include="CompiledObject.h" />
+    <ClInclude Include="Compiler.h" />
     <ClInclude Include="CastStatement.h" />
     <ClInclude Include="Comparison.h" />
     <ClInclude Include="Constant.h" />
@@ -195,6 +201,7 @@
     <ClInclude Include="ISplitable.h" />
     <ClInclude Include="IVariable.h" />
     <ClInclude Include="JoinStatement.h" />
+    <ClInclude Include="json.hpp" />
     <ClInclude Include="ListArthimeticExpression.h" />
     <ClInclude Include="MathExpression.h" />
     <ClInclude Include="MathInterfaces.h" />
