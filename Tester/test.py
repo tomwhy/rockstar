@@ -5,8 +5,6 @@ import itertools
 import time
 import math
 
-TEST_TIME = 10
-
 def getDateParts(total_milliseconds: int) -> str:
     yield "{} milliseconds".format(total_milliseconds % 1000) if total_milliseconds % 1000 else ""  # milliseconds
     total_milliseconds //= 1000
@@ -68,12 +66,8 @@ class Test:
         diff = []
         
         start = time.time()
-        try:
-            res = subprocess.run(self._cmd, stdout=subprocess.PIPE,
-                             stderr=subprocess.STDOUT, text=True, timeout=TEST_TIME)
-        except subprocess.TimeoutExpired:
-            return TestResult.create("Timeout"), getTimeStr(time.time() - start)
-
+        res = subprocess.run(self._cmd, stdout=subprocess.PIPE,
+                             stderr=subprocess.STDOUT, text=True)
         with open(self._expected_output) as file:
             for out, expected in itertools.zip_longest(res.stdout.splitlines(), file, fillvalue=str()):
                 expected = expected.replace("\n", "")

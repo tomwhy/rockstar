@@ -1,0 +1,5 @@
+Let X be right
+shout X (true)
+shout not X (false)
+shout not not X (true)
+shout not X is wrong (true)

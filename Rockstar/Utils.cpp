@@ -2,6 +2,7 @@
 #include "VariableName.h"
 #include "Constant.h"
 #include "Pronoun.h"
+#include "LogicNotExpression.h"
 #include "InterpeterExceptions.h"
 #include "GenericParser/include/PossibilityIterator.h"
 #include "GenericParser/include/tinyxml2/tinyxml2.h"
@@ -15,11 +16,21 @@
 std::shared_ptr<IExpression> Utils::createExpression(const genericparser::Statement& stmt, const std::string& name)
 {
 	if (stmt.contains(name + "_exp_var"))
+	{
 		return Utils::createVariableExpression(stmt, name + "_exp_var");
+	}
 	else if (stmt.contains(name + "_math"))
+	{
 		return Utils::createMathExpression(stmt, name + "_math");
+	}
 	else if (stmt.contains(name + "_comp"))
+	{
 		return Utils::createComparisonExpression(stmt, name + "_comp");
+	}
+	else if (stmt.contains(name + "_logicNot"))
+	{
+		return std::make_shared<LogicNotExpression>(Utils::createExpression(stmt, name + "_logicNot_right"));
+	}
 	else if (stmt.contains(name + "_exp"))
 	{
 		if (!stmt.hasToken(name + "_exp"))
@@ -66,30 +77,19 @@ std::shared_ptr<VariableName> Utils::createVariableExpression(const genericparse
 std::shared_ptr<Comparison> Utils::createComparisonExpression(const genericparser::Statement& stmt, const std::string& name)
 {
 	std::shared_ptr<IExpression> left = Utils::createExpression(stmt, name + "_left");
-	std::shared_ptr<IExpression> right = Utils::createExpression(stmt, name + "_right");
-	
-	std::string negatePath = name;
-	ComparisonFlags op;
+	ComparisonFlags op = Comparison::getOp(stmt, name);
 
-	if (stmt.contains(name + "_equ"))
+	if (stmt.contains(name + "_right_comp")) // there is another compere expression to the right
 	{
-		negatePath += "_equ_neg";
-		op |= ComparisonFlags::equal;
-	}
-	else if (stmt.contains(name + "_order equ"))
-	{
-		negatePath += "_order equ_neg";
-		op |= ComparisonFlags::equal | (stmt.getToken(name + "_order equ_order").isName("High") ? ComparisonFlags::greater : ComparisonFlags::less);
+		//comparisons are left assosiative (grouped to the left)
+		left = std::make_shared<Comparison>(left, op, Utils::createExpression(stmt, name + "_right_comp_left"));
+		op = Comparison::getOp(stmt, name + "_right_comp");
+		return std::make_shared<Comparison>(left, op, Utils::createExpression(stmt, name + "_right_comp_right"));
 	}
 	else
 	{
-		negatePath += "_order_neg";
-		op |= (stmt.getToken(name + "_order_order").isName("Higher") ? ComparisonFlags::greater : ComparisonFlags::less);
+		return std::make_shared<Comparison>(left, op, Utils::createExpression(stmt, name + "_right"));
 	}
-
-	bool negate = stmt.getToken(negatePath).isName("Isnt");
-
-	return std::make_shared<Comparison>(left, op, right, negate);
 }
 std::shared_ptr<MathExpression> Utils::createMathExpression(const genericparser::Statement& stmt, const std::string& name)
 {

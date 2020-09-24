@@ -160,6 +160,7 @@
     <ClCompile Include="IVariable.cpp" />
     <ClCompile Include="JoinStatement.cpp" />
     <ClCompile Include="ListArthimeticExpression.cpp" />
+    <ClCompile Include="LogicNotExpression.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MathExpression.cpp" />
     <ClCompile Include="Mysterious.cpp" />
@@ -203,6 +204,7 @@
     <ClInclude Include="JoinStatement.h" />
     <ClInclude Include="json.hpp" />
     <ClInclude Include="ListArthimeticExpression.h" />
+    <ClInclude Include="LogicNotExpression.h" />
     <ClInclude Include="MathExpression.h" />
     <ClInclude Include="MathInterfaces.h" />
     <ClInclude Include="Mysterious.h" />

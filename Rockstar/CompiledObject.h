@@ -9,7 +9,7 @@ private:
 
 public:
 
-	enum class ObjectCode {compareExp, constantExp, mathExp, pronounExp, variableExp, assignmentStmt, castStmt, joinStmt, splitStmt, incDecStmt, printStmt, roundStmt};
+	enum class ObjectCode {compareExp, notExp, constantExp, mathExp, pronounExp, variableExp, assignmentStmt, castStmt, joinStmt, splitStmt, incDecStmt, printStmt, roundStmt};
 
 	CompiledObject(ObjectCode code, const nlohmann::json& properties);
 	CompiledObject(std::vector<std::uint8_t> serializedBuffer);

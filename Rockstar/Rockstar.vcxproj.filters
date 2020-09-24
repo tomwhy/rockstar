@@ -153,6 +153,9 @@
     <ClCompile Include="CompiledObject.cpp">
       <Filter>Source Files\Compiler</Filter>
     </ClCompile>
+    <ClCompile Include="LogicNotExpression.cpp">
+      <Filter>Source Files\Expressions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="IVariable.h">
@@ -280,6 +283,9 @@
     </ClInclude>
     <ClInclude Include="Compiler.h">
       <Filter>Header Files\Compiler</Filter>
+    </ClInclude>
+    <ClInclude Include="LogicNotExpression.h">
+      <Filter>Header Files\Expressions</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

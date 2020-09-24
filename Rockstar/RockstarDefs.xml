@@ -13,6 +13,8 @@
     <Value>
       <Arthimetic name="math" />
       <Comparison name="comp" />
+      <LogicalOperation name="logic"/>
+      <LogicalNotOperation name="logicNot"/>
       <AtomicExpression name="exp" />
     </Value>
 
@@ -20,8 +22,36 @@
       <Variable name="var" />
       <Literal />
     </AtomicExpression>
+    
+    <LogicalNotOperation>
+      <sequence>
+        <LogicalNot/>
+        <or name="right">
+          <LogicalNotOperation name="logicNot"/>
+          <AtomicExpression name="exp"/>
+        </or>
+      </sequence>
+    </LogicalNotOperation>
+
+    <ArthimeticOperhand>
+      <LogicalNotOperation name="logicalNot"/>
+      <AtomicExpression name="exp"/>
+    </ArthimeticOperhand>
+    
+    <Arthimetic>
+      <sequence>
+        <ArthimeticOperhand name="left" />
+        <MathOp name="op" />
+        <or name="right">
+          <List name="list" />
+          <Arthimetic name="math" />
+          <ArthimeticOperhand/>
+        </or>
+      </sequence>
+    </Arthimetic>
 
     <ComperisonExpression>
+      <LogicalNotOperation name="logicNot"/>
       <Arthimetic name="math" />
       <AtomicExpression name="exp" />
     </ComperisonExpression>
@@ -67,6 +97,40 @@
       </sequence>
     </Comparison>
 
+    <LogicalOperhand>
+      <Comparison name="comp"/>
+      <LogicalNotOperation name="logicNot"/>
+      <Arthimetic name="math"/>
+      <AtomicExpression name="exp"/>
+    </LogicalOperhand>
+    
+    <LogicalOperation>
+      <sequence name="and">
+        <LogicalOperhand name="left"/>
+        <LogicalAnd/>
+        <or name="right">
+          <LogicalOperation name="logic"/>
+          <LogicalOperhand/>
+        </or>
+      </sequence>
+      <sequence name="or">
+        <LogicalOperhand name="left"/>
+        <LogicalOr/>
+        <or name="right">
+          <LogicalOperation name="logic"/>
+          <LogicalOperhand/>
+        </or>
+      </sequence>
+      <sequence name="nor">
+        <LogicalOperhand name="left"/>
+        <LogicalNor/>
+        <or name="right">
+          <LogicalOperation name="logic"/>
+          <LogicalOperhand/>
+        </or>
+      </sequence>
+    </LogicalOperation>
+    
     <Variable>
       <sequence>
         <or name="name">
@@ -76,18 +140,6 @@
         <Index optional="true" name="idx" />
       </sequence>
     </Variable>
-
-    <Arthimetic>
-      <sequence>
-        <AtomicExpression name="left_exp" />
-        <MathOp name="op" />
-        <or name="right">
-          <List name="list" />
-          <Arthimetic name="math" />
-          <AtomicExpression name="exp" />
-        </or>
-      </sequence>
-    </Arthimetic>
 
     <List>
       <sequence>
@@ -312,6 +364,26 @@
             <regex icase="true">ver</regex>
           </contains>
         </Pronoun>
+        <LogicAnd>
+          <contains>
+            <regex icase="true">and</regex>
+          </contains>
+        </LogicAnd>
+        <LogicOr>
+          <contains>
+            <regex icase="true">or</regex>
+          </contains>
+        </LogicOr>
+        <LogicNor>
+          <contains>
+            <regex icase="true">nor</regex>
+          </contains>
+        </LogicNor>
+        <LogicalNot>
+          <contains>
+            <regex icase="true">not</regex>
+          </contains>
+        </LogicalNot>
       </contains>
     </Keyword>
 

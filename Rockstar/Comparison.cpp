@@ -3,10 +3,10 @@
 #include "Utils.h"
 #include "Compiler.h"
 
-constexpr const ComparisonFlags ComparisonFlags::less(1), ComparisonFlags::equal(2), ComparisonFlags::greater(4);
+constexpr const ComparisonFlags ComparisonFlags::less(1), ComparisonFlags::equal(2), ComparisonFlags::greater(4), ComparisonFlags::negate(8);
 
-Comparison::Comparison(std::shared_ptr<IExpression> left, const ComparisonFlags& op, std::shared_ptr<IExpression> right, bool negate) :
-	_left(left), _op(op), _right(right), _negate(negate)
+Comparison::Comparison(std::shared_ptr<IExpression> left, const ComparisonFlags& op, std::shared_ptr<IExpression> right) :
+	_left(left), _op(op), _right(right), _negate(_op & ComparisonFlags::negate)
 {
 	
 }
@@ -49,4 +49,33 @@ CompiledObject Comparison::serialize() const
 	json["neg"] = _negate;
 
 	return CompiledObject(CompiledObject::ObjectCode::compareExp, json);
+}
+
+ComparisonFlags Comparison::getOp(const genericparser::Statement& stmt, const std::string& name)\
+{
+	std::string negatePath = name;
+	ComparisonFlags op;
+
+	if (stmt.contains(name + "_equ"))
+	{
+		negatePath += "_equ_neg";
+		op |= ComparisonFlags::equal;
+	}
+	else if (stmt.contains(name + "_order equ"))
+	{
+		negatePath += "_order equ_neg";
+		op |= ComparisonFlags::equal | (stmt.getToken(name + "_order equ_order").isName("High") ? ComparisonFlags::greater : ComparisonFlags::less);
+	}
+	else
+	{
+		negatePath += "_order_neg";
+		op |= (stmt.getToken(name + "_order_order").isName("Higher") ? ComparisonFlags::greater : ComparisonFlags::less);
+	}
+
+	if (stmt.getToken(negatePath).isName("Isnt"))
+	{
+		op |= ComparisonFlags::negate;
+	}
+
+	return op;
 }
